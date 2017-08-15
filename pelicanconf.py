@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = u'thedude'
-SITENAME = u'Example Pelican website using GitLab Pages!'
+AUTHOR = u'William F. Broderick'
+SITENAME = u'Personal website for WFB'
 SITEURL = ''
 
 PATH = 'content'
 OUTPUT_PATH = 'public'
 
-TIMEZONE = 'Europe/Athens'
+TIMEZONE = 'America/New_York'
 
 DEFAULT_LANG = u'en'
 
@@ -32,5 +32,11 @@ SOCIAL = (('You can add links in your config file', '#'),
 
 DEFAULT_PAGINATION = 5
 
+MARKUP = ('md', 'ipynb')
+PLUGIN_PATHS = ['pelican-plugins', 'pelican-ipynb', 'liquid_tags']
+PLUGINS = ['org_reader', 'ipynb.markup']
+
+ORG_READER_EMACS_LOCATION = '/usr/bin/emacs'
+ORG_READER_EMACS_SETTINGS = '/home/billbrod/.emacs.d/init.el'
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
