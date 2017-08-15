@@ -1,9 +1,9 @@
 image: python:2.7-alpine
 
 pages:
+  variables:
+    GIT_SUBMODULE_STRATEGY: normal
   script:
-  - git clone https://github.com/getpelican/pelican-plugins.git /data/pelican-themes
-  - git clone https://github.com/alexandrevicenzi/Flex.git /data/Flex
   - pip install -r requirements.txt
   - pelican -s publishconf.py
   artifacts:
