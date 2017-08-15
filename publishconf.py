@@ -10,6 +10,11 @@ import sys
 sys.path.append(os.curdir)
 from pelicanconf import *
 
+# THEME is imported from pelicanconf, where it doesn't reside in the /data directory
+THEME = '/data/%s' % THEME
+# similarly for PLUGIN_PATHS
+PLUGIN_PATHS = ['/data/%s' % i if i == 'pelican-plugins' else i for i in PLUGIN_PATHS]
+
 SITEURL = ''
 RELATIVE_URLS = False
 
