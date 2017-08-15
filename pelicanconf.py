@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = u'William F. Broderick'
 SITENAME = u'Personal website for WFB'
 SITEURL = ''
+THEME = 'Flex'
 
 PATH = 'content'
 OUTPUT_PATH = 'public'
