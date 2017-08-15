@@ -8,6 +8,9 @@ SITEURL = ''
 
 PATH = 'content'
 OUTPUT_PATH = 'public'
+STATIC_PATHS = ['images', 'presentations']
+PAGE_EXCLUDES = []
+ARTICLE_EXCLUDES = ['presentations']
 
 TIMEZONE = 'America/New_York'
 

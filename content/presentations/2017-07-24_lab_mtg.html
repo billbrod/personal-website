@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Spatial Frequency Preferences in Visual Cortex</title>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme"/>
+
+<link rel="stylesheet" href="custom.css"/>
+<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<meta name="description" content="BCog presentation">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Spatial Frequency Preferences in Visual Cortex</h1><h2 class="date">2017-07-24</h2>
+</section>
+
+<section>
+<section id="slide-orgcbe4cba">
+<h2 id="orgcbe4cba">Everyone's intuition</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/SF-intuition.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+people's intuition looks basically like this:
+</p>
+<ul>
+<li>preferred spatial frequency starts high in the fovea, then decreases
+as you move towards the periphery</li>
+<li>the preferred spatial frequency at a given eccentricity decreases as
+you move to higher visual areas (because receptive field size
+increases)</li>
+<li>at a given eccentricity, you have many neurons, all of whose
+responses are centered at similar frequencies (and have roughly
+log-Gaussian response curves)</li>
+<li>probably not linear, probably exponential decay, but this is
+basically it</li>
+
+</ul>
+
+<p>
+data typically qualitatively follows this pattern, but there's little
+done to systematically map this out, and it does vary across studies
+</p>
+
+<p>
+I found a handful of studies, which I'm going to go through in
+chronological order and then summarize at the end.
+</p>
+
+<p>
+BUT:
+</p>
+<ul>
+<li>actual numbers disagree</li>
+<li>no standard way to display this data</li>
+<li>if curves fit, no parameters given</li>
+<li>therefore, hard to read off numbers</li>
+<li>different stimuli used</li>
+<li>for the project I'm working on, we wanted to start with degrees 2 to
+4 in V1, so that's what I'm going to point out</li>
+<li>inconsistent data from areas other than V1</li>
+<li>no comparison across subjects</li>
+
+</ul>
+
+<p>
+For almost all of these, they showed stimuli to participants in some
+sort of block design, then fit the results using a GLM and estimated
+response / peak SF that way
+</p>
+
+<p>
+unless marked otherwise, all results are in V1
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgda21a06">
+<h2 id="orgda21a06">Sasaki et al, 2001</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/SF-Sasaki.svg" class="org-svg" width="60%" height="60%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+didn't include picture of stimuli but were phase-encoded (same as
+traveling wave?) achromatic sinusoidal gratings, whose frequencies
+varied from .5 to 2.0 cpd within a 64 second cycle, with phase
+randomly changing every 400 msecs. across entire visual field
+</p>
+
+<p>
+plots here are of V1. looks like it generally follows that pattern we
+talked about initially, though this assumes an exponential decay
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org0f27351">
+<h2 id="org0f27351">Henriksson et al, 2008</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/SF-Henriksson.svg" class="org-svg" width="75%" height="75%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+stimuli here are rings, either in the upper right visual field, or the
+whole visual field, at one of three eccentricities, covering many
+spatial frequencies. presented in blocks, with a brief rest.
+</p>
+
+<p>
+again, follows roughly the pattern we'd expect, though I don't know
+why the curves using the quarter- and full-field stimuli are so
+different nor why the pattern of decreasing optimal SF doesn't hold
+behind V3
+</p>
+
+<p>
+why quarter-field?
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org6735e86">
+<h2 id="org6735e86">Kay et al, 2008 and Kay, 2011</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/SF-Kay.svg" class="org-svg" width="70%" height="70%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+this is the only one that didn't do the standard GLM type analysis:
+for these results, they showed the participants a bunch of natural
+images and fit receptive field (presumably, pRF?) model built on Gabor
+filters (with different scales and orientations) to responses, then
+investigated the properties of the models afterwards
+</p>
+
+<p>
+the 2008 paper doesn't give any sense of the distribution, just one
+example voxel, while the 2011 does (both here are models of V1).
+</p>
+
+<p>
+these are outliers, with much higher peak SF than the other papers. no
+description of why that might be in these papers, just a note that it
+fits qualitatively with the intuition / pattern of others
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc9207c6">
+<h2 id="orgc9207c6">Hess et al, 2009</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/SF-Hess.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+sinusoidal cherkboards, increasing spatial frequency over time and
+then resetting, as shown in this lower figure, similar to Sasaki
+</p>
+
+<p>
+the study focused on amblyopia, so they split up their results based
+on the eye. i think for our purposes, we should focus on dominant eye
+(this all V1). again follows general pattern
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgb7cd83e">
+<h2 id="orgb7cd83e">D'Souza et al, 2016</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/SF-Dsouza.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+focusing on color vision, this one is the most similar to
+Henriksson. they use three types of stimuli. L-M, Lum, and S (to
+"individually activate M-L cone-opponent, luminance and S-cone
+postreceptoral pathways, respectively"). for our purposes, we should
+focus on the Lum ones then.
+</p>
+
+<p>
+fit tuning curves on right to data shown in the middle. general
+pattern but that's it
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org6065adb">
+<h2 id="org6065adb">Farivar et al, 2017</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/SF-Farivar.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+very different stimuli: took natural scenes, phase-scrambled and
+linearly filtered them to only leave info from one specific spatial
+frequency. (study focused on something else, this was one of their
+control conditions)
+</p>
+
+<p>
+show multiple subjects, but no attempt to quantify. it's exceedingly
+hard to tell here, but it looks like the across visual area pattern
+goes the opposite way: higher frequencies in V2/V3 at a given
+eccentricity compared to V1.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org33a2670">
+<h2 id="org33a2670">Catherine's pilot data</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/SF-Catherine.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+finally, Catherine Olsson ran some pilot studies before she left to
+attempt to examine this for the standard cortical observer model. Noah
+used this data to build a model that he put in for his VSS talk.
+</p>
+
+<p>
+participants were shown patterns of random lines at different spatial
+frequencies, model fit to results and then model examined. like the
+Kay model, built on Gabor filters (multiple orientations and scales),
+but the peak frequencies here are much lower than there
+</p>
+
+<p>
+didn't try to separate V1/2/3 yet, not confident one subject would be
+enough data
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org57918ac">
+<h2 id="org57918ac">Summary of V1 results</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/SF-Summary.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+in summary, the basic intuition of lower spatial frequencies in the
+periphery rather than the fovea, holds. and they basically all agree
+that the drop-off should be exponential rather than linear (these are
+approximated / averaged from the original data)
+</p>
+
+<p>
+but results at a given eccentricity in V1 span about two octaves, or
+one if we discount the Kay results, unsure how this varies across
+subjects, not sure exact form of relationship between, how V2/V3
+relate to V1 (higher/lower? same shape but off by scale?), or the
+effect of different stimuli types
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orge988d70">
+<h2 id="orge988d70">Next steps</h2>
+<ul>
+<li>Systematically evaluate spatial frequency sensitivity as function
+of eccentricity in V1, V2, and V3</li>
+<li>Create annuli and rotating wedges with spatial frequencies
+spanning .1 to 10 cpd (and potentially test different patterns:
+sine waves in different directions, random lines, etc.)</li>
+<li>Subjects fixate at center of stimuli, perform distractor task</li>
+<li>For each voxel, fit parameterized tuning curves (based on
+eccentricity, visual area)</li>
+
+<li>Please give feedback!</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org71ab5a6">
+<h2 id="org71ab5a6">Bibliography</h2>
+<ul>
+<li>D'Souza, D. V., Auer, T., Frahm, J., Strasburger, H., &amp; Lee,
+B. B. (2016). Dependence of chromatic responses in v1 on visual
+field eccentricity and spatial frequency: an fmri study. JOSA A,
+33(3), 53-64.</li>
+
+<li>Farivar, R., Clavagnier, S., Hansen, B. C., Thompson, B., &amp; Hess,
+R. F. (2017). Non-uniform phase sensitivity in spatial frequency
+maps of the human visual cortex. The Journal of Physiology, 595(4),
+1351-1363. <a href="http://dx.doi.org/10.1113/jp273206">http://dx.doi.org/10.1113/jp273206</a></li>
+
+<li>Henriksson, L., Nurminen, L., Hyvarinen, Aapo, &amp; Vanni,
+S. (2008). Spatial frequency tuning in human retinotopic visual
+areas. Journal of Vision, 8(10), 5. <a href="http://dx.doi.org/10.1167/8.10.5">http://dx.doi.org/10.1167/8.10.5</a></li>
+
+<li>Hess, R. F., Li, X., Mansouri, B., Thompson, B., &amp; Hansen,
+B. C. (2009). Selectivity as well as sensitivity loss characterizes
+the cortical spatial frequency deficit in amblyopia. Human Brain
+Mapping, 30(12), 4054-4069. <a href="http://dx.doi.org/10.1002/hbm.20829">http://dx.doi.org/10.1002/hbm.20829</a></li>
+
+<li>Kay, K. N., Naselaris, T., Prenger, R. J., &amp; Gallant,
+J. L. (2008). Identifying Natural Images From Human Brain
+Activity. Nature, 452(7185),
+352-355. <a href="http://dx.doi.org/10.1038/nature06713">http://dx.doi.org/10.1038/nature06713</a></li>
+
+<li>Kay, K. N. (2011). Understanding Visual Representation By Developing
+Receptive-Field Models. Visual Population Codes: Towards a Common
+Multivariate Framework for Cell Recording and Functional Imaging,
+(), 133-162.</li>
+
+<li>Sasaki, Y., Hadjikhani, N., Fischl, B., Liu, A. K., Marret, S.,
+Dale, A. M., &amp; Tootell, R. B. (2001). Local and global attention are
+mapped retinotopically in human occipital cortex. Proceedings of the
+National Academy of Sciences, 98(4), 2077-2082.</li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<p> Created by WFB. </p>
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+margin: 0.10,
+minScale: 0.50,
+maxScale: 2.50,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+ { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>
