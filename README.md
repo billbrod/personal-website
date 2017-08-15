@@ -2,6 +2,9 @@
 
 ----
 
+was running into this issue:
+https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/issues/2148
+
 TEST EDIT
 
 Example [Pelican] website using GitLab Pages.
