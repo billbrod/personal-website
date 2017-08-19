@@ -3,4 +3,4 @@
 	url = https://github.com/getpelican/pelican-plugins
 [submodule "Flex"]
 	path = Flex
-	url = git@github.com:billbrod/Flex.git
+	url = https://github.com:billbrod/Flex.git
