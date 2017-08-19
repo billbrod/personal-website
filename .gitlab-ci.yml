@@ -2,7 +2,7 @@ image: python:2.7-alpine
 
 pages:
   variables:
-    GIT_SUBMODULE_STRATEGY: normal
+    GIT_SUBMODULE_STRATEGY: recursive
   script:
   - pip install -r requirements.txt
   - pelican -s publishconf.py
