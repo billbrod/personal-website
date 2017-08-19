@@ -3,7 +3,9 @@
 ----
 
 was running into this issue:
-https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/issues/2148
+https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/issues/2148,
+setting the secret variable (in Settings -> Pipelines)
+`GIT_SSL_CAPATH` to `/etc/ssl/certs/` seems to have fixed it
 
 TEST EDIT
 
