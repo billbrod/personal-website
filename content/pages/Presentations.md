@@ -1,6 +1,4 @@
 Title: Presentations
-Category: presentations
-Slug: presentations
 Summary: List of presentations
 
 This page hosts a list of html presentations that I've made.
