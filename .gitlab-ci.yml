@@ -1,11 +1,11 @@
-image: python:2.7-alpine
+image: debian:stretch
 
 pages:
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
   script:
   - apt-get update
-  - apt-get -y install emacs25
+  - apt-get -y install emacs25 python-pip
   - pip install -r requirements.txt
   - pelican -s publishconf.py
   artifacts:
