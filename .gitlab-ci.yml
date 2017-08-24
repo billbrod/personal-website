@@ -4,6 +4,8 @@ pages:
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
   script:
+  - apt-get update
+  - apt-get -y install emacs25
   - pip install -r requirements.txt
   - pelican -s publishconf.py
   artifacts:
