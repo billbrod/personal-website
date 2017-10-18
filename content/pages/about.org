@@ -6,8 +6,8 @@ I'm a PhD student at New York University's Center for Neural Science,
 where I'm researching the processing of visual information with Eero
 Simoncelli and Jon Winawer. I use computational models and functional
 magnetic resonance imaging to investigate how the early visual cortex
-processes and represents visual information. Beyond vision, I'm also a
-firm believer in open and reproducible science, am interested in the
+processes and represents visual information. Beyond vision, I'm a firm
+believer in open and reproducible science, am interested in the
 philosophy of science and statistics, and have been involved with the
 [[http://scaan.net/][Scientist Action and Advocacy Network]] since it's founding.
 
@@ -18,7 +18,23 @@ always helpful. I'll also write about neuroscience more broadly, as
 well as statistics, python, open science, and other science-related
 topics.
 
+Before starting my PhD, I worked with Scott Huettel and Guillermo
+Sapiro at Duke University as a research assistant. While there, I used
+multi-variate pattern analysis of fMRI to investigate the neural
+correlates of social decision making. We used machine learning
+decoding methods to identify locations in the brain that could be used
+to predict whether someone was playing against a human or a computer,
+and what kind of strategy they were using. I also worked with Wang
+Suiping at South China Normal University in Guangzhou, China as a [[http://www.hluce.org/lsprogram.aspx][Luce
+Scholar]], using graph theoretical analyses to understand differences in
+network properties of brain functional networks during reading in
+English and Chinese for bilinguals. As an undergraduate, I worked with
+Pat Simen at Oberlin College on a model of human behavioral
+performance in a two-alternative forced choice task.
+
 This blog is made with [[https://blog.getpelican.com/][pelican]] using a slightly modified version of
 Alexandre Vicenzi's [[https://github.com/alexandrevicenzi/Flex][Flex]] theme and hosted on [[https://gitlab.com/pages/][Gitlab Pages]]. Most of my
 pages are written using [[http://orgmode.org/][org mode]] and converted to posts with the [[https://github.com/getpelican/pelican-plugins/tree/master/org_reader][org
-reader]] plugin, because emacs with org mode is wonderful.
+reader]] plugin, because [[https://www.gnu.org/software/emacs/][emacs]] with org mode is wonderful.
+
+A pdf of my CV can be found [[../docs/CV.pdf][here]], but it's most likely not up-to-date.

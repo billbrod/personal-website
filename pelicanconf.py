@@ -13,7 +13,7 @@ ROBOTS = 'index, follow'
 
 PATH = 'content'
 OUTPUT_PATH = 'public'
-STATIC_PATHS = ['images', 'presentations']
+STATIC_PATHS = ['images', 'presentations', 'docs']
 PAGE_EXCLUDES = []
 ARTICLE_EXCLUDES = ['presentations']
 
@@ -27,6 +27,9 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
+
+COPYRIGHT_NAME = "William F. Broderick"
+COPYRIGHT_YEAR = "2017"
 
 # Social widget
 
