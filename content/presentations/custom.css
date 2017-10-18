@@ -4,6 +4,9 @@
 .reveal h2 {
     font-size:1.2em;
 }
+.reveal h3 {
+    font-size:1.2em;
+}
 
 .reveal section img {
     display:block;
@@ -19,13 +22,13 @@ html {
 }
 
 .reveal li {
-    font-size:.5em;
+    font-size:1em;
 }
 
 .reveal table td {
-    font-size:.5em;
+    font-size:.6em;
 }
 
 .reveal table th {
-    font-size:.5em;
+    font-size:.6em;
 }
