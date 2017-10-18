@@ -22,7 +22,8 @@ pages:
   # SSH_SERVER_HOSTKEYS variable previously, uncomment the following two lines
   # instead.
   # - mkdir -p ~/.ssh
-  # - '[[ -f /.dockerenv ]] && echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'  
+  # - '[[ -f /.dockerenv ]] && echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'
+  - apt install ssh
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
   script:
