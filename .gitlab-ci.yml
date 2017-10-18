@@ -23,9 +23,9 @@ pages:
   # instead.
   # - mkdir -p ~/.ssh
   # - '[[ -f /.dockerenv ]] && echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'
-  - apt-get -y install ssh
   # this is the old way of doing things, but I want it to use ssh,
   # which needs to be installed first.
+  - apt-get install -y git
   - git submodule sync --recursive
   - git submodule update --init --recursive
   variables:
