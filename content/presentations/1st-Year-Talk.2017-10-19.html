@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Spatial Frequency Preferences in Human Visual Cortex</title>
+<meta name="author" content="(Billy Broderick)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme"/>
+
+<link rel="stylesheet" href="custom.css"/>
+<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<meta name="description" content="1st year talk">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1>Spatial Frequency Preferences in Human Visual Cortex</h1><h2>Billy Broderick</h2><h2>Simoncelli and Winawer labs</h2><h2>Oct 19, 2017</h2>
+</section>
+<aside class="notes">
+<p>
+this talk will discuss some work I'm doing with Jon Winawer and Eero
+Simoncelli.
+</p>
+
+</aside>
+
+<section>
+<section id="slide-org5d36550">
+<h2 id="org5d36550">How do neurons respond to visual stimuli?</h2>
+
+<div class="figure">
+<p><img src="../images/retinotopy.gif" alt="retinotopy.gif" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+info to build these models comes from measuring what neurons or
+groups of neurons do in response to different visual stimuli. the
+classic example is retinotopy: neurons nearby each other in visual
+cortex respond to nearby locations of the visual field.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-orga16bbc6">
+<h3 id="orga16bbc6">What do neurons see?</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/einstein.svg" class="org-svg" width="60%" height="60%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+now historically, most of this work has been done in single
+neurons. and you might think if you know how a small handful of
+neurons work, you know how the whole population works, that they're
+basically the same everywhere. 
+</p>
+
+<p>
+if you're looking at this picture of Einstein, focusing on Einstein's
+nose in the center of the image&#x2026;
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org498c4ea">
+<h3 id="org498c4ea">What do neurons see?</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/cells_no_change-first.svg" class="org-svg" width="60%" height="60%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+a cell whose receptive field is in your fovea and thus cares about the
+center of gaze would see Einstein's mustache
+</p>
+
+</aside>
+
+</section>
+<section id="slide-orgf7f3376">
+<h3 id="orgf7f3376">What do neurons see?</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/cells_no_change-all.svg" class="org-svg" width="60%" height="60%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+cells whose recpetive fields are farther out in the periphery would
+see other portions of this image
+</p>
+
+<p>
+here, I'm showing you what three different cells in different parts of
+V1 might be seeing in response to this picture of Einstein: the only
+thing that differs is which portion of the image they see, they're
+otherwise the same
+</p>
+
+<p>
+this way of thinking assumes that cells in V1 functions basically as a
+convolution, doing the same thing everywhere in the image. this
+underlies a lot of our technology: all CNNs, loosely based on the
+visual system, have this as the basic first step.
+</p>
+
+<p>
+but we know this is false
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org09cbaf1">
+<h3 id="org09cbaf1">Receptive field size changes across visual field</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/Freeman2011-RFs-example.svg" class="org-svg" width="70%" height="70%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+at the very least, the size of the receptive field changes across the
+visual field, so that neurons at the fovea get a smaller amount of
+the image than those at the periphery.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-orga1d9f82">
+<h3 id="orga1d9f82">Receptive field size scales with eccentricity</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/cells_size_scale-all.svg" class="org-svg" width="60%" height="60%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+to return to our Einstein image, this is at least true, that
+peripheral cells see larger chunks of the image than foveal ones.
+</p>
+
+<p>
+but this leads to a natural follow up question: what else changes
+across the visual field? what tuning properties of the cell differ as
+you move towards the periphery?
+</p>
+
+<p>
+I'm going to focus on one property, spatial frequency, which is
+roughly equivalent to the speed of change in an image.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org52410cc">
+<h2 id="org52410cc">Macaque V1 neurons have preferred spatial frequencies</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/macaque-SF-half.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+we know neurons are tuned for spatial frequency
+</p>
+
+<p>
+these two physiological studies measured the spatial frequency tuning
+curves of neurons in macaque V1 and found that they have different
+selectivity, with a distribution of preferred spatial frequencies.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-orgd272c0a">
+<h3 id="orgd272c0a">Macaque V1 neurons differ in their preferred spatial frequencies</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/macaque-SF.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and we know they have a diversity of spatial frequency tunings.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org3383684">
+<h3 id="org3383684">Do cells have roughly same tuning?</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/cells_size_scale-all.svg" class="org-svg" width="60%" height="60%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+So the question is, do cells that care about different parts of the
+visual field have approximately the same spatial frequency tuning,
+even though they have larger receptive fields&#x2026;
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org65fcb10">
+<h3 id="org65fcb10">Or does the tuning also scale?</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/cells_scaling_blur-all.svg" class="org-svg" width="60%" height="60%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+or does that spatial frequency tuning vary along with the receptive
+field size. since we know that acuity is less at the periphery
+compared to the fovea, one possibility is that the cells at the
+periphery are tuned for lower spatial frequencies than those in the
+center; this is equivalent to seeing a blurrier image as you lose
+track of the sharp edges and only keep track of the slow changes.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org3217c64">
+<h2 id="org3217c64">Possible hypotheses for spatial frequency tuning</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/SF-hypotheses-half.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+since the receptive field size doesn't scale arbitrarily but actually
+scales linearly with eccentricity, this leads to two straightforward
+hypotheses about how spatial frequency scales with receptive field
+size and, thus, with eccentricity.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org9315a29">
+<h3 id="org9315a29">Possible hypotheses for spatial frequency tuning</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/SF-hypotheses.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+these two hypotheses would look like this: in one version, the SF
+tuning stays constant as the RF grows; in the other, the SF tuning
+drops proportionally to the increase in RF size. since RFs grow
+linearly, as \(kx\), then the favored SF drops off as a hyperbola, \(k/x\)
+</p>
+
+<p>
+there's some existing data on this, but not as much as you may think
+that looks at this systematically, and those that I found did not
+agree with each other.
+</p>
+
+<p>
+I would like to analyze how visual cortex responds to different
+spatial frequencies across the map in the primary visual cortex. in
+order to do this systematically, we need fMRI.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org85a2f52">
+<h3 id="org85a2f52">fMRI retinotopy</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/Benson-retinotopy.svg" class="org-svg" width="80%" height="80%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+just as we can measure RFs in neurons, we can measure population
+receptive fields in fMRI, and in a similar manner. the idea is that
+for each patch of cortex, we find what patch of the visual field best
+drives response, so we are performing retinotopy experiments.
+</p>
+
+<p>
+in this case, we're talking about the response of a whole bunch of
+neurons in a little cube instead of a single neuron and, because fMRI
+measures from the whole brain at once (~ish), we can get these values
+for the whole V1 at the same time
+</p>
+
+<p>
+for my experiment, I'm using a method from Noah Benson, a postdoc in
+Jon's lab, which is able to predict these retinotopy models fairly
+well from a person's anatomy alone.
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org8e4941f">
+<h2 id="org8e4941f">Stimulus</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/stimulus_example.svg" class="org-svg" width="60%" height="60%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+so now, finally, we can talk about my experiment.
+</p>
+
+<p>
+explain stimuli and why
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org6e69938">
+<h3 id="org6e69938">Stimuli have variety of spatial frequencies and patterns</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/stimuli-overview.svg" class="org-svg" width="60%" height="60%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+we construct a whole bunch of stimuli like this. we use gratings like
+this because they drive V1 well, allow us to avoid edge artifacts
+while still scaling with eccentricity, and a have a variety of local
+orientation properties, which we also know is important for V1
+</p>
+
+<p>
+I'm now going to show you the experiment, slowed down so you can see
+what's going on and because I'm a little weird it could trigger a
+photosensitive epilectic seizure &#x2013; if flashes of light bother you,
+you should still probably close your eyes
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org9557b2c">
+<h3 id="org9557b2c"></h3>
+
+<div class="figure">
+<p><img src="../images/experiment-example-trial.gif" alt="experiment-example-trial.gif" width="130%" height="130%" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+for the experiment, we have people lie in the scanner and stare at
+these stimuli for a long time. each class of stimuli contains 8 images
+which differ in their phase but have the same frequency
+information. the images flash on and off for 300/200 msecs. (both the
+phase differences and on/off periods are done to reduce effect of
+adaptation). people are shown these images sequentially while fixating
+in the center at a digit stream, doing a one-back task as a distractor
+to maintain attention and a constant cognitive state. there are 52 of
+these different stimulus categories, covering a wide range of
+frequencies, and we intersperse 10 "blank classes" to act as baselines
+(distractor task still happens).
+</p>
+
+<p>
+that's one run, and we have 9 of these, with the stimulus class order
+randomized across runs
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org92ae4d7">
+<h3 id="org92ae4d7">Experiment analysis</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/V1-eccentricity-bands.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+the point of our analysis it to estimate the response amplitude of
+each voxel to each stimulus class. to do that, we use an algorithm
+from Kendrick Kay known as GLMdenoise &#x2013; I'm going to hand-wave over a
+lot of the details here but feel free to ask me about them if you're
+interested.
+</p>
+
+<p>
+the basic idea is we have 9 runs, each with many time points from many
+voxels. but these values we measured reflect the responses of the
+different voxels to these 52 stimulus classes and, since we know their
+timing, we should be able to find response amplitudes that predict the
+measured voxel activity pretty well.
+</p>
+
+<p>
+we calculate these response amplitudes using bootstraps across runs,
+selecting with replacement to get 100 estimates per voxel, which gives
+us a mean and confidence interval.
+</p>
+
+<p>
+And once we have <i>those</i> values, we fit some log Gaussian tuning
+curves to the means of those bootstraps
+</p>
+
+<p>
+we get these values and then average them in eccentricity bands in V1,
+cartooned here.
+</p>
+
+<p>
+before I show you my results, I'd like to return to our possible
+hypotheses.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-orgd0864c4">
+<h3 id="orgd0864c4">Constant hypothesis predictions</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/constant-prediction.svg" class="org-svg" width="110%" height="110%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+in the constant hypothesis, tuning doesn't change across the visual
+field, so if we plot the responses as a function of the local spatial
+frequency, that is, as a function of the spatial frequency in the
+patch of the image that a voxel is responding to, the responses of
+voxels at all eccentricities should be basically on top of each other,
+since their tuning is all the same
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org101f36d">
+<h3 id="org101f36d">Scaling hypothesis predictions</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/hypothesis-predictions-full.svg" class="org-svg" width="80%" height="80%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+if, on the other hand, we have the scaling hypothesis, then our images
+have been constructed in such a way as to counteract this change in
+spatial frequency preferences so that if we plot the response as a
+function of the stimulus image, they should be on top of each other.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org5d74bf8">
+<h2 id="org5d74bf8">Preliminary results support scaling hypothesis</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/SF-wl_subj001-results_hyp.svg" class="org-svg" width="110%" height="110%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and this is more or less what we see
+</p>
+
+<p>
+in this top plot, we're plotting it as a function of local spatial
+frequency and we see the curves are shifted around, with different
+eccentricities having their peaks at different frequencies.
+</p>
+
+<p>
+in the bottom, we're plotting it as a function of the stimulus image,
+and we see the lines are all basically on top of each other, as the
+scaling hypothesis predicted.
+</p>
+
+<p>
+however, there is this interesting amplitude effect and some
+divergences from the curve &#x2013; which, though it's hard to see with the
+fit line, are basically consistent across eccentricities as
+well. there's also the possibility of edge effects going on here and I
+need to decide figure out how to handle that
+</p>
+
+</aside>
+
+</section>
+<section id="slide-orgc5459b9">
+<h3 id="orgc5459b9">Preliminary results support scaling hypothesis</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/results-hypotheses.svg" class="org-svg" width="70%" height="70%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+It's a little hard to see there, so let's replot and now it's pretty
+clear: the peak spatial frequency falls off inversely with receptive
+field size. I had to rescale the beginning and end of this curve here,
+and it doesn't exactly follow it, but it's a hyperbola, for sure.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org0e3a5f3">
+<h3 id="org0e3a5f3">Conclusion</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/conclusion.svg" class="org-svg" width="80%" height="80%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+so in conclusion
+</p>
+
+<ul>
+<li>Receptive field varies systematically across visual field.</li>
+<li>V1 neurons have different spatial frequency tuning.</li>
+<li>Does V1 spatial freuqeny tuning differ across visual field?</li>
+<li>Preliminary results suggest preferred spatial frequency shrinks
+inversely proportional to receptive field size.</li>
+<li>This data can be used to create forward models of the visual
+system.</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org2cb2862">
+<h1 id="org2cb2862">Thanks!</h1>
+<ul>
+<li>Jon Winawer</li>
+<li>Eero Simoncelli</li>
+<li>Noah Benson</li>
+<li>Eline Kupers</li>
+<li>Winawer and Simoncelli labs</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org684f19c">
+<h2 id="org684f19c">Existing data conflicts</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/SF-Summary-details.svg" class="org-svg" width="90%" height="90%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+I looked across all the papers that I could find that measured this
+systematically (if you know, please tell me!) and this is what I
+found. these are all done in humans with fMRI, but I would love to see
+similar efforts in physiology as well. these studies generally used
+different types of stimuli and were aware of each other, citing each
+other, but they cited each other approvingly, saying "this generally
+matches", instead of talking about differences or why they could be.
+</p>
+
+<p>
+the basic intuition of lower spatial frequencies in the periphery
+rather than the fovea, holds. and they basically all agree that the
+drop-off should be exponential rather than linear (these are
+approximated / averaged from the original data)
+</p>
+
+<p>
+but results at a given eccentricity in V1 span about two octaves, or
+one if we discount the Kay results, unsure how this varies across
+subjects, not sure exact form of relationship between, or the effect
+of different stimuli types
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc210426">
+<h2 id="orgc210426">Psychophysical evidence of different spatial frequency channels</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/Blakemore1969-exist-neuron.svg" class="org-svg" width="80%" height="80%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+adaptation experiment from Blakemore and Campbell
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org8a3c156">
+<h2 id="org8a3c156">What is spatial frequency?</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/einstein.svg" class="org-svg" width="60%" height="60%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+since I've going to spend this talk discussing spatial frequency, I
+figured it'd be a good idea to start by describing what it is. I'm
+going to be discussing only grayscale images in my talk, so when I say
+frequency, I'm not referring to light wavelength at all.
+</p>
+
+<p>
+spatial frequency is a way to describe (and quantify) the changes (in
+pixel intensity) in an image. at high frequency, you have very quick
+changes (over a short period), like you find at edges. at low
+frequency, you have very gradual changes (over a long period), like in
+the overall brightness of the image from one side to another
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org66404ee">
+<h3 id="org66404ee">What is spatial frequency?</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/einsteinSF-two.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+beyond just waving my hands about and describing changes in an image,
+we can actually break an image down into its frequency parts. here, we
+see I've extracted out the high frequency, which highlights the edges,
+and separated it out from the lower frequency, which looks like a
+blurrier version of the image
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org64e84bf">
+<h3 id="org64e84bf">What is spatial frequency?</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/einsteinSF.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and we do this not just twice but on and on, separating out the
+highest from the lowest frequencies, and getting all those in the
+middle as well.
+</p>
+
+<p>
+this turns out to be very important. I'm just going to assert that,
+for any image, I can split it up in this way to find out how much of a
+given frequency it has. this is a general principle that holds for all
+images and, in fact, all signals, whether that's images or sounds or
+movies, or anything
+</p>
+
+</aside>
+</section>
+<section id="slide-org0acf65c">
+<h3 id="org0acf65c">How do neurons calculate spatial frequency?</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/einsteinSF.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+neurons <i>can</i> calculate lower spatial frequency by averaging over
+larger and larger area.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-orgf3ebcca">
+<h3 id="orgf3ebcca">What does this have to do with biological vision?</h3>
+<aside class="notes">
+<p>
+but what I've told you so far has nothing to do with vision or
+neuroscience, only electrical engineering. so what's the point of it?
+</p>
+
+<p>
+the point is, we have a hypothesis that vision works in a similar way:
+that we have different channels for different spatial frequencies,
+representing each of them separately in the brain. there's both
+physiological and psychophysical evidence of this; I'm just going to
+show physiological for the sake of time.
+</p>
+
+</aside>
+
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-org8fa7449">
+<h2 id="org8fa7449">Vision differs across visual field</h2>
+
+<div class="figure">
+<p><img src="../images/Robson-CSF-hf.gif" alt="Robson-CSF-hf.gif" width="80%" height="80%" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+it does, and I have a brief demonstration of that. again, there's
+behavioral data on this from other people, which I won't go into here.
+</p>
+
+<p>
+so I want you to follow this moving patch. as it moves vertically up
+the image, you see it gets fainter and fainter, but you can still see
+it most of the way up if you track it with your eyes (this will vary
+based on how good your eyes and where you are in the room).
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org01f482c">
+<h3 id="org01f482c">Vision differs across visual field</h3>
+
+<div class="figure">
+<p><img src="../images/Robson-CSF-hf-dot.gif" alt="Robson-CSF-hf-dot.gif" width="80%" height="80%" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+however, if you fixate on this dot over here, while still attending to
+the moving patch, you'll lose sight of it around halfway up (again,
+specifics will vary)
+</p>
+
+<p>
+this is because in this example, you're viewing it in your periphery,
+where your sensitivity is much worse compared to the fovea, where we
+were viewing it in the last slide
+</p>
+
+</aside>
+</section>
+</section>
+</div>
+</div>
+<p> Created by WFB. </p>
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: false,
+rollingLinks: false,
+keyboard: true,
+overview: true,
+margin: 0.10,
+minScale: 0.50,
+maxScale: 2.50,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+ { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

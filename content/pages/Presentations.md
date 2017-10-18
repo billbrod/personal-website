@@ -7,5 +7,6 @@ navigate through using your arrow keys, make them full screen by
 pressing your F key, and view any speaker notes by pressing S (they
 will open as a pop-up).
 
+- [First Year Talk]({filename}/presentations/1st-Year-Talk.2017-10-19.html)
 - [Overview of spatial frequency literature]({filename}/presentations/2017-07-24_lab_mtg.html)
 - [Evolution and Vision]({filename}/presentations/TheoNeuroJC.2017-04-20.html)
