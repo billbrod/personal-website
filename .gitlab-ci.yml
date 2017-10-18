@@ -23,9 +23,13 @@ pages:
   # instead.
   # - mkdir -p ~/.ssh
   # - '[[ -f /.dockerenv ]] && echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'
-  - apt install ssh
+  - apt-get -y install ssh
+  # this is the old way of doing things, but I want it to use ssh,
+  # which needs to be installed first.
+  - git submodule sync --recursive
+  - git submodule update --init --recursive
   variables:
-    GIT_SUBMODULE_STRATEGY: recursive
+    GIT_SUBMODULE_STRATEGY: none
   script:
   - apt-get update
   - apt-get -y install emacs25 python-pip
