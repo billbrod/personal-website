@@ -47,7 +47,7 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:zoom="0.49566787"
-     inkscape:cx="575.04793"
+     inkscape:cx="553.86439"
      inkscape:cy="627.14303"
      inkscape:window-x="61"
      inkscape:window-y="24"
@@ -2996,6 +2996,32 @@
                        x="-191.43001"
                        y="6.6712031"
                        id="tspan12234">Peak spatial frequency (cycles / deg)</tspan></text>
+                  <text
+                     xml:space="preserve"
+                     style="font-style:normal;font-weight:normal;font-size:96.85527039px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:100000;stroke-opacity:1"
+                     x="-183.56345"
+                     y="134.65305"
+                     id="text5290"
+                     sodipodi:linespacing="125%"
+                     transform="scale(1.0607537,0.94272592)"><tspan
+                       sodipodi:role="line"
+                       id="tspan5292"
+                       style="font-size:17.40166283px;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:100000"
+                       x="-183.56345"
+                       y="134.65305">Constant</tspan></text>
+                  <text
+                     xml:space="preserve"
+                     style="font-style:normal;font-weight:normal;font-size:96.85527039px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:100000;stroke-opacity:1"
+                     x="696.63361"
+                     y="133.11935"
+                     id="text5290-3"
+                     sodipodi:linespacing="125%"
+                     transform="scale(1.0607537,0.94272592)"><tspan
+                       sodipodi:role="line"
+                       id="tspan5292-6"
+                       style="font-size:17.40166283px;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:100000"
+                       x="696.63361"
+                       y="133.11935">Scaling</tspan></text>
                 </g>
               </g>
             </g>
