@@ -23,7 +23,6 @@
         document.getElementsByTagName( 'head' )[0].appendChild( link );
     }
 </script>
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <meta name="description" content="1st year talk">
 </head>
 <body>
@@ -33,15 +32,17 @@
 </section>
 <aside class="notes">
 <p>
-this talk will discuss some work I'm doing with Jon Winawer and Eero
-Simoncelli.
+I'm Billy Broderick and over the past couple months I've been working
+on a project with Eero Simoncelli and Jon Winawer on a project looking
+at spatial frequency preferences in the human visual cortex. We're
+looking at V1, V2, V3, but for this talk I'm going to focus on V1.
 </p>
 
 </aside>
 
 <section>
-<section id="slide-org824bacd">
-<h2 id="org824bacd"></h2>
+<section id="slide-orgc41a69e">
+<h2 id="orgc41a69e"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/einstein.svg" class="org-svg" width="70%" height="70%">
@@ -50,6 +51,11 @@ Sorry, your browser does not support SVG.</object>
 </div>
 
 <aside class="notes">
+<p>
+Like many people in this department, I'm interested in how the brain
+processes visual stimuli.
+</p>
+
 <p>
 now historically, most of this work has been done in single
 neurons. and you might think if you know how a small handful of
@@ -67,8 +73,8 @@ nose in the center of the image&#x2026;
 </section>
 </section>
 <section>
-<section id="slide-org60764d6">
-<h2 id="org60764d6"></h2>
+<section id="slide-orge51a605">
+<h2 id="orge51a605"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/cells_no_change-first.svg" class="org-svg" width="70%" height="70%">
@@ -87,8 +93,8 @@ center of gaze would see Einstein's mustache
 </section>
 </section>
 <section>
-<section id="slide-org053551c">
-<h2 id="org053551c"></h2>
+<section id="slide-org211a25a">
+<h2 id="org211a25a"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/cells_no_change-all.svg" class="org-svg" width="70%" height="70%">
@@ -98,22 +104,18 @@ Sorry, your browser does not support SVG.</object>
 
 <aside class="notes">
 <p>
-cells whose recpetive fields are farther out in the periphery would
-see other portions of this image
-</p>
-
-<p>
-here, I'm showing you what three different cells in different parts of
-V1 might be seeing in response to this picture of Einstein: the only
-thing that differs is which portion of the image they see, they're
-otherwise the same
+and cells whose recpetive fields are farther out in the periphery
+would see other portions of this image. notice the only thing that
+differs is the location of their receptive fields, in every other
+respect, they're identical
 </p>
 
 <p>
 this way of thinking assumes that cells in V1 functions basically as a
 convolution, doing the same thing everywhere in the image. this
-underlies a lot of our technology: all CNNs, loosely based on the
-visual system, have this as the basic first step.
+underlies a lot of our technology: all convolutional neural nets,
+which underlie the recent success in object and speech recognition,
+have this as the basic first step.
 </p>
 
 <p>
@@ -125,8 +127,8 @@ but we know this is false
 </section>
 </section>
 <section>
-<section id="slide-org8bff261">
-<h2 id="org8bff261"></h2>
+<section id="slide-org4a6e2f8">
+<h2 id="org4a6e2f8"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/Freeman2011-RFs-example.svg" class="org-svg" width="100%" height="100%">
@@ -137,8 +139,8 @@ Sorry, your browser does not support SVG.</object>
 <aside class="notes">
 <p>
 at the very least, the size of the receptive field changes across the
-visual field, so that neurons at the fovea get a smaller amount of
-the image than those at the periphery.
+visual field, so that neurons at the fovea get a smaller amount of the
+image than those at the periphery.
 </p>
 
 </aside>
@@ -146,8 +148,8 @@ the image than those at the periphery.
 </section>
 </section>
 <section>
-<section id="slide-org1732b48">
-<h2 id="org1732b48"></h2>
+<section id="slide-org2f37695">
+<h2 id="org2f37695"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/Freeman2011-RFs-plot.svg" class="org-svg" width="100%" height="100%">
@@ -155,11 +157,20 @@ Sorry, your browser does not support SVG.</object>
 </p>
 </div>
 
+<aside class="notes">
+<p>
+and this doesn't vary arbitrarily across the visual field, there's in
+fact a linear relationship between the eccentricity, or distance from
+the fovea / center of gaze, and the size of the receptive field.
+</p>
+
+</aside>
+
 </section>
 </section>
 <section>
-<section id="slide-orgb78d1b7">
-<h2 id="orgb78d1b7"></h2>
+<section id="slide-org1f86ff8">
+<h2 id="org1f86ff8"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/cells_size_scale-all.svg" class="org-svg" width="70%" height="70%">
@@ -169,7 +180,7 @@ Sorry, your browser does not support SVG.</object>
 
 <aside class="notes">
 <p>
-to return to our Einstein image, this is at least true, that
+so to return to our Einstein image, this is at least true, that
 peripheral cells see larger chunks of the image than foveal ones.
 </p>
 
@@ -189,8 +200,8 @@ roughly equivalent to the speed of change in an image.
 </section>
 </section>
 <section>
-<section id="slide-org7b534a8">
-<h2 id="org7b534a8">Spatial frequency</h2>
+<section id="slide-org4707565">
+<h2 id="org4707565">Spatial frequency</h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/spatial-frequency.svg" class="org-svg" width="100%" height="100%">
@@ -198,11 +209,22 @@ Sorry, your browser does not support SVG.</object>
 </p>
 </div>
 
+<aside class="notes">
+<p>
+this has traditionally been studied by using 2d sine gratings like
+these, which drive responses in V1 very well and have constant
+frequencies across the image. Here, the gratings go from low frequency
+/ slow changes on the left to higher and higher as you move to the
+right.
+</p>
+
+</aside>
+
 </section>
 </section>
 <section>
-<section id="slide-org74588cd">
-<h2 id="org74588cd"></h2>
+<section id="slide-org45c6d05">
+<h2 id="org45c6d05"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/macaque-SF-half.svg" class="org-svg" width="110%" height="110%">
@@ -212,13 +234,11 @@ Sorry, your browser does not support SVG.</object>
 
 <aside class="notes">
 <p>
-we know neurons are tuned for spatial frequency
-</p>
-
-<p>
-these two physiological studies measured the spatial frequency tuning
-curves of neurons in macaque V1 and found that they have different
-selectivity, with a distribution of preferred spatial frequencies.
+and if you show these images to a macaque while recording from neurons
+in its V1, you'll get a response curve like this. Here, spatial
+frequency is on the x-axis and the normalized response is on the y
+axis and we see that we get a tuning curve. thus the neuron has a peak
+/ preferred spatial frequency.
 </p>
 
 </aside>
@@ -226,8 +246,8 @@ selectivity, with a distribution of preferred spatial frequencies.
 </section>
 </section>
 <section>
-<section id="slide-org2ba119f">
-<h2 id="org2ba119f"></h2>
+<section id="slide-org689007a">
+<h2 id="org689007a"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/macaque-SF.svg" class="org-svg" width="110%" height="110%">
@@ -237,7 +257,16 @@ Sorry, your browser does not support SVG.</object>
 
 <aside class="notes">
 <p>
-and we know they have a diversity of spatial frequency tunings.
+but we know that for different neurons, even near each other in the
+cortex, neurons have a diversity of spatial frequency tunings, with
+their peaks at different spatial frequencies.
+</p>
+
+<p>
+so the question is, how does this diversity of spatial frequency
+tunings interact with the visual field map in V1. does every chunk of
+cortex look basically like this, or do the tunings depend on the
+eccentricity in the same way that receptive field size does?
 </p>
 
 </aside>
@@ -245,8 +274,8 @@ and we know they have a diversity of spatial frequency tunings.
 </section>
 </section>
 <section>
-<section id="slide-org3b031c7">
-<h2 id="org3b031c7"></h2>
+<section id="slide-org95aa87c">
+<h2 id="org95aa87c"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/cells_size_scale-all.svg" class="org-svg" width="70%" height="70%">
@@ -256,9 +285,8 @@ Sorry, your browser does not support SVG.</object>
 
 <aside class="notes">
 <p>
-So the question is, do cells that care about different parts of the
-visual field have approximately the same spatial frequency tuning,
-even though they have larger receptive fields&#x2026;
+to return to Einstein, if instead of the size of the receptive field I
+show the preferred spatial frequency&#x2026;
 </p>
 
 </aside>
@@ -266,8 +294,8 @@ even though they have larger receptive fields&#x2026;
 </section>
 </section>
 <section>
-<section id="slide-orgffb557a">
-<h2 id="orgffb557a"></h2>
+<section id="slide-orgc0c9640">
+<h2 id="orgc0c9640"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/cells_size_scale-sf.svg" class="org-svg" width="70%" height="70%">
@@ -275,12 +303,20 @@ Sorry, your browser does not support SVG.</object>
 </p>
 </div>
 
+<aside class="notes">
+<p>
+do cells that care about different parts of the visual field have
+approximately the same spatial frequency tuning, even though they have
+larger receptive fields&#x2026;
+</p>
+
+</aside>
 
 </section>
 </section>
 <section>
-<section id="slide-orga5069ab">
-<h2 id="orga5069ab"></h2>
+<section id="slide-orga2e9904">
+<h2 id="orga2e9904"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/cells_scaling_blur-sf.svg" class="org-svg" width="70%" height="70%">
@@ -291,11 +327,8 @@ Sorry, your browser does not support SVG.</object>
 <aside class="notes">
 <p>
 or does that spatial frequency tuning vary along with the receptive
-field size. since we know that acuity is less at the periphery
-compared to the fovea, one possibility is that the cells at the
-periphery are tuned for lower spatial frequencies than those in the
-center; this is equivalent to seeing a blurrier image as you lose
-track of the sharp edges and only keep track of the slow changes.
+field size, such that cells are tuned for lower and lower spatial
+frequencies as you move from the fovea out to the periphery.
 </p>
 
 </aside>
@@ -303,8 +336,8 @@ track of the sharp edges and only keep track of the slow changes.
 </section>
 </section>
 <section>
-<section id="slide-org10be31e">
-<h2 id="org10be31e"></h2>
+<section id="slide-orge35e7ca">
+<h2 id="orge35e7ca"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/SF-hypotheses.svg" class="org-svg" width="100%" height="100%">
@@ -314,17 +347,17 @@ Sorry, your browser does not support SVG.</object>
 
 <aside class="notes">
 <p>
-since the receptive field size doesn't scale arbitrarily but actually
-scales linearly with eccentricity, this leads to two straightforward
-hypotheses about how spatial frequency scales with receptive field
-size and, thus, with eccentricity.
+to put what I just said onto a set of axes, here I'm plotting these
+two hypotheses, which I'm going to call the constant and scaling
+hypotheses, as the peak spatial frequency vs. the eccentricity of the
+receptive field.
 </p>
 
 <p>
-these two hypotheses would look like this: in one version, the SF
-tuning stays constant as the RF grows; in the other, the SF tuning
-drops proportionally to the increase in RF size. since RFs grow
-linearly, as \(kx\), then the favored SF drops off as a hyperbola, \(k/x\)
+in the constant hypothesis, it doesn't matter where you are in the
+visual field, the cells prefer the same spatial frequency. in the
+scaling hypothesis, the preferred spatial frequency drops inversely
+with the distance from the fovea.
 </p>
 
 <p>
@@ -336,7 +369,9 @@ agree with each other.
 <p>
 I would like to analyze how visual cortex responds to different
 spatial frequencies across the map in the primary visual cortex. in
-order to do this systematically, we need fMRI.
+order to do this systematically, we need fMRI, which allows us to
+efficiently measure the response in V1 across all eccentricities in
+response to images.
 </p>
 
 </aside>
@@ -344,8 +379,8 @@ order to do this systematically, we need fMRI.
 </section>
 </section>
 <section>
-<section id="slide-org5acb2e4">
-<h2 id="org5acb2e4"></h2>
+<section id="slide-orgfb449ad">
+<h2 id="orgfb449ad"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/Benson-retinotopy.svg" class="org-svg" width="100%" height="100%">
@@ -362,10 +397,10 @@ drives response, so we are performing retinotopy experiments.
 </p>
 
 <p>
-in this case, we're talking about the response of a whole bunch of
-neurons in a little cube instead of a single neuron and, because fMRI
-measures from the whole brain at once (~ish), we can get these values
-for the whole V1 at the same time
+we typically describe these using polar coordinates, so we talk about
+the eccentricity (which, as I explained, is the distance from the
+center of gaze)  and the polar angle. Here, I'm showing those two
+values plotted both in the visual field and on the cortex.
 </p>
 
 <p>
@@ -380,8 +415,8 @@ well from a person's anatomy alone.
 </section>
 </section>
 <section>
-<section id="slide-org6f6ec7b">
-<h2 id="org6f6ec7b"></h2>
+<section id="slide-org1678bab">
+<h2 id="org1678bab"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/stimulus_example.svg" class="org-svg" width="60%" height="60%">
@@ -395,7 +430,17 @@ so now, finally, we can talk about my experiment.
 </p>
 
 <p>
-explain stimuli and why
+we construct these stimuli to directly encode the scaling
+hypothesis. they're constructed so that the spatial frequency in the
+image drops off as you move away from the fovea inversely with the
+distance from the fovea. and this means that the scaling hypothesis
+predicts that the response to this image in V1 across all
+eccentricities will be the same. that's because the difference in
+preferred spatial frequencies between a voxel whose population
+receptive field is centered at 2 degrees and one whose population
+receptive field is centered at 8 degrees will be exactly the
+difference between the spatial frequency in this image at those two
+locations / that lie within their population receptive fields.
 </p>
 
 </aside>
@@ -403,8 +448,8 @@ explain stimuli and why
 </section>
 </section>
 <section>
-<section id="slide-org2db2abd">
-<h2 id="org2db2abd"></h2>
+<section id="slide-org45d40b3">
+<h2 id="org45d40b3"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/stimuli-overview.svg" class="org-svg" width="100%" height="100%">
@@ -417,14 +462,17 @@ Sorry, your browser does not support SVG.</object>
 we construct a whole bunch of stimuli like this. we use gratings like
 this because they drive V1 well, allow us to avoid edge artifacts
 while still scaling with eccentricity, and a have a variety of local
-orientation properties, which we also know is important for V1
+orientation properties, which we also know is important for V1. we
+also vary their base frequency, so we can measure responses to a
+variety of spatial frequencies at each location.
 </p>
 
 <p>
 I'm now going to show you the experiment, slowed down so you can see
 what's going on and because I'm a little weird it could trigger a
 photosensitive epilectic seizure &#x2013; if flashes of light bother you,
-you should still probably close your eyes
+you should still probably close your eyes and I'll let you know when
+you can open them again.
 </p>
 
 </aside>
@@ -432,8 +480,8 @@ you should still probably close your eyes
 </section>
 </section>
 <section>
-<section id="slide-org62ed9ac">
-<h2 id="org62ed9ac"></h2>
+<section id="slide-orgdbcb653">
+<h2 id="orgdbcb653"></h2>
 
 <div class="figure">
 <p><img src="../images/experiment-example-trial.gif" alt="experiment-example-trial.gif" width="130%" height="130%" />
@@ -449,7 +497,7 @@ information. the images flash on and off for 300/200 msecs. (both the
 phase differences and on/off periods are done to reduce effect of
 adaptation). people are shown these images sequentially while fixating
 in the center at a digit stream, doing a one-back task as a distractor
-to maintain attention and a constant cognitive state. there are 52 of
+to maintain fixation and a constant cognitive state. there are 52 of
 these different stimulus categories, covering a wide range of
 frequencies, and we intersperse 10 "blank classes" to act as baselines
 (distractor task still happens).
@@ -460,13 +508,18 @@ that's one run, and we have 9 of these, with the stimulus class order
 randomized across runs
 </p>
 
+<p>
+after some analysis, we end up with a number for the response of each
+voxel in the cortex to each of our stimuli.
+</p>
+
 </aside>
 
 </section>
 </section>
 <section>
-<section id="slide-orga81aa83">
-<h2 id="orga81aa83">Eccentricity bands</h2>
+<section id="slide-org58cb3f4">
+<h2 id="org58cb3f4">Eccentricity bands</h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/V1-eccentricity-bands-blank.svg" class="org-svg" width="90%" height="90%">
@@ -474,11 +527,23 @@ Sorry, your browser does not support SVG.</object>
 </p>
 </div>
 
+<aside class="notes">
+<p>
+okay, you can open your eyes again.
+</p>
+
+<p>
+but we're only interested in V1, so we only look at voxels that lie
+there.
+</p>
+
+</aside>
+
 </section>
 </section>
 <section>
-<section id="slide-org1533e4a">
-<h2 id="org1533e4a">Eccentricity bands</h2>
+<section id="slide-org9b2ddfe">
+<h2 id="org9b2ddfe">Eccentricity bands</h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/V1-eccentricity-bands.svg" class="org-svg" width="90%" height="90%">
@@ -488,39 +553,16 @@ Sorry, your browser does not support SVG.</object>
 
 <aside class="notes">
 <p>
-the point of our analysis it to estimate the response amplitude of
-each voxel to each stimulus class. to do that, we use an algorithm
-from Kendrick Kay known as GLMdenoise &#x2013; I'm going to hand-wave over a
-lot of the details here but feel free to ask me about them if you're
-interested.
+we then reduce it further by binning the voxels in V1 by their
+eccentricities, averaging together those response numbers for each
+voxel whose population receptive fields lie within eccentricities two
+to three, three to four etc, so we have one number for each of
+those. and then we fit log Gaussian tuning curves to them and examine
+the results.
 </p>
 
 <p>
-the basic idea is we have 9 runs, each with many time points from many
-voxels. but these values we measured reflect the responses of the
-different voxels to these 52 stimulus classes and, since we know their
-timing, we should be able to find response amplitudes that predict the
-measured voxel activity pretty well.
-</p>
-
-<p>
-we calculate these response amplitudes using bootstraps across runs,
-selecting with replacement to get 100 estimates per voxel, which gives
-us a mean and confidence interval.
-</p>
-
-<p>
-And once we have <i>those</i> values, we fit some log Gaussian tuning
-curves to the means of those bootstraps
-</p>
-
-<p>
-we get these values and then average them in eccentricity bands in V1,
-cartooned here.
-</p>
-
-<p>
-before I show you my results, I'd like to return to our possible
+before I show them to you, I'd like to return to our possible
 hypotheses.
 </p>
 
@@ -529,8 +571,8 @@ hypotheses.
 </section>
 </section>
 <section>
-<section id="slide-org8afa13b">
-<h2 id="org8afa13b"></h2>
+<section id="slide-org1a6a2d9">
+<h2 id="org1a6a2d9"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/SF-hypotheses.svg" class="org-svg" width="100%" height="100%">
@@ -538,11 +580,18 @@ Sorry, your browser does not support SVG.</object>
 </p>
 </div>
 
+<aside class="notes">
+<p>
+so you remember our scaling and constant hypotheses.
+</p>
+
+</aside>
+
 </section>
 </section>
 <section>
-<section id="slide-org5b7e1de">
-<h2 id="org5b7e1de"></h2>
+<section id="slide-org03c7064">
+<h2 id="org03c7064"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/SF-hypotheses-constant.svg" class="org-svg" width="100%" height="100%">
@@ -557,7 +606,10 @@ field, so if we plot the responses as a function of the local spatial
 frequency, that is, as a function of the spatial frequency in the
 patch of the image that a voxel is responding to, the responses of
 voxels at all eccentricities should be basically on top of each other,
-since their tuning is all the same
+since their tuning is all the same. on the other hand, if we plot the
+response as a function of the stimuli, the responses will be all
+splayed out, because each stimulus has a different spatial frequency
+in a given portion of the image
 </p>
 
 </aside>
@@ -565,8 +617,8 @@ since their tuning is all the same
 </section>
 </section>
 <section>
-<section id="slide-org89d28e6">
-<h2 id="org89d28e6"></h2>
+<section id="slide-orgd1e35b6">
+<h2 id="orgd1e35b6"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/SF-hypotheses-scaling.svg" class="org-svg" width="100%" height="100%">
@@ -576,10 +628,12 @@ Sorry, your browser does not support SVG.</object>
 
 <aside class="notes">
 <p>
-if, on the other hand, we have the scaling hypothesis, then our images
-have been constructed in such a way as to counteract this change in
-spatial frequency preferences so that if we plot the response as a
-function of the stimulus image, they should be on top of each other.
+the scaling hypothesis, conversely, predicts that if we plot the
+responses as a function of the stimuli, all eccentricities will lie on
+top of each other, because we constructed our stimuli in a particular
+way and if we plot the responses as a function of the local spatial
+frequency, they'll be spread out because they all have different
+tuning.
 </p>
 
 </aside>
@@ -587,8 +641,8 @@ function of the stimulus image, they should be on top of each other.
 </section>
 </section>
 <section>
-<section id="slide-org929aa13">
-<h2 id="org929aa13"></h2>
+<section id="slide-org1420d5f">
+<h2 id="org1420d5f"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/SF-wl_subj001-results_hyp.svg" class="org-svg" width="100%" height="100%">
@@ -621,13 +675,20 @@ well. there's also the possibility of edge effects going on here and I
 need to decide figure out how to handle that
 </p>
 
+<p>
+it can be kind of hard to see where the peaks of the curves are
+because of this amplitude effect, so I'm going to replot this, taking
+the peak spatial frequency of each curve and plotting it against the
+spatial frequency.
+</p>
+
 </aside>
 
 </section>
 </section>
 <section>
-<section id="slide-orgec0ad0e">
-<h2 id="orgec0ad0e"></h2>
+<section id="slide-org6bf1d2c">
+<h2 id="org6bf1d2c"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/conclusion.svg" class="org-svg" width="100%" height="100%">
@@ -637,10 +698,9 @@ Sorry, your browser does not support SVG.</object>
 
 <aside class="notes">
 <p>
-It's a little hard to see there, so let's replot and now it's pretty
-clear: the peak spatial frequency falls off inversely with receptive
-field size. I had to rescale the beginning and end of this curve here,
-and it doesn't exactly follow it, but it's a hyperbola, for sure.
+the peak spatial frequency falls off inversely with receptive field
+size. I had to rescale the beginning and end of this curve here, and
+it doesn't exactly follow it, but it's a hyperbola, for sure.
 </p>
 
 <p>
@@ -653,18 +713,26 @@ so in conclusion
 <li>Does V1 spatial freuqeny tuning differ across visual field?</li>
 <li>Preliminary results suggest preferred spatial frequency shrinks
 inversely proportional to receptive field size.</li>
-<li>This data can be used to create forward models of the visual
-system.</li>
 
 </ul>
+
+<p>
+I'd also like to emphasize, though I've formulated this talk as being
+all about these two qualitative hypotheses, mainly because of time
+constraints, that's not the actual point of this project. The ultimate
+goal is to use this data to get careful measurements of these spatial
+frequency tunings and use that to create forward models of the visual
+system, which can predict the responses of voxels across the visual
+cortex to arbitrary visual stimuli.
+</p>
 
 </aside>
 
 </section>
 </section>
 <section>
-<section id="slide-org82ef333">
-<h2 id="org82ef333">Thanks!</h2>
+<section id="slide-orgf87687b">
+<h2 id="orgf87687b">Thanks!</h2>
 <ul>
 <li>Jon Winawer</li>
 <li>Eero Simoncelli</li>
@@ -677,8 +745,8 @@ system.</li>
 </section>
 </section>
 <section>
-<section id="slide-orge9e051e">
-<h2 id="orge9e051e"></h2>
+<section id="slide-org21cb7cf">
+<h2 id="org21cb7cf"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/conclusion-plus-Olsson.svg" class="org-svg" width="100%" height="100%">
@@ -686,11 +754,29 @@ Sorry, your browser does not support SVG.</object>
 </p>
 </div>
 
+<aside class="notes">
+<p>
+I didn't show our participants images that encode the constant
+hypothesis, but Catherine Olsson did a pilot study a little bit ago
+that did (showed people bandpassed noise) and here I've plotted the
+peak of her log Gaussian tuning curves with my results. they look
+pretty similar, though there's a slight shift.
+</p>
+
+<p>
+one of the things I would like to do is examine how the stimuli used
+affects these results and so far I only showed you the results for one
+type of those stimuli, the circular ones, so it's possible this shift
+will make sense later.
+</p>
+
+</aside>
+
 </section>
 </section>
 <section>
-<section id="slide-org6105a1f">
-<h2 id="org6105a1f"></h2>
+<section id="slide-orgaafbcc4">
+<h2 id="orgaafbcc4"></h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/SF-Summary-details-with-data.svg" class="org-svg" width="100%" height="100%">
@@ -699,6 +785,10 @@ Sorry, your browser does not support SVG.</object>
 </div>
 
 <aside class="notes">
+<p>
+existing data conflicts.
+</p>
+
 <p>
 I looked across all the papers that I could find that measured this
 systematically (if you know, please tell me!) and this is what I
@@ -728,8 +818,8 @@ of different stimuli types
 </section>
 </section>
 <section>
-<section id="slide-org3628c13">
-<h2 id="org3628c13">Psychophysical evidence of different spatial frequency channels</h2>
+<section id="slide-orgb19e73f">
+<h2 id="orgb19e73f">Psychophysical evidence of different spatial frequency channels</h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/Blakemore1969-exist-neuron.svg" class="org-svg" width="80%" height="80%">
@@ -747,8 +837,8 @@ adaptation experiment from Blakemore and Campbell
 </section>
 </section>
 <section>
-<section id="slide-org929cdfd">
-<h2 id="org929cdfd">What is spatial frequency?</h2>
+<section id="slide-orgb4885cc">
+<h2 id="orgb4885cc">What is spatial frequency?</h2>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/einstein.svg" class="org-svg" width="60%" height="60%">
@@ -775,8 +865,8 @@ the overall brightness of the image from one side to another
 </aside>
 
 </section>
-<section id="slide-orgc9ba88d">
-<h3 id="orgc9ba88d">What is spatial frequency?</h3>
+<section id="slide-org3b2745d">
+<h3 id="org3b2745d">What is spatial frequency?</h3>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/einsteinSF-two.svg" class="org-svg" width="100%" height="100%">
@@ -796,8 +886,8 @@ blurrier version of the image
 </aside>
 
 </section>
-<section id="slide-orgdedfd9f">
-<h3 id="orgdedfd9f">What is spatial frequency?</h3>
+<section id="slide-org0f3bc2f">
+<h3 id="org0f3bc2f">What is spatial frequency?</h3>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/einsteinSF.svg" class="org-svg" width="100%" height="100%">
@@ -822,8 +912,8 @@ movies, or anything
 
 </aside>
 </section>
-<section id="slide-org7536c7d">
-<h3 id="org7536c7d">How do neurons calculate spatial frequency?</h3>
+<section id="slide-orgd7ff228">
+<h3 id="orgd7ff228">How do neurons calculate spatial frequency?</h3>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="../images/einsteinSF.svg" class="org-svg" width="100%" height="100%">
@@ -840,8 +930,8 @@ larger and larger area.
 </aside>
 
 </section>
-<section id="slide-org036ff34">
-<h3 id="org036ff34">What does this have to do with biological vision?</h3>
+<section id="slide-orgb0e0301">
+<h3 id="orgb0e0301">What does this have to do with biological vision?</h3>
 <aside class="notes">
 <p>
 but what I've told you so far has nothing to do with vision or
@@ -864,8 +954,8 @@ show physiological for the sake of time.
 </section>
 </section>
 <section>
-<section id="slide-org7f25e36">
-<h2 id="org7f25e36">Vision differs across visual field</h2>
+<section id="slide-org867c860">
+<h2 id="org867c860">Vision differs across visual field</h2>
 
 <div class="figure">
 <p><img src="../images/Robson-CSF-hf.gif" alt="Robson-CSF-hf.gif" width="80%" height="80%" />
@@ -888,8 +978,8 @@ based on how good your eyes and where you are in the room).
 </aside>
 
 </section>
-<section id="slide-orgf9b7e3a">
-<h3 id="orgf9b7e3a">Vision differs across visual field</h3>
+<section id="slide-org3df3c24">
+<h3 id="org3df3c24">Vision differs across visual field</h3>
 
 <div class="figure">
 <p><img src="../images/Robson-CSF-hf-dot.gif" alt="Robson-CSF-hf-dot.gif" width="80%" height="80%" />
