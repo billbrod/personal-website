@@ -25,12 +25,13 @@ correlates of social decision making. We used machine learning
 decoding methods to identify locations in the brain that could be used
 to predict whether someone was playing against a human or a computer,
 and what kind of strategy they were using. I also worked with Wang
-Suiping at South China Normal University in Guangzhou, China as a [[http://www.hluce.org/lsprogram.aspx][Luce
-Scholar]], using graph theoretical analyses to understand differences in
-network properties of brain functional networks during reading in
-English and Chinese for bilinguals. As an undergraduate, I worked with
-Pat Simen at Oberlin College on a model of human behavioral
-performance in a two-alternative forced choice task.
+Suiping at South China Normal University in Guangzhou, China as a
+[[http://www.hluce.org/lsprogram.aspx][Luce Scholar]], using graph
+theoretical analyses to understand differences in network properties
+of brain functional networks during reading in English and Chinese for
+bilinguals. As an undergraduate, I worked with Pat Simen at Oberlin
+College on a model of human behavioral performance in a
+two-alternative forced choice task.
 
 This blog is made with [[https://blog.getpelican.com/][pelican]] using a slightly modified version of
 Alexandre Vicenzi's [[https://github.com/alexandrevicenzi/Flex][Flex]] theme and hosted on [[https://gitlab.com/pages/][Gitlab Pages]]. Most of my
