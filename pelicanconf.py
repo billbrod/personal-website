@@ -49,9 +49,9 @@ MENUITEMS = (('Archives', '/archives.html'),
     
 DEFAULT_PAGINATION = 5
 
-MARKUP = ('md', 'ipynb')
-PLUGIN_PATHS = ['pelican-plugins', 'pelican-ipynb', 'liquid_tags']
-PLUGINS = ['org_reader', 'ipynb.markup']
+MARKUP = ('md')
+PLUGIN_PATHS = ['pelican-plugins', 'liquid_tags']
+PLUGINS = ['org_reader']
 
 ORG_READER_EMACS_LOCATION = '/usr/bin/emacs'
 # Uncomment following line if you want document-relative URLs when developing
