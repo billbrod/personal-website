@@ -1,0 +1,16 @@
+#+Title: Presentations
+#+Date: 2017-Aug-23
+#+Property: Summary List of presentations
+
+This page hosts a list of html presentations that I've made. They're
+made using [[https://github.com/hakimel/reveal.js/][reveal.js]]; you can navigate through using your arrow keys,
+make them full screen by pressing your F key, and view any speaker
+notes by pressing S (they will open as a pop-up).
+
+- [[file:{filename}/presentations/1st-Year-Talk.2017-10-19.html][First Year Talk]](note that there's an animated gif about half way
+  through this presentation showing my experiment; it's slowed down
+  but it involves rapidly flashing black and white gratings, so I'm
+  slightly worried it could trigger seizures in people who are
+  particularly photosensitive, so be aware).
+- [[file:{filename}/presentations/2017-07-24_lab_mtg.html][Overview fo spatial frequency literature]]
+- [[file:{filename}/presentations/TheoNeuroJC.2017-04-20.html][Evolution and Vision]]
