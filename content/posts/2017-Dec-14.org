@@ -1,5 +1,5 @@
 #+TITLE: Accidental illusion
-#+DATE: 2017-Dec-14
+#+DATE: <2017-12-14 Thu>
 #+PROPERTY: Illusions!
 
 While creating two-dimensional sinusoidal gratings and investigating
