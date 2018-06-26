@@ -46,12 +46,19 @@ MAIN_MENU = True
 MENUITEMS = (('Archives', '/archives.html'),
              ('Categories', '/categories.html'),
              ('Tags', '/tags.html'))
-    
+
+# I modified the Flex template so links don't open in a separate tab so this feels more a part of
+# the site.
+LINKS = (('Publications', '/publications.html'),)
+
 DEFAULT_PAGINATION = 5
 
+DIRECT_TEMPLATES = ['index', 'archives', 'publications']
+
 MARKUP = ('md')
-PLUGIN_PATHS = ['pelican-plugins', 'liquid_tags']
-PLUGINS = ['org_reader']
+PLUGIN_PATHS = ['pelican-plugins', 'liquid_tags', 'extra_plugins']
+PLUGINS = ['org_reader', 'pelican-bibtex']
+PUBLICATIONS_SRC = 'content/docs/pubs.bib'
 
 ORG_READER_EMACS_LOCATION = '/usr/bin/emacs'
 # Uncomment following line if you want document-relative URLs when developing

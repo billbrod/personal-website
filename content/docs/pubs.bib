@@ -1,0 +1,233 @@
+@misc{Broderick2018-mappin-spatial,
+  abstract =	 {Neurons in primate visual cortex are tuned for
+                  spatial frequency, and this tuning depends on
+                  eccentricity. Several studies have examined this
+                  dependency using fMRI (Henriksson et al. 2008,
+                  Sasaki et al. 2001, D'Souza et al. 2016), but they
+                  report preferred spatial frequencies (tuning curve
+                  peaks) at a given eccentricity in V1 that differ by
+                  one to two octaves, perhaps due to differences in
+                  stimuli or analysis methodology. Here, we
+                  systematically map this dependency using a
+                  population receptive field analysis of fMRI
+                  responses to a novel set of stimuli.  The stimuli
+                  are constructed as mixtures of circular and radial
+                  gratings (pure circular, pure radial, or spirals).
+                  For any local region of the visual field, these
+                  stimuli cover a broad range of spatial frequencies
+                  and orientations, and the local spatial frequency of
+                  all stimuli varies inversely with eccentricity.  We
+                  then used an unsupervised denoising algorithm
+                  (GLMdenoise; Kay et al. 2013) to estimate the
+                  response amplitude of each voxel to each stimulus,
+                  and combine these data with subjects' retinotopic
+                  maps (Benson et al. 2014, Dumoulin and Wandell 2008)
+                  to determine the relationship between the
+                  eccentricity of a voxel's population receptive field
+                  and its spatial frequency tuning at several
+                  orientations. We show that over a range of
+                  eccentricities from two to eight degrees, the
+                  preferred spatial frequency varies as the inverse of
+                  the eccentricity. Given that population receptive
+                  fields grow approximately linearly with
+                  eccentricity, these results are broadly consistent
+                  with a simple scaling rule, whereby peak spatial
+                  frequency tuning is inversely proportional to both
+                  population receptive field size and to
+                  eccentricity.},
+  author =	 {William F. Broderick and Noah C. Benson and Eero
+                  P. Simoncelli and Jonathan Winawer},
+  booktitle =	 {VSS 2018},
+  doi =		 {10.17605/OSF.IO/KNJQY},
+  location =	 {St Pete Beach, FL},
+  month =	 {May},
+  organization = {Vision Sciences Society},
+  poster =	 {/docs/Broderick2018-mapping-spatial.pdf},
+  title =	 {Mapping Spatial Frequency Preferences in the Human
+                  Visual Cortex},
+  year =	 2018,
+}
+
+@Misc{Benson2017-from-retin,
+  author =	 {Noah C. Benson and William F. Broderick and Heiko
+                  Muller and Jonathan Winawer},
+  booktitle =	 {OSA Fall Vision Meeting, 2017},
+  howpublished = {Invited talk},
+  month =	 {Oct},
+  notefile =	 {Benson2017-from-retin.org},
+  organization = {Optical Society of America},
+  title =	 {From Retina to Extra-striate cortex: Forward Models
+                  of Visual Input; Toward a Standard Cortical
+                  Observer},
+  year =	 2017,
+}
+
+@misc{Benson2017-bold-v1-v3,
+  abstract = {The posterior visual field maps, V1-V3, have been
+                  well-characterized using neuroimaging techniques and
+                  computational models. One type of model, a
+                  retinotopic template, accurately predicts the
+                  retinotopic organization from the anatomical
+                  structure [Benson et al. 2012 \& 2014;]. A second
+                  type of model, an image-computable model, predicts
+                  fMRI response amplitude within these maps to a wide
+                  range of visual stimuli, including textures and
+                  natural images [e.g., Kay et al. 2008, 2013;]. The
+                  parameters of these image- computable models are
+                  typically fit to fMRI data in each voxel
+                  independently. Here, we took advantage of the fact
+                  that these parameters are distributed regularly
+                  across the cortical surface, extending Benson et
+                  al.'s retinotopic templates to infer the parameters
+                  of an image- computable model, based on Kay et
+                  al. (2013). By merging these two types of models,
+                  and extending the model to incorporate multiple
+                  spatial scales, we can predict the percent BOLD
+                  change across all voxels in V1-V3 in response to an
+                  arbitrary gray-scale image in any individual subject
+                  given only the stimulus image and a T1-weighted
+                  anatomical image.  Without any fitting to functional
+                  data, this model predicts responses with high
+                  accuracy (e.g., R = 0.80, 0.72, and 0.63 in V1, V2,
+                  and V3, respectively, from a sample experiment).
+                  Our model has been designed with flexibility in
+                  mind, and both source code and universal executables
+                  are freely available. Additionally, we have
+                  developed a database and website where researchers
+                  will be able to deposit anatomical data, stimulus
+                  sets, and functional data, and will be able to run
+                  our model or their own version of it. We hope that
+                  this space will facilitate the sharing of data, the
+                  comparison and further development of models, and
+                  collaboration between laboratories.},
+  author = {Noah C. Benson and William F. Broderick and Heiko
+                  Muller and Jonathan Winawer},
+  booktitle = {VSS 2017},
+  location = {St Pete Beach, FL},
+  month = {May},
+  organization = {Vision Sciences Society},
+  title = {An anatomically-defined template of BOLD response in
+                  V1-V3},
+  year = 2017,
+  doi =  {https://doi.org/10.1167/17.10.585}
+}
+
+@Misc{Benson2016-towar-v1-v3,
+  abstract =	 {A goal of visual neuroscience is to be able to
+                  predict neural responses to arbitrary images. There
+                  has been considerable success modeling signals in
+                  human visual field maps at the level of
+                  fMRI. Population receptive field ('pRF') models can
+                  predict responses in a voxel to a wide variety of
+                  images (e.g., Kay et al, 2013,
+                  10.1371/journal.pcbi.1003079). These models are
+                  solved independently for each voxel by learning the
+                  pRF parameters that best fit fMRI
+                  measurements. Retinotopic templates are a
+                  complementary type of model. They can predict the
+                  preferred position in the visual field of all voxels
+                  in V1-V3 from anatomy alone, but cannot predict
+                  responses to arbitrary images (Benson et al, 2014,
+                  10.1371/journal.pcbi.1003538). Here we integrated a
+                  pRF model with an anatomical template to create a
+                  first generation 'Standard Cortical Observer Model
+                  of Human V1-V3'. The pRF component is based on the
+                  two-stage cascade model of Kay et al (2013), and has
+                  been extended to handle multiple spatial frequency
+                  bands. The pRF parameters summarize the voxel's
+                  sensitivity to a variety of image features,
+                  including spatial location, spatial frequency, and
+                  second order contrast. The V1-V3 template component
+                  is an extension of Benson et al (2014). The complete
+                  model takes visual images and an anatomical MRI as
+                  input. It outputs the predicted BOLD response of
+                  each voxel in V1-V3 for each image. The model
+                  accomplishes this by: (1) identifying voxels in
+                  V1-V3 and deriving their retinotopic coordinates
+                  from the anatomical MRI, (2) inferring additional
+                  pRF parameters from the retinotopic coordinates, and
+                  (3) applying the pRF model at each voxel to the
+                  images. The mapping between retinotopic coordinates
+                  and other pRF parameters was learned by identifying
+                  systematic variation of pRF parameters across voxels
+                  in training data. Once learned, the mapping is
+                  applied to new subjects and new images with no
+                  further fMRI measurements. The model and training
+                  data are publicly available, with code on GitHub and
+                  a working version packaged in a Docker. The code is
+                  structured to facilitate model comparison, such that
+                  other researchers can easily extend or modify the
+                  model, or apply it to their own data. In preliminary
+                  testing, we predicted responses in all voxels in one
+                  subject's V1, V2, and V3 to a set of 57 images. The
+                  inputs to the model were the images and the
+                  subject's unlabeled anatomical MRI. The accuracy of
+                  the predicted responses averaged across V1 was 61
+                  percent (R2). The model has the combined advantages
+                  of a pRF model and a template, in that it predicts
+                  responses to arbitrary images, can be computed from
+                  anatomy alone, and takes advantage of the fact that
+                  model parameters are distributed systematically on
+                  the cortex.},
+  author =	 {Noah C. Benson and Catherine Olsson and William
+                  F. Broderick and Jonathan Winawer},
+  booktitle =	 {Neuroscience 2016},
+  poster = 	 {/docs/Benson2016-towar-v1-v3.pdf},
+  location =	 {San Diego, CA},
+  month =	 {Nov},
+  organization = {Society for Neuroscience},
+  title =	 {Towards a standard cortical observer model in human
+                  V1-V3},
+  year =	 2016,
+}
+
+
+@misc{BroderickSfN2015,
+ abstract = {Most successful human interactions depend upon the interpretation of a
+contact’s behaviors and intentions in order to support strategic
+control of the actor’s behaviors and decisions. Interpreting other’s
+actions require many elements of social cognition including more
+complex functions like theory of mind. Although there is some
+consistency in the neural substrates identified as supporting these
+functions (e.g. the medial-prefrontal cortex and temporal-parietal
+junction (TPJ)), most tasks employ static or long sequential
+interactions that do not allow investigation of differing levels of
+social-cognitive engagement on a short time scale. In this study, we
+adapted a dynamic, competitive game wherein human subjects controlled
+the ball in a simplified penalty kick against a human- or
+computer-controlled goalie, while measures of brain activation were
+obtained using functional magnetic resonance imaging (fMRI). This
+allowed us to carry out detailed investigation of subjects'
+interactions with their opponent, the strategies they employ, and how
+relevant factors change over time on both short and longer time
+scales. K-means clustering on the difference between the y position of
+the subject-controlled ball and their human opponent revealed that
+participant behavior reduced to two clusters, one pair representing
+early feints and misdirections (i.e., separation between participant
+and opponent near the start of the trial) and the other representing
+strategies intended to hide the kicker’s intention for as long as
+possible (i.e., separation only at the end of the trial). These
+clusters -- each further separable into pairs of upward or downward
+movements -- correspond to distinct strategies in behavior based
+only on analyses of behavioral time courses. Using multivariate
+pattern analysis (MVPA), we examined whether local brain regions
+carried information that predicted trial features (e.g., opponent, outcome, deception strategy). Confirmatory analyses found that visual
+regions can be used to classify human from computer opponents at the
+time the opponent is revealed. MVPA of strategic interaction focused
+on the neural response difference between the two strategy-defined
+clusters. Using this dynamic task allows distinction of strategic
+elements of deception (e.g., timing of movement) from the conditions
+that elicit deception, the nature of the opponent, and the outcome of
+the action. The use of dynamic tasks facilitates the study of the
+nature and characteristics of strategic social interaction on short
+timescales opening avenues for causal studies of the supporting neural
+substrates.},
+ author = {W. F. Broderick and R. M. Carter and M. Tepper and J. F. Gariepy and M. L. Platt and G. Sapiro and S. A. Huettel},
+ booktitle = {Neuroscience 2015},
+ location = {Chicago, IL},
+ month = {Oct},
+ poster = {/docs/BroderickSfN2015.pdf},
+ organization = {Society for Neuroscience},
+ title = {A multi-variate pattern analysis investigation of strategic thinking and deception in a dynamic, competitive game},
+ year = 2015
+}
