@@ -12,5 +12,5 @@ notes by pressing S (they will open as a pop-up).
   but it involves rapidly flashing black and white gratings, so I'm
   slightly worried it could trigger seizures in people who are
   particularly photosensitive, so be aware).
-- [[file:{filename}/presentations/2017-07-24_lab_mtg.html][Overview fo spatial frequency literature]]
+- [[file:{filename}/presentations/2017-07-24_lab_mtg.html][Overview of spatial frequency literature]]
 - [[file:{filename}/presentations/TheoNeuroJC.2017-04-20.html][Evolution and Vision]]
