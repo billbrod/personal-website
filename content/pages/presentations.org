@@ -14,4 +14,3 @@ notes by pressing S (they will open as a pop-up).
   particularly photosensitive, so be aware).
 - [[file:{filename}/presentations/2017-07-24_lab_mtg.html][Overview of spatial frequency literature]]
 - [[file:{filename}/presentations/TheoNeuroJC.2017-04-20.html][Evolution and Vision]]
-- [[file:{filename}/presentations/CompStats.2019-05-14.html][Comp Stats]]
