@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Spatial frequency preferences</title>
+<meta name="author" content="(Billy Broderick)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="/css/reveal.css"/>
+
+<link rel="stylesheet" href="/css/theme/simple.css" id="theme"/>
+
+<link rel="stylesheet" href="/custom.css"/>
+<link rel="stylesheet" href="//lib/css/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<meta name="description" content="computational stats final project">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1>Spatial frequency preferences</h1><h2>Billy Broderick</h2><h2>May 8, 2019</h2>
+</section>
+
+<section>
+<section id="slide-sec-">
+<h2 id="orgcc7ae95">V1</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/V1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+I care about the brain processes visual stimuli. we know a lot about
+visual neurons, and I'm going to focus on one particular area, known
+as the primary visual cortex, or V1, which lies back here. we can
+think of information as flowing from the eye, to a part deep in the
+brain called the thalamus and then this is the first time it hits the
+cortex
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orga1af1b2"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/Benson-retinotopy.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<p>
+we know a lot about neurons in this part of the brain. one important
+fact is that they're laid out in a retinotopic fashion, such that
+neurons that care about a nearby segment of space are near each other
+in the cortex. this means that, based on where a neuron is in cortex,
+we can infer what part of space it cares about, and vice versa
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org59b078a"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/einstein.svg" class="org-svg" width="70%" height="70%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<p>
+so if you're looking at this picture of Einstein&#x2026;
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org67838ff"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/cells_no_change-first.svg" class="org-svg" width="70%" height="70%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+there's a neuron that cares about this portion of space. the portion
+of space it cares about is the receptive field
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org53f764f"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/cells_no_change-all.svg" class="org-svg" width="70%" height="70%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+other neurons care about other parts of your visual scene.
+</p>
+
+<p>
+and cells whose recpetive fields are farther out in the periphery
+would see other portions of this image. notice the only thing that
+differs is the location of their receptive fields, in every other
+respect, they're identical
+</p>
+
+<p>
+this way of thinking assumes that cells in V1 functions basically as a
+convolution, doing the same thing everywhere in the image. this
+underlies a lot of our technology: all convolutional neural nets,
+which underlie the recent success in object and speech recognition,
+have this as the basic first step.
+</p>
+
+<p>
+but we know this is false
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org9e62fef"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/cells_size_scale-all.svg" class="org-svg" width="70%" height="70%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+the actual situation is something like this: that peripheral cells see
+larger chunks of the image than foveal ones. And this relationship
+between distance from the center of gaze and size of the RF is linear.
+</p>
+
+<p>
+but this leads to a natural follow up question: what else changes
+across the visual field? what tuning properties of the cell differ as
+you move towards the periphery?
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org3183368">Spatial frequency</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/spatial-frequency.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+I'm going to focus on one property, spatial frequency, which is
+roughly equivalent to the speed of change in an image.
+</p>
+
+<p>
+Here, the gratings go from low frequency / slow changes on the left to
+higher and higher as you move to the right.
+</p>
+
+<p>
+we know neurons in V1 are tuned for different frequencies, but we
+don't know exactly how the properties of this tuning differ with
+location in the visual field.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org9268025"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/cells_scaling_blur-sf.svg" class="org-svg" width="70%" height="70%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+we think it's roughly the inverse of the size, so that the preferred
+frequency for each of these neurons would look like this, so the best
+way to drive a cell is to always show it two periods in its RF or
+something like that
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org0abd287"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/stimuli-overview.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+so I'm going to show people stimuli like this while measuring activity
+in V1 using fMRI. I'm not going to go into detail about the stimuli or
+experimental set up, but I'm showing stimuli like this because:
+</p>
+<ul>
+<li>these black and white high contrast gratings will drive activity
+well</li>
+<li>the spatial frequency drops off with distance to the fovea, and if
+the relationship is something like what I just told you, this is a
+pretty efficient way to measure the relationship</li>
+<li>we want different orientations because we know that's important for
+V1</li>
+<li>and we sweep across frequencies to try and measure as much of the
+tuning curve as possible</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orgaf47755"></h2>
+<ul>
+<li>\(\beta_{i,v}\) = response of voxel \(v\) to stimulus \(i\)</li>
+<li>\(e_v\) = eccentricity of voxel \(v\)</li>
+<li>\(\omega_i\) = spatial frequency of stimulus \(i\)</li>
+<li data-fragment-index="1" class="fragment appear">\(\hat{\beta}_{i,v} = f(e_v,\omega_i,a,b,\sigma)\)</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+I'm going to skip a bunch of details, but we end up measuring the
+response of a bunch of voxels (cubes of neurons) to these stimuli. for
+these voxels, we also know their distance from the fovea, and for the
+stimuli, we know their spatial frequency at that location, and we want
+to predict the response as a function of those two plus some
+parameters
+</p>
+
+<p>
+I want to fit this model using MCMC
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orge13c49c"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/comp-stats-model-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+alright, so what's that model? we're going to say the response is
+largely log-normal as a function of spatial frequency, some bandwidth
+sigma and some peak spatial frequency p. There's also a scaling
+parameter on this to get the predictions and the observations in the
+same ballpark, but we're going to ignore that
+</p>
+
+<p>
+This peak spatial frequency is the important thing for us&#x2026;
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org62bf5d1"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/comp-stats-model-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and we're going to say it drops off as the inverse of a linear
+function (this came from some earlier analyses of the data).
+</p>
+
+<p>
+I'm going to fit all my voxels to this simultaneously, so I only have
+these 3 parameters; I'm saying that the only difference between voxels
+comes from the difference in eccentricity, and that's completely
+captured by this relationship.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orgd898887"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/comp-stats-model-3.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+our observations have their mean defined by the above with some
+Gaussian noise around it, the standard deviation of which varies by
+voxel and we can estimate from the data
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orga2c54a7"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/comp-stats-model-4.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+I also have some priors on these parameters from other ways at looking
+at the data. I know sigma, a, b all have to be non-negative, so I'm
+going to use a gamma distribution with means in the right ballpark,
+but I'm not too certain about them
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org518d78b">Pooled</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/comp-stats-model-5.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+now I've gathered this data from multiple subjects and we can wonder
+how should we fit this across subjects? do we force each subject to
+have identical values for these three parameters?
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org829a262">Unpooled</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/comp-stats-model-6.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+do we fit them each separately?
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org8d59c54">Partially pooled</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/comp-stats-model-7.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+or do we say they're draws from the same distribution of
+hyperparameters, normally distributed around that?
+</p>
+
+<p>
+let's compare and see which is better and how their parameter values
+differ
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orgdf2d58e">Parameter values</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/comp-stats-results-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+but what actually happened is the sampler did not converge for the
+partially pooled model.
+</p>
+
+<p>
+what I'm showing here is the parameter values found by each of the
+three variants (on x-axis) with 94% credible intervals (across 1000
+samples) for each fo the 8 independent chains as the multiple points
+with one color.
+</p>
+
+<p>
+pooled only has one value for all subjects, shown on top, but the
+other two have one value for each subject, shown indexed by 0 through
+5 here
+</p>
+
+<p>
+I'm also limiting the x-axis here, you'll see that there aren't 8
+green points for each of them and that's because some of them are way
+off. basically what happened is that pooled and unpooled were very
+confident in their sampling of the posterior and partially pooled was
+really not. I'm interpreting these, with some parameter values as zero
+and some very large, as failures, but you also see that there's a fair
+number of chains that agree completely with the unpooled version,
+which is interesting. I think this might be because I have a fair
+amount of data and so the likelihood is swamping the difference in
+priors here.
+</p>
+
+<p>
+because partially pooled didn't reliably converge, I'm not going to do
+any model comparison with it. and there are individual differences, so
+in this case, the unpooled version out performs the pooled.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org4b56923">Next steps</h2>
+<ul>
+<li>Figure out why sampler didn't converge
+<ul>
+<li>Issues with data?</li>
+<li>Issues with parameterization?</li>
+
+</ul></li>
+<li>Investigate generalizability of models</li>
+<li>Extend model</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orgaad49ad">Questions?</h2>
+</section>
+</section>
+</div>
+</div>
+<p> Created by WFB. </p>
+<script src="/lib/js/head.min.js"></script>
+<script src="/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: false,
+progress: false,
+history: false,
+center: true,
+slideNumber: false,
+rollingLinks: false,
+keyboard: true,
+overview: true,
+margin: 0.10,
+minScale: 0.50,
+maxScale: 2.50,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: '/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+ { src: '/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: '/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: '/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>
