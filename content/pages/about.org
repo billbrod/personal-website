@@ -34,8 +34,8 @@ College on a model of human behavioral performance in a
 two-alternative forced choice task.
 
 This blog is made with [[https://blog.getpelican.com/][pelican]] using a slightly modified version of
-Alexandre Vicenzi's [[https://github.com/alexandrevicenzi/Flex][Flex]] theme and hosted on [[https://gitlab.com/pages/][Gitlab Pages]]. Most of my
-pages are written using [[http://orgmode.org/][org mode]] and converted to posts with the [[https://github.com/getpelican/pelican-plugins/tree/master/org_reader][org
-reader]] plugin, because [[https://www.gnu.org/software/emacs/][emacs]] with org mode is wonderful.
+Alexandre Vicenzi's [[https://github.com/alexandrevicenzi/Flex][Flex]] theme. Most of my pages are written using [[http://orgmode.org/][org
+mode]] and converted to posts with the [[https://github.com/getpelican/pelican-plugins/tree/master/org_reader][org reader]] plugin, because [[https://www.gnu.org/software/emacs/][emacs]]
+with org mode is wonderful.
 
 A pdf of my CV can be found [[../docs/CV.pdf][here]], but it's most likely not up-to-date.
