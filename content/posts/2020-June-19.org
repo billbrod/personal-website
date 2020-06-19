@@ -1,0 +1,319 @@
+#+TITLE: VSS 2020 project
+#+DATE: <2020-06-19 Fri>
+#+PROPERTY: science
+
+* Introduction
+      
+  In this post, I'm going to attempt to explain my poster at the
+  Virtual Vision Sciences Society (VSS) conference, 2020, which
+  starts today. The poster itself, along with a video walkthrough,
+  an approximate transcript of that video, and some supplementary
+  images, can be found on an [[https://osf.io/aketq/][OSF page]] (view the ~README.md~ file
+  for an explanation of the contents) and, if you're a member of
+  VSS, on [[https://www.visionsciences.org/myvss/?mtpage=vvss_presentation&id=1398][their website]].
+     
+  Big picture, in this project we study how vision changes across the
+  visual field by investigating what people /cannot/ see. We use
+  computational models of the brain and human behavioral experiments
+  to do this. In this post, I'll first try to give a High-Level
+  Overview of this project, explaining what we do and why it
+  matters. Then, in the Unseen Vision section, I'll spend some more
+  time talking about the approach of studying what cannot see, which
+  has a long history in vision science. I'll then dive into the
+  specific models we use in the Models and the Visual System section,
+  before finishing up and describing the experiment. Unfortunately,
+  because of COVID-19, we have not been able to gather any data yet,
+  but I do have some stimuli that we'll use in the experiment.
+     
+  Note that this will not be very well-polished and I would love to
+  receive any feedback! What was still unclear? What didn't you
+  understand? Do you have a better way of explaining something? I
+  will be updating this page as I revise the post, so it might not
+  be the same each time you visit. If you need to, you can find
+  previous versions of this page by looking at the history in the
+  [[https://gitlab.com/billbrod/personal-website/-/commits/master/content/posts/2020-June-19.org][git repo]].
+
+* High-Level Overview
+  :PROPERTIES:
+  :ID:       a6b7b4fd-358e-4cac-94be-4d45652de1f6
+  :END:
+     
+  I am interested in how vision changes across the visual
+  field. You can notice this by observing that, when your eyes are
+  centered on this text, you can read it clearly, but if you move
+  your eyes even a little to the side, you can't make any sense of
+  it. What's going on there? Specifically, we investigate what
+  information people /are not/ sensitive to as you move away from
+  the center of gaze. There are many ways one could approach this,
+  but we're doing so by building models of two of the first stages
+  of the brain that receive visual information: the retina (even
+  though it's in the eye, it's made up of brain tissue and thus
+  technically part of the brain) and the imaginatively-named
+  primary visual cortex (or V1), inspired by our understanding of
+  the cells there[ref]There's a part of the brain betwen the retina
+  and V1, a region of the thalamus, deep in the brain, called the
+  lateral geniculate nucleus. However, in visual neuroscience we
+  often consider it to be a relay station that just transmits
+  signals between the retina and V1, so we ignore it in this
+  project[/ref]. Those models have a single parameter, a number we
+  can vary to change their behavior. I'll explain the parameter in
+  more detail in the Models section of this post, but we then
+  generate sets of images that the models (with specific parameter
+  values) think are identical. We then run an experiment where we
+  show those images to humans and find which images they also think
+  are identical, finding the best parameter value for each model.
+
+  Once we've done that, we will have two models (with specific
+  parameter values) where we know, if the model thinks two images
+  are identical, humans will not be able to tell them apart [ref]At
+  least, under the conditions of our experiment.[/ref].
+
+  Why does that matter? There are several reasons I find this work
+  interesting:
+  1. We're modeling specific brain areas, so the parameter has a
+     meaning and therefore tells us something about that brain
+     area. I'll discuss what, exactly, it tells us in the Models
+     section.
+  2. Our models were built based on an understanding of cells that
+     comes from showing images to animals (generally, cats or
+     macaques) and recording the activity of those cells using
+     electrodes. Often these images are unlike most of what these
+     or other animals see in their life (black and white gratings
+     or moving bars being the most common). Taking understanding
+     that comes from what happens when animals see something and
+     using it to generate predictions for when humans /will not/ be
+     able to see something is a strong test of this understanding.
+  3. We are abstracting away lots of interesting biology about
+     these two brain areas areas and ignoring everything that
+     happens after them[ref]This is known as a feed-forward
+     approach to the brain, assuming information flows through the
+     brain in one direction and ignoring all the feedback that
+     happens.[/ref]. If we can still generate images that humans
+     find identical, it tells us that these are reasonable
+     assumptions in these conditions (though there are other
+     conditions where that might not be true).
+  4. The model can tell us a way to compress the image: the model
+     uses far fewer numbers than there are pixels in the image, and
+     yet those numbers are enough to create an image that humans
+     find identical. This is similar to other image compression
+     methods, like JPEG: when you create a JPEG, it throws away
+     information that it thinks you won't notice, so instead of
+     recording each pixel value for a patch of blue sky, it says
+     "this patch of 100 pixels should all be the same color blue",
+     which takes far less space on your computer. And similar to
+     our models, if you try to throw out /too much/ information,
+     people will notice.
+  5. This is a first step towards the creation of what we call a
+     *foveated image metric*. That's a technical term, so I'll
+     unpack it in parts. An "image metric" tells you how different
+     two images are. The simplest way to do this is to use the
+     mean-squared error, or MSE, where you go through and check how
+     different each pixel value is. But ideally, our measure of how
+     different two images are would map onto how different humans
+     think two images are, and humans and MSE do not agree[ref] See
+     [[https://ece.uwaterloo.ca/~z70wang/publications/SPM09.pdf][this paper]] from Zhou Wang and Alan Bovik for more
+     details.[/ref]. You can run experiments to find how different
+     humans think to images are, but that takes a lot of time, so
+     we want to come up with some computer code that can do it for
+     us. With our models, we can say whether humans will think two
+     images look the same, but if the images look different, our
+     models won't tell us /how/ different they look -- that's one
+     extension of this project. And "foveated" means that we care
+     about where people are looking in the image; the alternative
+     assumes that people are free to move their eyes
+     everywhere. This point and the last one about compression are
+     related: if you know how similar two images look, you can
+     figure out clever ways to throw away information without
+     changing the perception of the image too much.
+
+* Unseen Vision
+  :PROPERTIES:
+  :ID:       6ed88e0d-afdc-4215-85fd-a8812dfe27c9
+  :END:
+     
+  In my video, I start by discussing the idea that we can study
+  vision by studying what people cannot see, and it's worth talking
+  about this in more detail, because it's a powerful idea, but not
+  an intuitive one.
+
+  You're probably aware that color displays, from cathode ray tube
+  screens to liquid crystal displays to projectors, all use three
+  different color primaries (red, green, and blue) to render the
+  colors they show. But how is it that you can use only three
+  different colors to render all of the many different possible
+  colors that humans can view? Cones -- (most) humans have three
+  types of cones, and so you can get away with only three
+  primaries. But why? And the theory of human trichromatic vision
+  (that humans have three classes of photoreceptors sensitive to
+  color) was first postulated by Thomas Young in 1802, more than
+  150 years before the physiological evidence for their
+  existence. How?
+     
+  # - describe color matching experiment
+  # - this was remarkably consistent across people (except for
+  #   color-blind and tetrachromats)
+
+  The existence of three cone classes was theorized as a way to
+  explain the results of color matching experiments, done in the
+  18th and 19th centuries. In those experiments, participants were
+  shown two lights on either side of a divider. One light, the test
+  light, was a constant color, while the other, the comparison
+  light, was made by combining three different primary lights (for
+  example, red, green, and blue) with different intensities. The
+  participant's task was to adjust the intensities of these three
+  primaries until the two lights looked identical. And people could
+  do this, for any color test light, as long as they had three
+  primaries. And these results were remarkably consistent across
+  people -- just about everyone could match colors as long as they
+  had three primaries, and they used the same relative intensities,
+  but they couldn't do it with two (there were some people, it
+  turns out, who could do it with two primaries -- people with
+  [[https://en.wikipedia.org/wiki/Dichromacy][dichromacy]], a form of color blindness).
+       
+  [[file:{static}/images/trichromacy.svg]]
+
+  # - brief digression to talk about color. color is not a property
+  #   of an object, it's an interaction between the object
+  #   (specifically, its reflectance), the light, and the
+  #   observer.
+  #   - when I'm saying "color", I'm referring to a spectral power
+  #     distribution (show picture) arriving at your eye
+
+  Brief digression to talk about the nature of color, with the
+  caveat that I do not study color (it's a whole separate area of
+  vision science) and so everything I say should be taken with a
+  grain of salt (if you're interested in this, I recommend reading
+  the chapter on color from Brian Wandell's excellent [[https://foundationsofvision.stanford.edu/chapter-9-color/][Foundations
+  of Vision]], available for free online). But, technically, color is
+  not a property of an object, it's an interaction between the
+  object (how much light it reflects at each wavelength), the light
+  (how much light is present at each wavelength), and the observer
+  (how their visual system interprets the light that arrives at
+  their eye). So, there are no blue dresses, there are just dresses
+  that appear blue to me under specific lighting conditions. That
+  may sound purposefully obtuse, but it's important to keep in
+  mind. [[https://en.wikipedia.org/wiki/The_dress][The Dress]] is a striking example of ambiguity in color
+  perception, and the current understanding is that the reason some
+  people saw it as black and blue and others as white and gold is
+  because of differences in what they thought the lighting
+  conditions were. So I want to be clear about the differences
+  between perceptual color (what I mean when I say "that dress is
+  blue", which depends on all of the object, lighting, and
+  observer) and the light that arrives at the eye (the amount of
+  energy at each wavelength, known as the *power spectrum*, which
+  depends on the object and the lighting).
+
+  # - importantly, the power distribution that arrives at your eye IS
+  #   DIFFERENT. but you don't notice
+  # - because the activity of your cones are identical -- your visual
+  #   system has thrown away all information that could distinguish
+  #   those two lights
+
+  In the color matching experiment, the two lights were /perceived/
+  as identical by the participants, but the power spectrum were
+  /very different/. But the participants didn't notice the
+  difference because their visual system had discarded all
+  information that could separate the two. The two lights are
+  called *metamers*: they're physically different, but perceptually
+  identical. Like I said earlier, this is because (most) humans
+  have three cone classes. The two lights appear identical because
+  the cone activity for the two of them are the same. They have
+  different amounts of energy at each wavelength, but they excite
+  the cones the same amount, and so you have no way of telling them
+  apart and thus perceive them as identical.
+
+  # - that might seem weird at first, but think about the full
+  #   electromagnetic spectrum. our visual system is only sensitive
+  #   to visible light, not infrared or ultraviolet. but that's still
+  #   there and still arrives at our eyes -- we just can't make use
+  #   of it because our visual system throws it away. but other
+  #   visual systems, like bees and birds, do not
+  # - similarly for folks who are colorblind. their visual system is
+  #   throwing away more information than mine, so they don't have
+  #   access to the information I'm using to distinguish two colors
+
+  This may seem weird at first -- we have a tendency to think of
+  our visual system as conveying accurate information about the
+  world around us. But that's not what it does! It conveys /useful/
+  information about the world around us, where useful is in
+  evolutionary terms. Think about the electromagnetic spectrum. Our
+  visual system is only sensitive to visible light, not infrared or
+  ultraviolet. But light at those frequencies are still present in
+  the world and arrive at our eyes -- we just can't make use of it
+  because our visual system throws it away. Our cones only respond
+  to lights between 400 and 700 nanometers, and so we cannot tell
+  the difference between a blue dress and a blue dress with a UV
+  lamp behind it. Other animals' cones, however, like bees and some
+  birds, are sensitive to ultraviolet light, and so their visual
+  system can make use of it.
+       
+  # - which meant I could say, for this arbitrary spectral power
+  #   distribution, I know the combination of these three lights so
+  #   that you think they're identical (some caveats: lights have to
+  #   be independent, there's some subtlety with 'negative intensity'
+  #   to worry about)
+  # - but this approach is obviously useful -- I can now represent a
+  #   color as three numbers, the intensity of three primaries,
+  #   instead of the intensity at each wavelength of the visible
+  #   light spectrum, 300 numbers. that's useful for applications, it
+  #   means I can build better displays / compress information
+
+  So alright, human visual systems aren't perfect and can be
+  tricked in this fairly arbitrary way. What of it? Well, now I can
+  describe a color using only three numbers, the intensities of
+  each of those three primary lights, rather than requiring me to
+  specify the full power spectrum, which would require a number for
+  each possible wavelength in the visible spectrum. That's a lot
+  less information! I've just gone from 300 numbers to just 3. This
+  is why I only need three color primaries in a display -- I can't
+  reproduce any possible power spectrum, but I can match the
+  perceived color pretty well. It would be much harder to fit all
+  the necessary lights into a screen if we needed 300 of them. I've
+  made use of my understanding of the human visual system to
+  *compress* the information about the color. This is one important
+  application of this type of work: if we know what information the
+  human visual system throws out, we can throw away that same
+  information in any system we build that interacts with the human
+  visual system (you might want to hold onto it for other reasons,
+  but for most situations where you just want an image to look
+  good, it's fine).
+
+  # - note that this whole idea is based around investigating what we
+  #   DON'T see. this isn't about what colors look like, why do some
+  #   complement each other, or even how hard to tell apart are
+  #   these two colors?
+  # - also can be a strong test of the visual system -- if I really
+  #   understand how something works, I should be able to predict
+  #   what you can *and* can't see.
+
+  And note that this whole thing is based around investigating what
+  humans /don't/ see. We've found changes we can make to the
+  physical stimulus (in this case, the power spectra) without
+  humans being able to tell that anything is different. This isn't
+  about what colors look like: why do some colors complement each
+  other? What makes a color stand out? How hard are these two
+  colors to tell apart? There's a whole host of interesting
+  questions there as well. In the color case, the experiments to
+  find what people cannot see preceded the theory about the visual
+  system that explains why. But these types of experiments can also
+  serve as a strong test of our theories and understandings of the
+  visual system: we should be able to use our understand of how the
+  system works to generate images humans cannot distinguish. And we
+  should be able to do this not only by throwing information out of
+  an image and predicting you can't tell, but also by adding new
+  information that you won't be able to see. That's the goal of
+  this project, to build models of early stages of the visual
+  system based on our understanding from other experiments,
+  generate images that the models think are identical, and run an
+  experiment to see which images humans also think are identical.
+
+  # - add something about possible positive effects of throwing away
+  #   information? like point made in cite:Ziemba2020-oppos-effec
+       
+* Models and the Visual System
+
+  Still working on this!
+
+* Experiment
+  
+  Still working on this!

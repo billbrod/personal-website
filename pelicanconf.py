@@ -57,7 +57,7 @@ DIRECT_TEMPLATES = ['index', 'archives', 'publications']
 
 MARKUP = ('md')
 PLUGIN_PATHS = ['pelican-plugins', 'liquid_tags', 'extra_plugins']
-PLUGINS = ['org_reader', 'pelican-bibtex']
+PLUGINS = ['org_reader', 'pelican-bibtex', 'simple_footnotes']
 PUBLICATIONS_SRC = 'content/docs/pubs.bib'
 
 ORG_READER_EMACS_LOCATION = '/usr/bin/emacs'
