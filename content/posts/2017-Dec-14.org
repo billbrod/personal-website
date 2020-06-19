@@ -9,13 +9,13 @@ its size and your distance to it).
 
 I created the grating shown below:
 
-[[file:{filename}/images/grating-regular.png]]
+[[file:{static}/images/grating-regular.png]]
 
 and was dropping down some circular windows on it to see if I could
 recreate the same image by making a bunch of small sinusoids and
 combining them. What I ended up seeing was:
 
-[[file:{filename}/images/grating-illusion.png]]
+[[file:{static}/images/grating-illusion.png]]
 
 To me, it looks like there's an illusory grating that's perpendicular
 to the actual one, but if you focus on the location of those supposed
@@ -31,12 +31,12 @@ the lab, neither is anyone else). It seems similar to the following
 classic illusion, where the Xs in either side of the image look like
 their yellow / blue, respectively, but are actually the same color.
 
-[[file:{filename}/images/color-x-illusion.jpg]]
+[[file:{static}/images/color-x-illusion.jpg]]
 
 A similar illusion is shown below, where the two squares are the same
 grayscale level, but appear to be different.
 
-[[file:{filename}/images/brightness-illusion.png]]
+[[file:{static}/images/brightness-illusion.png]]
 
 In all of these, the illusion relies on the fact that our perception
 of brightness and color of an object is influenced by the contrast
