@@ -170,7 +170,7 @@
   turns out, who could do it with two primaries -- people with
   [[https://en.wikipedia.org/wiki/Dichromacy][dichromacy]], a form of color blindness).[/ref].
        
-  [[file:../Presentations/Images/FRL-midway-trichromacy.svg]]
+  [[file:{static}/images/trichromacy.svg]]
 
   # - brief digression to talk about color. color is not a property
   #   of an object, it's an interaction between the object
@@ -334,7 +334,7 @@
   you move your eyes to the edge of the computer screen, then the
   text becomes illegible. Why would this be the case?
 
-  [[file:~/Org-Docs/Presentations/Images/FRL-midway-visual-system.svg]]
+  [[file:{static}/images/visual-system.svg]]
   #+CAPTION: Diagram of the visual system. There is a V3 in the human brain, but this figure comes from a monkey electrophysiologist, and they tend to ignore V3 because it's hard to get to in the monkey. ([[https://figshare.com/articles/Ventral_visual_stream/106794][Source]].)
 
   First, let's talk a little about the layout of the visual
@@ -362,7 +362,7 @@
 
   #+DOWNLOADED: https://wine4soul.files.wordpress.com/2012/12/fovea-and-receptors.jpg @ 2020-06-17 18:24:25
   #+CAPTION: Fovea diagram
-  [[file:attachments/Thesis/2020-06-17_18-24-25_fovea-and-receptors.jpg]]
+  [[file:{static}/images/fovea-and-receptors.jpg]]
      
   The *visual field* is what you're seeing at any given time. When
   we discuss the visual field, we're less interested in the
