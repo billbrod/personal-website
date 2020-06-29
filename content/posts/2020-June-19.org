@@ -360,7 +360,6 @@
   through a succession of other similarly-named areas: V2, V3, V4,
   etc. In this project, we build models of V1 and the retina.
 
-  #+DOWNLOADED: https://wine4soul.files.wordpress.com/2012/12/fovea-and-receptors.jpg @ 2020-06-17 18:24:25
   #+CAPTION: Fovea diagram
   [[file:{static}/images/fovea-and-receptors.jpg]]
      
