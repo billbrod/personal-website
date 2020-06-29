@@ -141,12 +141,12 @@
   different color primaries (red, green, and blue) to render the
   colors they show. But how is it that you can use only three
   different colors to render all of the many different possible
-  colors that humans can view? Cones -- (most) humans have three
-  types of cones, and so you can get away with only three
-  primaries. But why? And the theory of human trichromatic vision
-  (that humans have three classes of photoreceptors sensitive to
-  color) was first postulated by Thomas Young in 1802, more than
-  150 years before the physiological evidence for their
+  colors that humans can view? Because of cones -- (most) humans
+  have three types of cones, and so you can get away with only
+  three primaries. But why? And the theory of human trichromatic
+  vision (that humans have three classes of photoreceptors
+  sensitive to color) was first postulated by Thomas Young in 1802,
+  more than 150 years before the physiological evidence for their
   existence. How?
      
   # - describe color matching experiment
@@ -166,11 +166,11 @@
   primaries. And these results were remarkably consistent across
   people -- just about everyone could match colors as long as they
   had three primaries, and they used the same relative intensities,
-  but they couldn't do it with two (there were some people, it
+  but they couldn't do it with two[ref]There were some people, it
   turns out, who could do it with two primaries -- people with
-  [[https://en.wikipedia.org/wiki/Dichromacy][dichromacy]], a form of color blindness).
+  [[https://en.wikipedia.org/wiki/Dichromacy][dichromacy]], a form of color blindness).[/ref].
        
-  [[file:{static}/images/trichromacy.svg]]
+  [[file:../Presentations/Images/FRL-midway-trichromacy.svg]]
 
   # - brief digression to talk about color. color is not a property
   #   of an object, it's an interaction between the object
@@ -186,22 +186,30 @@
   the chapter on color from Brian Wandell's excellent [[https://foundationsofvision.stanford.edu/chapter-9-color/][Foundations
   of Vision]], available for free online). But, technically, color is
   not a property of an object, it's an interaction between the
-  object (how much light it reflects at each wavelength), the light
-  (how much light is present at each wavelength), and the observer
-  (how their visual system interprets the light that arrives at
-  their eye). So, there are no blue dresses, there are just dresses
-  that appear blue to me under specific lighting conditions. That
-  may sound purposefully obtuse, but it's important to keep in
-  mind. [[https://en.wikipedia.org/wiki/The_dress][The Dress]] is a striking example of ambiguity in color
-  perception, and the current understanding is that the reason some
-  people saw it as black and blue and others as white and gold is
-  because of differences in what they thought the lighting
-  conditions were. So I want to be clear about the differences
-  between perceptual color (what I mean when I say "that dress is
-  blue", which depends on all of the object, lighting, and
-  observer) and the light that arrives at the eye (the amount of
-  energy at each wavelength, known as the *power spectrum*, which
-  depends on the object and the lighting).
+  object (how much light it reflects at each wavelength), the
+  lighting conditions (how much light is present at each
+  wavelength), and the observer (how their visual system interprets
+  the light that arrives at their eye). So, there are no blue
+  dresses, there are just dresses that appear blue to me under
+  specific lighting conditions. That may sound purposefully obtuse,
+  but it's important to keep in mind. If you remember [[https://en.wikipedia.org/wiki/The_dress][the Dress]], a
+  viral image from several years ago, it is a striking example of
+  ambiguity in color perception: some people see it as black and
+  blue, where others see it as white and gold, and people often
+  have very strong opinions on which they see, with few people able
+  to see both[ref] The current understanding is that it comes down
+  to differences in what you (implicitly) assumed the lighting
+  condition was when the photo was taken. If you thought the light
+  was yellow-tinted, you'll see the dress as black and blue; if you
+  thought it was blue-tinted, you'd see the dress as white and
+  gold. [[https://en.wikipedia.org/wiki/The_dress#Scientific_explanations][Wikipedia]] has a decent explanation on this. [/ref]. This
+  demonstrates that "color" is not as straightforward a label as we
+  think, so I want to be clear about the differences between
+  perceptual color (what I mean when I say "that dress is blue",
+  which depends on all of the object, lighting, and observer) and
+  the light that arrives at the eye (the amount of energy at each
+  wavelength, known as the *power spectrum*, which just depends on
+  the object and the lighting).
 
   # - importantly, the power distribution that arrives at your eye IS
   #   DIFFERENT. but you don't notice
@@ -264,8 +272,8 @@
   each of those three primary lights, rather than requiring me to
   specify the full power spectrum, which would require a number for
   each possible wavelength in the visible spectrum. That's a lot
-  less information! I've just gone from 300 numbers to just 3. This
-  is why I only need three color primaries in a display -- I can't
+  less information! I've gone from 300 numbers to just 3. This is
+  why I only need three color primaries in a display -- I can't
   reproduce any possible power spectrum, but I can match the
   perceived color pretty well. It would be much harder to fit all
   the necessary lights into a screen if we needed 300 of them. I've
@@ -273,7 +281,7 @@
   *compress* the information about the color. This is one important
   application of this type of work: if we know what information the
   human visual system throws out, we can throw away that same
-  information in any system we build that interacts with the human
+  information in any thing we build that interacts with the human
   visual system (you might want to hold onto it for other reasons,
   but for most situations where you just want an image to look
   good, it's fine).
@@ -312,8 +320,291 @@
        
 * Models and the Visual System
 
-  Still working on this!
+  # - from the beginning: notice how your vision differs across the
+  #   visual field. if you're eyes are focused on this text, you can
+  #   read it without a problem, but if you move your eyes to the
+  #   edge of your computer screen, then it's illegible. why?
 
+  With the previous section, I hope I've shown how studying what
+  people don't see can be a useful way to increase our
+  understanding of the visual system. In this project, we use that
+  approach to study how vision changes across the visual
+  field. This is a pretty drastic effect: when your eyes are
+  fixated on this text, you can read it without a problem, but if
+  you move your eyes to the edge of the computer screen, then the
+  text becomes illegible. Why would this be the case?
+
+  [[file:~/Org-Docs/Presentations/Images/FRL-midway-visual-system.svg]]
+  #+CAPTION: Diagram of the visual system. There is a V3 in the human brain, but this figure comes from a monkey electrophysiologist, and they tend to ignore V3 because it's hard to get to in the monkey. ([[https://figshare.com/articles/Ventral_visual_stream/106794][Source]].)
+
+  First, let's talk a little about the layout of the visual
+  system. I'm going to talk about the flow of information in the
+  brain: information enters via our sensory systems and gets
+  processed and transformed by a series of connected brain
+  areas. These transformations, or *computations*, are what my
+  research focuses on. How can we recognize faces so easily from an
+  image, which is just a bunch of points of light? Because the
+  human brain transforms those points into some more meaningful
+  representation that allows us to easily determine how "face-like"
+  something is. But the fact that it has taken years to get
+  computers to be able to recognize faces with any accuracy (and
+  they're still not that good, and have all [[https://t.co/ydEBctVatC?amp=1][sorts of biases]]) should
+  emphasize how hard this is. To return to the anatomy: when light
+  enters the eye, it travels through the lens to the back of the
+  eye, called the *retina*. From there, the information gets sent
+  to a section of the thalamus, deep in the brain, called the
+  lateral geniculate nucleus, or LGN (generally speaking, in visual
+  neuroscience we tend to consider the LGN a relay station that
+  doesn't transform the information at all, and so ignore it). From
+  there, it goes to the primary visual cortex or *V1*, before going
+  through a succession of other similarly-named areas: V2, V3, V4,
+  etc. In this project, we build models of V1 and the retina.
+
+  #+DOWNLOADED: https://wine4soul.files.wordpress.com/2012/12/fovea-and-receptors.jpg @ 2020-06-17 18:24:25
+  #+CAPTION: Fovea diagram
+  [[file:attachments/Thesis/2020-06-17_18-24-25_fovea-and-receptors.jpg]]
+     
+  The *visual field* is what you're seeing at any given time. When
+  we discuss the visual field, we're less interested in the
+  physical objects out in the world than we are in the patterns of
+  light that these objects reflect or emit that land on your
+  eye. The center of your visual field, where your eyes are
+  fixating at any one point in time, is the *fovea*. The term comes
+  from the Latin word for "pit" and describes an interesting
+  anatomical feature of the retina: the cells in front of the cones
+  are shoved to the side so they don't get in the way of the
+  light. This is the region of highest acuity. As you move away
+  from the fovea, you eventually enter the para-fovea, and then end
+  up in the *periphery*, your acuity decreasing gradually all the
+  way[ref]To my knowledge, there are no agreed upon boundaries for
+  any of these terms, except for the fovea; there is an anatomical
+  boundary where the actual pit of the fovea
+  ends.[/ref][ref]Interestingly, not all animals have foveas, and
+  some birds have two! It seems to be present in animals that need
+  precise information about the location of objects, like primates,
+  birds, and cats. But prey animals, such as mice and rabbits, do
+  not have foveas, and often have quite poor visual acuity. Again,
+  this comes down to the fact that the visual system is about
+  capturing useful information to the organism, and fine spatial
+  information is not important to mice.[/ref]. These terms are used
+  to refer to the anatomy of the retina and later brain areas as
+  well as to the perception of that part of the visual field. So if
+  we're discussing what you see where your eyes are centered,
+  that's "foveal vision" or just the "fovea". Finally, when talking
+  about locations in the visual field, the distance from the fovea
+  is the *eccentricity* and it's measured in
+  [[https://en.wikipedia.org/wiki/Visual_angle][degrees of visual
+  angle]], such that you'd say "the image was presented at 10
+  degrees eccentricity" when describing the stimuli in an
+  experiment.
+     
+  # - neurons in visual areas care about things in their preferred
+  #   portion of space: receptive fields (Hubel and Wiesel?)
+  # - these RFs get bigger as you move away from fovea and as you go
+  #   deeper into the visual system
+  # - this RF growing as you move away from fovea seems related to
+  #   that perceptual thing we noticed
+  # - there might be other stuff going on, but let's start with that
+  #   idea: the main reason your vision changes as you move away from
+  #   the fovea is because of the RFs growing (in our models, it's
+  #   the only reason)
+
+  The visual system is a portion of the brain (in primates, quite a
+  large portion!) and so, like the rest of the brain, is made up of
+  specialized cells called neurons. As a computational
+  neuroscientist, I don't think so much about all the interesting
+  biology of neurons, and really only think about them in terms of
+  their activity. People spend their entire lives studying neuronal
+  activity, but for my purposes all we need to know is that it's
+  the way neurons communicate with each other, so if something
+  isn't reflected in neuronal activity, the visual system doesn't
+  know about it. To return to our color example, ultraviolet light
+  has no effect on cone activity, and so the visual system knows
+  nothing about it.
+     
+  If we want to understand the visual system, we should understand
+  what makes neurons active and how that activity changes. One of
+  the foundational results in visual neuroscience was the discovery
+  of receptive fields in the 1950s and 1960s by David Hubel and
+  Torsten Wiesel. They found that neurons in cat V1 got active when
+  they moved a bar into a certain portion of the visual field, and
+  were not active when the bar was in any other portion of
+  space[ref]You can find footage of this [[https://www.youtube.com/watch?v=KE952yueVLA][experiment on YouTube]] (the
+  clicking noise is the neurons firing action potentials, and the
+  more often that happens, the more active they are).[\ref]. This
+  is the neuron's *receptive field*, the portion of the visual
+  field that the neuron cares about[ref] The concept comes from
+  [[https://en.wikipedia.org/wiki/Receptive_field][Sherrington]], who used it to describe the area of skin from which
+  a scratch reflex could be elicited in a dog.[/ref]. These
+  receptive fields grow larger as you move away from the fovea and
+  also as you go deeper into the visual system, so that foveal
+  retina receptive fields are /tiny/ (the size of a cone), whereas
+  peripheral V4 receptive fields are /giant/ (a quarter of your
+  visual field). In the beginning of this section, I pointed out
+  that your vision gets worse as you move away from the fovea, and
+  the way it does this seems a lot like it's "getting bigger":
+  things in your periphery appear somewhat blurry and hard to
+  distinguish from each other. That seems like it might be related
+  to receptive fields growing larger as you move away from the
+  fovea, so that's what we're going to focus on. There may be other
+  important differences between the fovea and periphery, but for
+  this project, the /only/ difference is that receptive fields have
+  grown larger.
+
+  # - now, neurons are also sensitive to "features". (put in quotes
+  #   because they're not necessarily as human-interpretable as we'd
+  #   like)
+  # - , that's stuff like orientation and size (technically,
+  #   spatial frequency, but can think of as size for our
+  #   purposes). in the whole brain area, all are represented. we
+  #   know each orientation is represented everywhere, but size isn't
+  #   (small stuff aren't in the periphery, big stuff might not be in
+  #   the fovea). for now, however, let's pretend that everything's
+  #   represented everywhere (can remove things later)
+  # - different visual areas care about different things. retina does
+  #   not care about those: for our purposes, only care about
+  #   location, which means it can't distinguish between a large dim
+  #   thing and a small bright thing. (we're ignoring lots of
+  #   interesting stuff about the retina here)
+  # - V2 is more complicated. seems to care about "texture-like"
+  #   things, but note this is controversial and an active area of
+  #   research
+  # - these things that the brain areas care about, are summary
+  #   statistics. note they aren't features in the interpretable
+  #   sense, that is, you have a line detector, then an angle
+  #   detector, then a shape detector, etc. not relevant for this,
+  #   and the difference is a bit of a subtle one, but I think it's
+  #   important (relative lack of success in computer vision built on
+  #   this in 80s and 90s, and the success of deep nets, which are
+  #   convolutions and nonlinearities, speak to it; makes your
+  #   intuition weird; edges are actually high level features, not
+  #   low level ones; all "edge detectors" that you find are actually
+  #   just relatively high-frequency filters and have failures on
+  #   even trivial cases; vision sees "stuff" not "things",
+  #   cite:Adelson1991-plenop-funct)
+
+  Visual neurons are sensitive to more than just a region of
+  space. Hubel and Wiesel found neurons that only responded if the
+  bar was in a certain portion of space /and/ had a certain
+  orientation (such as vertical or horizontal). This led to the
+  idea that neurons are sensitive to "features" as well as
+  locations[ref]I put "features" in scare quotes because I have
+  lots of feelings about the features neurons are responsive to --
+  they're often not nearly as human-interpretable as we'd like, and
+  I think the idea that V1 neurons are "edge-detectors", a common
+  interpretation of Hubel and Wiesel's studies (including by the
+  original authors), has led to a lot of confusion in visual
+  neuroscience. But that's outside the scope of this post. Though I
+  do recommend reading Adelson and Bergen's great paper on [[http://persci.mit.edu/pub_pdfs/elements91.pdf][The
+  Plenoptic Function]] if you're interested in this.[/ref]. In V1,
+  the main features are orientation and size[ref]Technically,
+  [[https://en.wikipedia.org/wiki/Spatial_frequency][spatial frequency]], but for the purposes of this post we can call
+  it size.[/ref], and across all of V1, they, along with location,
+  are all represented. This information about orientation and size
+  is called *spectral energy*. We know each orientation is
+  represented everywhere in the visual field, but size isn't (there
+  aren't neurons that respond to small things in the periphery and
+  neurons responding to big things might not be found in the
+  fovea[ref]This is actually the topic of the [[https://osf.io/knjqy/][first major]] project I
+  worked on in grad school, as presented at VSS 2018. I still
+  haven't finished it yet, however, because science is
+  slow.[/ref]). However, for our models, we're going to say all
+  orientations and all sizes are represented everywhere in the
+  visual field[ref]Changing this is one of the extensions of this
+  project that we're working towards: removing unnecessary
+  information about size / spatial frequency based on location in
+  the visual field.[/ref]. Different visual areas care about
+  different things. Retina does not care about orientation or size:
+  for our purposes, it only cares about brightness[ref]Folks who
+  actually study the retina will not like this characterization,
+  which ignores lots of interesting stuff that happens in the
+  retina, but it's enough for our purposes.[/ref][ref]Later areas
+  in the visual system get much more complicated quickly, and
+  there's not nearly as much agreement on them as there is about
+  V1.[/ref]. These things that the brain areas care about are
+  called *summary statistics*.
+
+  # - so those are the two core ideas: brain areas compute summary
+  #   statistics, and main thing that changes with eccentricity is
+  #   receptive field size.
+  # - now just need to put them together. what do we do with those
+  #   summary stats in those receptive fields? simple approach: let's
+  #   average them. neuron just sees how much of its favorite stuff
+  #   is in the area, no details about it. and that means throwing
+  #   away information! here's where we return to the first concept
+  # - for retina, that means activity is just determined by average
+  #   pixel value in the region. so if the region is a 2x2 square,
+  #   can't tell the difference between all .5, two 1s and two 0s,
+  #   two .75s and two .25s, etc
+  # - for V1, analogous situation holds
+
+  Those are the core ideas for our models: brain areas compute
+  summary statistics and the main thing that changes with
+  eccentricity is the size of these receptive fields. So let's put
+  them together: what do we do with those summary statistics in
+  those receptive fields? Let's take the simple approach and just
+  average them. So, a neuron's activity is based on how much of its
+  favorite stuff is in its favorite area of the visual field. A
+  given neuron in V1, for example, might care about how much
+  "vertical-ness" of a certain size there is in a given patch of
+  the visual field, and measuring that in an image is a pretty good
+  way to predict how active that neuron will be when the animal is
+  shown the image. A given neuron in the retina, on the other hand,
+  might care how bright a certain patch of the visual field
+  is. Note that the neurons are ignoring the details that gave rise
+  to those statistics (the retina neuron just cares about the
+  average brightness in its favorite area, not whether that
+  brightness came from a really bright object and a really dark
+  object, or two medium-bright objects) -- which means we're
+  throwing away information! This is where we return to the concept
+  I discussed in Unseen Vision: if we're throwing away information,
+  that means we can find metamers. Also note that the amount of
+  information the model throws away increases both as the receptive
+  field grows and as the number of statistics shrink, and these
+  happen independently[ref]By which I mean, for a given number of
+  statistics, you'll throw away more information as the receptive
+  fields grow, and, for a given size of receptive field, you'll
+  throw away more information as the number of statistics
+  shrinks.[/ref]. I'll return to this idea when I describe the
+  experiment in more detail in the next section.
+
+  When we build these models, we have two choices: the statistics
+  they calculate and the size of the windows (I'm going to refer to
+  them as *"pooling windows"* from now on, and use "receptive
+  fields" only to refer to actual neurons) they average them in. We
+  pick the statistics based on our understanding of the visual
+  system. This is important -- in no part of this study do we test
+  different statistics to see which is best. We build in the
+  assumption (based on decades of research) that we can summarize
+  an important part of neuronal activity in the retina and V1 by
+  using brightness and spectral energy. We're also going to say
+  that window size grows with eccentricity[ref]Specifically, based
+  on a literature review shown in Figure 1a in [[https://www.cns.nyu.edu/pub/eero/freeman10-reprint.pdf][this paper]], we're
+  going to say that their width grows linearly with
+  eccentricity[/ref], and the only thing we need to find in our
+  experiment is how quickly it grows. This *scaling*, as we call
+  it, is the model's only free parameter, i.e., it's the only thing
+  we fit to the data. Finding it is the goal of the experiment that
+  we have not yet had a chance to run, because of COVID.
+
+  To summarize, in this project, we built models of the retina and
+  V1, which average summary statistics in windows that grow larger
+  with eccentricity. To see how well they model human perception,
+  we generated model metamers, images that are physically different
+  but that the model thinks are identical. In the next section,
+  I'll discuss the experiment we're planning on running in order to
+  test those models.
+
+  # - the larger the area and the fewer the statistics, the more
+  #   information that's thrown away. so there's a tradeoff here --
+  #   more stats allow you larger areas
+  # - so those are our models: compute stats and average them in
+  #   regions (pooling windows)
+  # - we pick stats based on our understanding of visual system and,
+  #   again based on understanding of visual system, say window size
+  #   grows with eccentricity. and we try several different scaling
+  #   values, this growth rate
+       
 * Experiment
   
   Still working on this!
