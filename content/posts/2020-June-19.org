@@ -569,7 +569,7 @@
 
   When we build these models, we have two choices: the statistics
   they calculate and the size of the windows (I'm going to refer to
-  them as *"pooling windows"* from now on, and use "receptive
+  them as "*pooling windows*" from now on, and use "receptive
   fields" only to refer to actual neurons) they average them in. We
   pick the statistics based on our understanding of the visual
   system. This is important -- in no part of this study do we test
