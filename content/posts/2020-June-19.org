@@ -430,7 +430,7 @@
   were not active when the bar was in any other portion of
   space[ref]You can find footage of this [[https://www.youtube.com/watch?v=KE952yueVLA][experiment on YouTube]] (the
   clicking noise is the neurons firing action potentials, and the
-  more often that happens, the more active they are).[\ref]. This
+  more often that happens, the more active they are).[/ref]. This
   is the neuron's *receptive field*, the portion of the visual
   field that the neuron cares about[ref] The concept comes from
   [[https://en.wikipedia.org/wiki/Receptive_field][Sherrington]], who used it to describe the area of skin from which
