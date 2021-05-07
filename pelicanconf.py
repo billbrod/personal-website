@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
+import os
 
 AUTHOR = u'William F. Broderick'
 SITENAME = u"William Broderick's Blog"
@@ -8,6 +9,8 @@ SITETITLE = AUTHOR
 SITEURL = 'http://localhost:8000'
 THEME = 'Flex'
 SITELOGO = '/images/WilliamBroderick-portrait-cropped.jpg'
+
+PYGMENTS_STYLE = "friendly"
 
 ROBOTS = 'index, follow'
 
@@ -61,5 +64,8 @@ PLUGINS = ['org_reader', 'pelican-bibtex', 'simple_footnotes']
 PUBLICATIONS_SRC = 'content/docs/pubs.bib'
 
 ORG_READER_EMACS_LOCATION = '/usr/bin/emacs'
+# solution from https://emacs.stackexchange.com/a/32818
+ORG_READER_EMACS_SETTINGS = os.path.abspath('lisp/config.el')
+ORG_READER_BACKEND = "'pelican-html"
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
