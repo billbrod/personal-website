@@ -1,0 +1,244 @@
+#+TITLE: conda, snakemake, and HPC
+#+DATE: <2021-05-05 Wed>
+#+PROPERTY: HPC
+
+NYU's new high performance computing (HPC) cluster, Greene, was put into
+production earlier this year and, on the new system, they want all users to use
+singularity containers for conda environments. This is because conda
+environments create a bunch of files: one conda environment can contain more
+than 100 thousand files; on Greene, each user is limited to 1 million files, so
+it's not great to have that many be eaten up by conda. To get around this, they
+want everyone to use overlay singularity containers, and have put together some
+documentation [[https://sites.google.com/a/nyu.edu/nyu-hpc/documentation/prince/packages/singularity-for-conda][to help users]] get set up.
+
+However, I use the workflow management system [[https://snakemake.readthedocs.io/en/stable/][snakemake]] to run my analyses and
+found it difficult to set up my environments such that snakemake could make use
+of them. After meeting with NYU HPC staff and some extra work on both their part
+and mine, I think I've come up with a solution. I'm not sure if this will help
+anyone outside of NYU, but I figured it was worth writing up.
+
+1. As detailed on the [[https://sites.google.com/a/nyu.edu/nyu-hpc/documentation/prince/packages/singularity-for-conda][HPC site]], first pick an appropriate overlay filesystem
+   (based on the number of files and overall size) and copy it to a new
+   directory in your =/scratch/= directory (we'll be calling that directory
+   =overlay/= throughout):
+
+#+BEGIN_SRC bash :exports code
+mkdir /scratch/$USER/overlay
+cd /scratch/$USER/overlay
+# if you're not on NYU's Greene cluster, this path will almost certainly be
+# different
+cp /scratch/work/public/overlay-fs-ext3/overlay-5GB-3.2M.ext3.gz .
+gunzip /scratch/work/public/overlay-fs-ext3/overlay-5GB-3.2M.ext3.gz
+#+END_SRC
+
+2. Run a container with the overlay filesystem. You'll have to pick what flavor
+   of linux you want, but it shouldn't matter for our purposes (I picked Ubuntu
+   because it's what I'm most familiar with; CentOS is the version used on most
+   HPC systems, including Greene, so you may want to use that):
+
+#+BEGIN_SRC bash :exports code
+# again, if you're not on Greene, the path to the linux singularity image will
+# almost certainly be different
+singularity exec --overlay /scratch/$USER/overlay/overlay-5GB-3.2M.ext3 /scratch/work/public/singularity/ubuntu-20.04.1.sif /bin/bash
+#+END_SRC
+
+3. You are now inside the singularity container. We're going to install our
+   environment in =/ext3= using miniconda:
+
+#+BEGIN_SRC bash :exports code
+cd /ext3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+sh Miniconda3-latest-Linux-x86_64.sh -b -p /ext3/miniconda3
+#+END_SRC
+
+4. This should have modified your =~/.bashrc= file to initialize conda. Check
+   the contents of that file and you should see the following or something
+   similar (add it if it's not there):
+
+#+BEGIN_SRC bash :exports code
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/ext3/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/ext3/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/ext3/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/ext3/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+#+END_SRC
+
+4. Exit and enter the overlay container so your newly-modified =~/.bashrc= takes
+   effect. Run =which conda= and =which python= to make sure: it should show
+   =/ext3/miniconda3/bin/conda= and =/ext3/miniconda3/bin/python=, respectively.
+
+5. Install your conda environment like normal, using =conda install= and =pip
+   install=. (Note: this post assumes you're installing your environment in the
+   miniconda base environment, since we'll only have a single environment per
+   overlay container; you could probably install it in a new environment as
+   well, as long as you modify the following =/ext3/env.sh= so that it ends with
+   =conda activate <my-env>=). For example, let's install numpy and snakemake:
+
+#+BEGIN_SRC bash :exports code
+conda install numpy snakemake -c bioconda
+#+END_SRC
+
+6. Copy the following into the file =/ext3/env.sh=:
+
+#+BEGIN_SRC bash :exports code
+#!/bin/bash
+
+# this needs to be copied into the overlay, as /ext3/env.sh
+source /ext3/miniconda3/etc/profile.d/conda.sh
+export PATH=/ext3/miniconda3/bin:$PATH
+#+END_SRC
+
+7. Exit out of the singularity container. We now need to allow snakemake to
+   access this environment. For that, two components are required: a snakemake
+   profile for slurm and a way to redirect the python and snakemake commands so
+   they use the versions found within the container. Download the
+   [[https://github.com/billbrod/snakemake-slurm/][snakemake-slurm]] repo and place it in =~/.config= (the important part of this
+   config for the purposes of this post is [[https://github.com/billbrod/snakemake-slurm/blob/master/slurm-jobscript.sh][slurm-jobscript.sh]], particularly the
+   lines where we modify the path):
+
+#+BEGIN_SRC bash :exports code
+# exit the container
+exit
+# create the snakemake slurm profile
+mkdir -p ~/.config/snakemake
+cd ~/.config/snakemake
+github clone git@github.com:billbrod/snakemake-slurm.git slurm
+#+END_SRC
+
+8. Copy the following into the file =/scratch/$USER/overlay/python.sh=:
+
+#+BEGIN_SRC bash :exports code
+#!/bin/bash
+
+# https://stackoverflow.com/questions/1668649/how-to-keep-quotes-in-bash-arguments
+args=''
+for i in "$@"; do
+    i="${i//\\/\\\\}"
+    args="$args \"${i//\"/\\\"}\""
+done
+
+module purge
+
+export PATH=/share/apps/singularity/bin:$PATH
+
+# file systems
+export SINGULARITY_BINDPATH=/mnt,/scratch,/share/apps
+if [ -d /state/partition1 ]; then
+    export SINGULARITY_BINDPATH=$SINGULARITY_BINDPATH,/state/partition1
+fi
+
+# SLURM related
+export SINGULARITY_BINDPATH=$SINGULARITY_BINDPATH,/opt/slurm,/usr/lib64/libmunge.so.2.0.0,/usr/lib64/libmunge.so.2,/var/run/munge,/etc/passwd
+export SINGULARITYENV_PREPEND_PATH=/opt/slurm/bin
+if [ -d /opt/slurm/lib64 ]; then
+    export SINGULARITY_CONTAINLIBS=$(echo /opt/slurm/lib64/libpmi* | xargs | sed -e 's/ /,/g')
+fi
+
+nv=""
+if [[ "$(hostname -s)" =~ ^g ]]; then nv="--nv"; fi
+cmd=$(basename $0)
+
+singularity exec $nv \
+            --overlay /scratch/wfb229/sfp_overlay/overlay-5GB-3.2M.ext3:ro \
+            /scratch/work/public/singularity/ubuntu-20.04.1.sif \
+            /bin/bash -c "
+source /ext3/env.sh
+$cmd $args
+exit
+"
+
+#+END_SRC
+
+9. Create symlinks for =python=, =python3=, and =snakemake=, all redirecting to
+   our newly created =python.sh=:
+
+#+BEGIN_SRC bash :exports code
+cd /scratch/$USER/overlay
+ln -sv python.sh python
+ln -sv python.sh python3
+ln -sv python.sh snakemake
+#+END_SRC
+
+10. Add the following lines to your =.bashrc= so that these symlinks are on your
+    path. Exit and enter your shell so this modification takes effect. You can
+    check this worked with =which snakemake= or =which python=, which should
+    give you =/scratch/$USER/overlay/snakemake= and
+    =/scratch/$USER/overlay/python=, respectively. Now, =snakemake= and =python=
+    will both use that =python.sh= script, which runs the command using the
+    singularity overlay image.
+
+#+BEGIN_SRC bash :exports code
+if [ "$SINGULARITY_CONTAINER" == "" ]; then
+    export PATH=/scratch/wfb229/sfp_overlay:$PATH
+fi
+
+#+END_SRC
+
+11. Now, this is the hacky part: start the overlay container back up, and modify
+    the snakemake executor so it uses =python= instead of =sys.executable=
+    (=sys.executable= will be the absolute path to a python interpreter and thus
+    not use the sneaky symlinks we just created; bare =python= will use them
+    because of how we've set up our path). Open up the [[https://snakemake.readthedocs.io/en/stable/_modules/snakemake/executors.html][singularity executor
+    file]]; the exact path to this will depend on where you installed miniconda
+    and your snakemake version, but on mine (python 3.7.8 and snakemake 5.4.5)
+    it's =/ext3/miniconda3/python3.7/site-packages/snakemake/executors.py= (on
+    more recent versions of snakemake, it will be
+    =snakemake/executors/__init__.py=). Then find the lines where
+    =self.exec_job= is being defined and ={sys.executable}= is used (lines 240
+    and 430 for my install) and replace ={sys.executable}= with =python=. Here's
+    my diff as an example:
+
+#+BEGIN_SRC diff :exports code
+240,241c240
+<             # '{sys.executable} -m snakemake {target} --snakefile {snakefile} ',
+<             'python -m snakemake {target} --snakefile {snakefile} ',
+---
+>             '{sys.executable} -m snakemake {target} --snakefile {snakefile} ',
+430,431c429
+<                 # '{sys.executable} ' if assume_shared_fs else 'python ',
+<                 'python ',
+---
+>                 '{sys.executable} ' if assume_shared_fs else 'python ',
+#+END_SRC
+
+That should work. I'm not super happy with having to modify snakemake's source
+code to get this to work, but it does work. Let me know if you know of a better
+solution!
+
+Note that you can not have the overlay container open in a separate terminal
+session while you attempt to use it via snakemake (though it does look like you
+can run multiple independent jobs simultaneously via snakemake, with the =-j=
+flag).
+
+Here's a way to test this:
+
+1. Copy the following into =~/Snakefile=
+
+#+BEGIN_SRC snakemake :exports code
+rule test_run:
+     log: 'test_run.log'
+     run:
+        import numpy
+        print("Success!")
+
+rule test_shell:
+     log: 'test_shell.log'
+     shell:
+        "python -c 'import numpy'; echo success!"
+#+END_SRC
+
+2. From your home directory, run =snakemake -j 2 --profile slurm test_run
+   test_shell=. If everything was set up correctly, it should run without a
+   problem. If not, check the logs =~/test_run.log= and =~/test_shell.log= to
+   see if they contain any helpful information. You may also want to add the
+   =--verbose= flag to the snakemake command, which will cause it to print out
+   the snakemake jobscript to the terminal, making it easier to debug.
