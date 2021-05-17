@@ -18,9 +18,11 @@ and mine, I think I've come up with a solution. I'm not sure if this will help
 anyone outside of NYU, but I figured it was worth writing up.
 
 1. As detailed on the [[https://sites.google.com/a/nyu.edu/nyu-hpc/documentation/prince/packages/singularity-for-conda][HPC site]], first pick an appropriate overlay filesystem
-   (based on the number of files and overall size) and copy it to a new
-   directory in your =/scratch/= directory (we'll be calling that directory
-   =overlay/= throughout):
+   (based on the number of files and overall size; the one I pick probably has
+   more files than necessar for a single conda environment, and you would need
+   more space if you wanted to install large packages like the recent version of
+   pytorch) and copy it to a new directory in your =/scratch/= directory (we'll
+   be calling that directory =overlay/= throughout):
 
     #+BEGIN_SRC bash :exports code
     mkdir /scratch/$USER/overlay
@@ -28,7 +30,7 @@ anyone outside of NYU, but I figured it was worth writing up.
     # if you're not on NYU's Greene cluster, this path will almost certainly be
     # different
     cp /scratch/work/public/overlay-fs-ext3/overlay-5GB-3.2M.ext3.gz .
-    gunzip /scratch/work/public/overlay-fs-ext3/overlay-5GB-3.2M.ext3.gz
+    gunzip overlay-5GB-3.2M.ext3.gz
     #+END_SRC
 
 2. Run a container with the overlay filesystem. You'll have to pick what flavor
@@ -43,7 +45,9 @@ anyone outside of NYU, but I figured it was worth writing up.
     #+END_SRC
 
 3. You are now inside the singularity container. We're going to install our
-   environment in =/ext3= using miniconda:
+   environment in =/ext3= using miniconda. Note that you can skip this and the
+   following step on greene by using an HPC-provided script; instead, run =bash
+   /setup/apps/utils/singularity-conda/setup-conda.bash=.
 
     #+BEGIN_SRC bash :exports code
     cd /ext3
@@ -51,30 +55,42 @@ anyone outside of NYU, but I figured it was worth writing up.
     sh Miniconda3-latest-Linux-x86_64.sh -b -p /ext3/miniconda3
     #+END_SRC
 
-4. This should have modified your =~/.bashrc= file to initialize conda. Check
-   the contents of that file and you should see the following or something
-   similar (add it if it's not there):
+4. Copy the following into the file =/ext3/env.sh=:
 
     #+BEGIN_SRC bash :exports code
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/ext3/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/ext3/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/ext3/miniconda3/etc/profile.d/conda.sh"
-        else
-            export PATH="/ext3/miniconda3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-    # <<< conda initialize <<<
+    #!/bin/bash
+
+    # this needs to be copied into the overlay, as /ext3/env.sh
+    source /ext3/miniconda3/etc/profile.d/conda.sh
+    export PATH=/ext3/miniconda3/bin:$PATH
     #+END_SRC
 
-5. Exit and enter the overlay container so your newly-modified =~/.bashrc= takes
-   effect. Run =which conda= and =which python= to make sure: it should show
-   =/ext3/miniconda3/bin/conda= and =/ext3/miniconda3/bin/python=, respectively.
+5. =/ext3/env.sh= is also where you'd modify the path or set environmental
+   variables for additional packages; [[https://lmod.readthedocs.io/en/latest/][lmod]] is not available in the singularity
+   container, so you can't use =module load= and will have to configure your
+   paths yourself. To see what =module load= would do, you can run =module show
+   freesurfer/6.0.0= (for example) instead, which will show you how the path is
+   modified and what environmental variables are set. For example, for an fMRI
+   project I've been working on, I need access to FSL, Freesurfer, and MATLAB,
+   so I add the following to the end of my =env.sh= file:
+
+   #+BEGIN_SRC bash :exports code
+   # set up other libraries (module doesn't work in the container)
+   export FREESURFER_HOME=/share/apps/freesurfer/6.0.0
+   export PATH=$FREESURFER_HOME/bin:$PATH
+   export SUBJECTS_DIR=/scratch/wfb229/sfp_minimal/derivatives/freesurfer
+
+   export PATH=/share/apps/matlab/2020b/bin:$PATH
+
+   export FSLOUTPUTTYPE=NIFTI_GZ
+   export FSLDIR=/share/apps/fsl/5.0.10
+   export PATH=$FSLDIR/bin:$PATH
+   #+END_SRC
+
+5. Run =source /ext3/env.sh= to source the above file, configuring your path so
+   conda is found on it. Run =which conda= and =which python= to make sure: it
+   should show =/ext3/miniconda3/bin/conda= and =/ext3/miniconda3/bin/python=,
+   respectively.
 
 6. Install your conda environment like normal, using =conda install= and =pip
    install=. (Note: this post assumes you're installing your environment in the
@@ -87,17 +103,7 @@ anyone outside of NYU, but I figured it was worth writing up.
     conda install numpy snakemake -c bioconda
     #+END_SRC
 
-7. Copy the following into the file =/ext3/env.sh=:
-
-    #+BEGIN_SRC bash :exports code
-    #!/bin/bash
-
-    # this needs to be copied into the overlay, as /ext3/env.sh
-    source /ext3/miniconda3/etc/profile.d/conda.sh
-    export PATH=/ext3/miniconda3/bin:$PATH
-    #+END_SRC
-
-8. Exit out of the singularity container. We now need to allow snakemake to
+7. Exit out of the singularity container. We now need to allow snakemake to
    access this environment. For that, two components are required: a snakemake
    profile for slurm and a way to redirect the python and snakemake commands so
    they use the versions found within the container. Download the
@@ -114,7 +120,7 @@ anyone outside of NYU, but I figured it was worth writing up.
     github clone git@github.com:billbrod/snakemake-slurm.git slurm
     #+END_SRC
 
-9. Copy the following into the file =/scratch/$USER/overlay/python.sh=:
+8. Copy the following into the file =/scratch/$USER/overlay/python.sh=:
 
     #+BEGIN_SRC bash :exports code
     #!/bin/bash
@@ -158,17 +164,17 @@ anyone outside of NYU, but I figured it was worth writing up.
 
     #+END_SRC
 
-10. Create symlinks for =python=, =python3=, and =snakemake=, all redirecting to
-    our newly created =python.sh=:
+9. Create symlinks for =python=, =python3=, and =snakemake=, all redirecting to
+   our newly created =python.sh=:
 
-     #+BEGIN_SRC bash :exports code
-     cd /scratch/$USER/overlay
-     ln -sv python.sh python
-     ln -sv python.sh python3
-     ln -sv python.sh snakemake
-     #+END_SRC
+    #+BEGIN_SRC bash :exports code
+    cd /scratch/$USER/overlay
+    ln -sv python.sh python
+    ln -sv python.sh python3
+    ln -sv python.sh snakemake
+    #+END_SRC
 
-11. Add the following lines to your =.bashrc= so that these symlinks are on your
+10. Add the following lines to your =.bashrc= so that these symlinks are on your
     path. Exit and enter your shell so this modification takes effect. You can
     check this worked with =which snakemake= or =which python=, which should
     give you =/scratch/$USER/overlay/snakemake= and
@@ -183,7 +189,7 @@ anyone outside of NYU, but I figured it was worth writing up.
 
     #+END_SRC
 
-12. Now, this is the hacky part: start the overlay container back up, and modify
+11. Now, this is the hacky part: start the overlay container back up, and modify
     the snakemake executor so it uses =python= instead of =sys.executable=
     (=sys.executable= will be the absolute path to a python interpreter and thus
     not use the sneaky symlinks we just created; bare =python= will use them
@@ -211,15 +217,15 @@ anyone outside of NYU, but I figured it was worth writing up.
     #+END_SRC
 
 That should work. I'm not super happy with having to modify snakemake's source
-code to get this to work, but it does work. Let me know if you know of a better
+code to get this working, but it does work. Let me know if you know of a better
 solution!
 
-Note that you can not have the overlay container open in a separate terminal
+Note that you cannot have the overlay container open in a separate terminal
 session while you attempt to use it via snakemake (though it does look like you
 can run multiple independent jobs simultaneously via snakemake, with the =-j=
 flag).
 
-Here's a way to test this:
+Here's a way to test that all of the above is working:
 
 1. Copy the following into =~/Snakefile=
 
