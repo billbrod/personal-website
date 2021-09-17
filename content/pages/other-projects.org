@@ -11,6 +11,4 @@ This pages links to miscellaneous projects I've been a part of or put together.
   illusion I found. Note this takes a long time to load.
 - [[https://wfbroderick.com/spatial-frequency-model/][Spatial frequency model]] ([[https://github.com/billbrod/spatial-frequency-model][github repo]]): a webapp I put together to explore
   predictions made by different parameter values for my spatial frequency
-  preferences paper ([[https://github.com/billbrod/spatial-frequency-preferences][github repo]], paper to come). This also takes a long time to
-  load, and you may be better served by going to the github repo and following
-  the instructions to run it yourself.
+  preferences paper ([[https://github.com/billbrod/spatial-frequency-preferences][github repo]], paper to come).
