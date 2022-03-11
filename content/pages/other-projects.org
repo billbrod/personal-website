@@ -5,7 +5,7 @@
 This pages links to miscellaneous projects I've been a part of or put together.
 
 - [[https://scaan.net/waterfrontmap/][Waterfront Justice Project Map]] ([[https://github.com/ScAAN/waterfrontmap][github repo]]), a collaboration between the
-  [[https://www.nyc-eja.org/campaigns/waterfront-justice-project/][NYC-EJA]] and [[scaan.net/][ScAAN]], this interactive map visualizes the effects of climate
+  [[https://www.nyc-eja.org/campaigns/waterfront-justice-project/][NYC-EJA]] and [[https://scaan.net/][ScAAN]], this interactive map visualizes the effects of climate
   change and storm surge in New York City's industrial waterfront.
 - [[https://www.wfbroderick.com/illusory-grating][Illusory Grating]] ([[https://gitlab.com/billbrod/illusory-grating/][gitlab repo]]): a webapp I put together to visualize a strange
   illusion I found. Note this takes a long time to load.
