@@ -1,0 +1,205 @@
+#+TITLE: snakemake, singularity, and HPC
+#+DATE: <2021-12-21 Tue>
+#+PROPERTY: HPC python reproducibility
+
+This is a bit of a sequel to my [[./2021-May-06.org][post in May]] about using conda environments with
+snakemake on the HPC. That solution worked for me, but was hacky and limited.
+This post will describe a different solution, which uses a singularity container
+containing a conda environment that can be used by snakemake for local use or
+use with SLURM, and has the ability to mount extra dependencies.
+
+I put this together for my [[https://github.com/billbrod/spatial-frequency-preferences][spatial frequency preferences]] project, and you can
+read that repo's README for more details on how to use it. The following post
+will attempt to describe the different components of it and why they work, which
+will hopefully make it easier to modify for other uses. The following
+description is all for NYU's =greene= cluster (which uses =SLURM=), but can
+hopefully be modified to other clusters and job submission systems.
+
+My goal was to make it easier to rerun my analyses, allowing other people to
+make use of snakemake and the cluster to run them quickly, without requiring
+lots of setup and understanding of snakemake, SLURM, or singularity. To do that,
+I wanted to create a single container with a wrapper script that would be able
+to:
+
+1. Run locally.
+2. Run in an interactive session on =greene=.
+3. Use snakemake to handle job submission on =greene=.
+4. Mount paths for additional requirements that cannot be easily included in the
+   container.
+5. Be backed up for long-term archival.
+6. Would not require the user to modify any source code themselves.
+
+In order to do accomplish the first three goals, I needed to have the container
+and script work with both docker and singularity, as docker does not play nicely
+with computing clusters (since it wants to run everything with =sudo=
+permissions) and singularity is difficult for the typical user to set up on
+their personal machine.
+
+The fourth goal was necessary because some of the requirements for re-running my
+full analysis have non open-source licenses (Matlab requires the user to pay for
+a license, and FSL and Freesurfer both require registration), which makes
+including them in a container difficult (with Matlab, at least, I could compile
+the required code into =mex= files and include those, but I've never done that
+before, I didn't write the required Matlab code (and so don't understand
+perfectly) and from preliminary research and discussion with NYU HPC staff, I
+don't think it's as straightforward as I had originally hoped).
+
+The fifth goal is necessary because Docker hub makes no promises about its
+images staying around forever (and, [[https://www.docker.com/blog/docker-hub-image-retention-policy-delayed-and-subscription-updates/][in particular,]] is planning on deleting the
+images from free Docker accounts after six months of inactivity), so I can't
+rely on users always being able to find it there.
+
+In order to accomplish the above, we need to create a container that contains
+all the dependencies we can and allows for mounting the ones we can't include.
+We will create a wrapper script, in python, which handles a lot of boilerplate,
+mounting the required paths and remapping arguments that get passed to snakemake
+so that it uses the correct paths for within the container. We also want this
+wrapper script to work with the default python 3 libraries, since any additional
+packages will only be available within the container. Finally, we need to
+configure snakemake so that it uses the container on jobs that it submits to the
+cluster.
+
+With all that in mind, let's walk through the files that implement this
+solution. It involves four files from my [[https://github.com/billbrod/spatial-frequency-preferences][spatial-frequency-preferences]] repo
+(=build_docker=, =singularity_env.sh=, =run_singularity.sh=, and =config.json=),
+plus the [[https://github.com/billbrod/snakemake-slurm/tree/singularity][singularity branch]] of my slurm snakemake profile.
+
+** =build_docker=:
+
+#+BEGIN_SRC dockerfile :exports code
+# This is a Dockerfile, but we use a non-default name to prevent mybinder from
+# using it. we also don't expect people to build the docker image themselves, so
+# hopefully it shouldn't trip people up.
+
+FROM mambaorg/micromamba
+
+# git is necessary for one of the packages we install via pip, gcc is required
+# to install another one of those packages, and we need to be root to use apt
+USER root
+RUN apt -y update
+RUN apt -y install git gcc
+
+# switch back to the default user
+USER micromamba
+
+# create the directory we'll put our dependencies in.
+RUN mkdir -p /home/sfp_user/
+# copy over the conda environment yml file
+COPY ./environment.yml /home/sfp_user/sfp-environment.yml
+
+# install the required python packages and remove unnecessary files.
+RUN micromamba install -n base -y -f /home/sfp_user/sfp-environment.yml && \
+    micromamba clean --all --yes
+
+# get the specific commit of the MRI_tools repo that we need
+RUN git clone https://github.com/WinawerLab/MRI_tools.git /home/sfp_user/MRI_tools; cd /home/sfp_user/MRI_tools; git checkout 8508652bd9e6b5d843d70be0910da413bbee432e
+# get the matlab toolboxes that we need
+RUN git clone https://github.com/cvnlab/GLMdenoise.git /home/sfp_user/GLMdenoise
+RUN git clone https://github.com/vistalab/vistasoft.git /home/sfp_user/vistasoft
+
+# get the slurm snakemake profile, the singularity branch
+RUN mkdir -p /home/sfp_user/.config/snakemake
+RUN git clone -b singularity https://github.com/billbrod/snakemake-slurm.git /home/sfp_user/.config/snakemake/slurm
+# copy over the env.sh file, which sets environmental variables
+COPY ./singularity_env.sh /home/sfp_user/singularity_env.sh
+#+END_SRC
+
+This is a standard Dockerfile (we use a different name because we also want to
+be able to launch a [[https://mybinder.org/][Binder]] instance from this repo, and Binder defaults to using
+=Dockerfile= if present), which builds on the =mamba= container ([[https://github.com/mamba-org/mamba][mamba]] is a
+drop-in replacement for conda that, in my experience, solves the environment
+much quicker). The main thing it does is install the conda environment used by
+my analysis. It also grabs the other git repos that are required: the
+=MRI_tools= repo (used for pre-processing the fMRI data), two matlab packages,
+and the singularity branch of my slurm snakemake profile.
+
+To then get this image onto the cluster, you'll also need to push it to
+DockerHub, so build and push it:
+
+#+BEGIN_SRC bash :exports code
+sudo docker build --tag=billbrod/sfp:latest -f build_docker  ./
+sudo docker push  billbrod/sfp:latest
+#+END_SRC
+
+** =singularity_env.sh=
+
+#+BEGIN_SRC bash :exports code
+#!/usr/bin/env bash
+
+# set up environment variables for other libraries, add them to path
+export FREESURFER_HOME=/home/sfp_user/freesurfer
+export PATH=$FREESURFER_HOME/bin:$PATH
+
+export PATH=/home/sfp_user/matlab/bin:$PATH
+
+export FSLOUTPUTTYPE=NIFTI_GZ
+export FSLDIR=/home/sfp_user/fsl
+export PATH=$FSLDIR/bin:$PATH
+
+# modify the config.json file so it points to the location of MRI_tools,
+# GLMDenoise, and Vistasoft within the container
+if [ -f /home/sfp_user/spatial-frequency-preferences/config.json ]; then
+    cp /home/sfp_user/spatial-frequency-preferences/config.json /home/sfp_user/sfp_config.json
+    sed -i 's|"MRI_TOOLS":.*|"MRI_TOOLS": "/home/sfp_user/MRI_tools",|g' /home/sfp_user/sfp_config.json
+    sed -i 's|"GLMDENOISE_PATH":.*|"GLMDENOISE_PATH": "/home/sfp_user/GLMdenoise",|g' /home/sfp_user/sfp_config.json
+    sed -i 's|"VISTASOFT_PATH":.*|"VISTASOFT_PATH": "/home/sfp_user/vistasoft",|g' /home/sfp_user/sfp_config.json
+fi
+#+END_SRC
+
+This file gets copied into the container and will get sourced as soon as the
+container is started up (see the =run_singularity.sh= section below for how we
+do this). It sets up environmental variables for the extra dependencies and adds
+them to path, as well as modifying the =config.json= path to point where those
+packages are located within the container. Note that these software packages
+(matlab, FSL, and Freesurfer) are not included in the container, but because of
+how we've set up the =run_singularity.sh= script, we know where they'll be
+mounted.
+
+** =config.json=
+
+#+BEGIN_SRC json :exports code
+{
+  "DATA_DIR": "/scratch/wfb229/sfp",
+  "WORKING_DIR": "/scratch/wfb229/preprocess",
+  "MATLAB_PATH": "/share/apps/matlab/2020b",
+  "FREESURFER_HOME": "/share/apps/freesurfer/6.0.0",
+  "FSLDIR": "/share/apps/fsl/5.0.10",
+  "MRI_TOOLS": "/home/billbrod/Documents/MRI_tools",
+  "GLMDENOISE_PATH": "/home/billbrod/Documents/MATLAB/toolboxes/GLMdenoise",
+  "VISTASOFT_PATH": "/home/billbrod/Documents/MATLAB/toolboxes/vistasoft",
+  "TESLA_DIR": "/mnt/Tesla/spatial_frequency_preferences",
+  "EXTRA_FILES_DIR": "/mnt/winawerlab/Projects/spatial_frequency_preferences/extra_files",
+  "SUBJECTS_DIR": "/mnt/winawerlab/Freesurfer_subjects",
+  "RETINOTOPY_DIR": "/mnt/winawerlab/Projects/Retinotopy/BIDS"
+}
+#+END_SRC
+
+Snakemake allows for a configuration file, either yml or json, which we use to
+specify a variety of paths. We use json here, even though it doesn't allow for
+comments, because it can be parsed by the standard python library. These paths
+should all be set to locations on *your* machine / the cluster (not within the
+container). The above is an example that works for my user on the NYU greene
+cluster.
+
+When using the container, only the first five paths need to be set (from
+=DATA_DIR= to =FSLDIR=; the final ones are used either when running without the
+container or when copying data into a BIDS-compliant format). =DATA_DIR= gives
+the location of the data set and where we'll place the output of the analysis
+and =WORKING_DIR= is a working directory for preprocessing and is only used
+temporarily in that step. The next three are the root directory of the
+installations for matlab, Freesurfer, and FSL: to find their locations, make
+sure they're on your path (if you're on a cluster, this iss probably by using
+=module load=) and then run e.g., =which matlab= (or =which mri_convert=, etc.)
+to find where they're installed. Note that we want the root directory of the
+install (not the =bin/= folder containing the binary executables so that if
+=which matlab= returns =/share/apps/matlab/2020b/bin/matlab=, we just want
+=/share/apps/matlab/2020b=).
+
+Of all the files needed for this process, this is the only one that requires
+modification by the user.
+
+** =run_singularity.sh=
+
+** slurm snakemake profile
+
+** Archiving
