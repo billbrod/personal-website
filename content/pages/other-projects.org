@@ -11,4 +11,8 @@ This pages links to miscellaneous projects I've been a part of or put together.
   illusion I found. Note this takes a long time to load.
 - [[https://wfbroderick.com/spatial-frequency-model/][Spatial frequency model]] ([[https://github.com/billbrod/spatial-frequency-model][github repo]]): a webapp I put together to explore
   predictions made by different parameter values for my spatial frequency
-  preferences paper ([[https://github.com/billbrod/spatial-frequency-preferences][github repo]], [[https://doi.org/10.1101/2021.09.27.462032][preprint]]).
+  preferences paper ([[https://doi.org/10.1167/jov.22.4.3][paper]], [[https://github.com/billbrod/spatial-frequency-preferences][github repo]] with instructions on how to get data and
+  use code).
+- [[https://www.wfbroderick.com/meal-calendar/][Dinner calendar]] ([[https://github.com/billbrod/meal-calendar/][github repo]]): a visualization using [[https://vega.github.io/][vega]] to see what my
+  dinners have been like since Jan 2022. Whether I cooked, was the meal
+  vegetarian, etc. Includes links to recipes, where available.
