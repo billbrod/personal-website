@@ -20,6 +20,10 @@ STATIC_PATHS = ['images', 'presentations', 'docs']
 PAGE_EXCLUDES = []
 ARTICLE_EXCLUDES = ['presentations']
 
+# this is a placeholder, to avoid adding a post I haven't finished yet. remove
+# when done
+IGNORE_FILES = ['.#*', '2021-Dec.*']
+
 TIMEZONE = 'America/New_York'
 
 DEFAULT_LANG = u'en'
