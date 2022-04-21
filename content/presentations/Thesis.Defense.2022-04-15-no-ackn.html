@@ -1,0 +1,4119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Effects of Foveation on Early Visual Processing</title>
+<meta name="author" content="Billy Broderick"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="/dist/reveal.css"/>
+
+<link rel="stylesheet" href="/dist/theme/simple.css" id="theme"/>
+
+<link rel="stylesheet" href="custom.css"/>
+<link rel="stylesheet" href="//plugin/highlight/zenburn.css"/>
+<meta name="description" content="committee meeting for third chapter proposal">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h1>Effects of Foveation on Early Visual Processing</h1><h2>Billy Broderick</h2><h2>April 14, 2022</h2>
+</section>
+
+<section>
+<section id="slide-orgbd3494c">
+<h2 id="orgbd3494c"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/fixation-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+I&rsquo;m going to start with a simple observation: perceptual ability is not uniform
+across the visual field. You all read that sentence on the screen without
+difficulty, by moving your eyes along it, but if you kept your eyes centered on
+the first P there, you wouldn&rsquo;t be able to make out much of that sentence, and
+if you look at the little picture of me, you&rsquo;ll have even more trouble.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgbb88605">
+<h2 id="orgbb88605"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/fixation-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+Some quick terminology:
+</p>
+
+<p>
+The place where you center your eyes, is fixation or the fovea. Distance from
+this point is eccentricity
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org46bb271">
+<h2 id="org46bb271"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/fixation-2-all-directions.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and eccentricity can be measured in any direction
+</p>
+
+<p>
+once eccentricity gets far enough, we&rsquo;re in the visual periphery. what I&rsquo;m
+going to talk about is how things change with eccentricity
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgefb2e5b">
+<h2 id="orgefb2e5b"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/fixation-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+I&rsquo;m going to return to this simpler image
+</p>
+
+<p>
+your visual system is full of neurons that process the stimuli that enter
+through your eyes
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orga8e8723">
+<h2 id="orga8e8723"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/fixation-2-cell-first.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+each of these care about a particular portion of space, called the receptive
+field.
+</p>
+
+<p>
+so the neuron whose RF is in the fovea would see this little region around that
+red dot
+</p>
+
+<p>
+now if we&rsquo;re talking about how processing differs with eccentricity, the
+simplest possibility is that it doesn&rsquo;t: neurons are doing the same thing
+everywhere
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgcffc8b7">
+<h2 id="orgcffc8b7"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/fixation-2-cell-no-scale.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+so neurons whose recpetive fields are farther out in the periphery would see
+other portions of this image. notice the only thing that differs is the location
+of their receptive fields, in every other respect, they&rsquo;re identical
+</p>
+
+<p>
+this way of thinking assumes that these neurons are basically convolutional,
+doing the same thing everywhere in the image. this underlies a lot of our
+current technology: all convolutional neural nets, which underlie the recent
+success in object and speech recognition, have this as the basic first step.
+</p>
+
+<p>
+but we know that in the human visual system, this is false
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org489236e">
+<h2 id="org489236e">Receptive fields grow with eccentricity</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-RFs-V1-macaque.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+at the very least, the size of the receptive field changes across the
+visual field, so that neurons at the fovea get a smaller amount of the
+image than those at the periphery.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org2835f86">
+<h2 id="org2835f86">&#x2026; and as you go up the visual hierarchy</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-RFs-macaque.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and we know this is true for every visual area in the brain, with the receptive
+fields getting larger as you go up the hierarchy
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org20b8174">
+<h2 id="org20b8174">Receptive fields grow linearly with eccentricity</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-RFs-lines-macaque.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+furthermore, we know that size doesn&rsquo;t vary arbitrarily across the visual field,
+there&rsquo;s in fact a linear relationship between the eccentricity and the size of
+the receptive field.
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-orgc5047de">
+<h2 id="orgc5047de"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/fixation-2-cell-no-scale.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+so that means the picture doesn&rsquo;t look like this
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org818b986">
+<h2 id="org818b986"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/fixation-2-cell-scale.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+but instead like this, with more peripheral neurons seeing larger and larger
+portions of the visual field
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-orged59014">
+<h2 id="orged59014"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/foveation.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+this is what we call foveation: <b>read def</b>
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc565843">
+<h2 id="orgc565843"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-early-visual-system.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+so that&rsquo;s one portion of my title, what about the second: what is the early
+visual system?
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org48be816">
+<h2 id="org48be816">Visual system</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/3rd-Year-Talk-visual-system.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+this is a schematic of the human &ldquo;ventral visual stream&rdquo;, which are the brain
+areas that we believe involved in object recognition, also called the &ldquo;what&rdquo;
+pathway.
+</p>
+
+<p>
+for the purposes, of this talk, the early visual system is just the beginning of
+this, from the retina to V1
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orga175bff">
+<h2 id="orga175bff">Visual system</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/3rd-Year-Talk-visual-system-retina-v1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+in this talk, I&rsquo;m going to be discussing mainly V1 or the primary visual cortex,
+and a little bit of the retina.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org9f77412">
+<h2 id="org9f77412"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-literature.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+we have a pretty good sense of how neurons in these early visual areas respond
+to stimuli, owing to a long line of visual physiology research
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org872528e">
+<h2 id="org872528e"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-literature-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+going back to Hartlines work in frogs in the late 1930s
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd58b978">
+<h2 id="orgd58b978"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-literature-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+through Hubel and WIesel&rsquo;s Nobel-prize winning in work cats in the 50s and 60s
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org3e97921">
+<h2 id="org3e97921"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-literature-3.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and the work of several members of this department in macaques
+</p>
+
+<p>
+and, more importantly, we don&rsquo;t just kno whow these neurons respond, we have
+computational models of neurons in these areas.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org866a019">
+<h2 id="org866a019"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-models.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+if you&rsquo;re not familiar with these models, these diagrams might be a bit opaque,
+but I&rsquo;m going to step through them quickly
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgaf33c77">
+<h2 id="orgaf33c77"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-models-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+the idea is that they all start with a linear filter, which captures that the
+neuron cares about a particular region of space
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org0dd65f1">
+<h2 id="org0dd65f1"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-models-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+followed by a nonlinearity, which captures that the firing rate can&rsquo;t go
+negative
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org5021167">
+<h2 id="org5021167"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-models-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+the circular shapes of the retinal filters tells us that it doesn&rsquo;t care about
+orientation, while the tilted shape of the V1 filters tell us that they do. that
+is, they&rsquo;ll have a favorite orientation that they&rsquo;ll respond the most to.
+</p>
+
+<p>
+they also have a favorite spatial frequency, which we can see by the alternating
+black and white regions. I&rsquo;ll talk a bit more about spatial frequency in the
+next section, but it&rsquo;s roughly the size of something and it&rsquo;s important to note
+that it&rsquo;s one of the fundamental properties we use to characterize V1 neurons
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org6b711bb">
+<h2 id="org6b711bb"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-models-3.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+finally, the complex cell combines the outputs of two simple cell filters,
+squares them, and adds them together this means that complex cells are like
+blurred versions of simple cells, caring about orientation and spatial
+frequency in the same way, but throwing away some of the precise location
+information
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org5c2d6d6">
+<h2 id="org5c2d6d6"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-models.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+the fact that we have these models are important. it allows us to make specific
+predictions and to apply them far outside the domain in which they were
+developed. these were developed based on physiology data from amphibians, cats,
+and nonhuman primates, and I&rsquo;m going to apply them to new stimuli, different
+species, and different measurement methods (to be clear, I&rsquo;m not the first to do
+this). that is, models are a tool for building a cumulative science
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org8dc8fd0">
+<h2 id="org8dc8fd0">Outline</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-outline-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+what I&rsquo;m going to do is take these models and apply them to humans, in
+neuroimaging and behavior
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org561db21">
+<h2 id="org561db21">Outline</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-outline-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+In particular, I&rsquo;m going to describe how I used fMRI to investigate how spatial
+frequency tuning, one of the fundamental properties of those V1 models I
+discussed, changes across the visual field.
+</p>
+
+<p>
+Then I&rsquo;m going to talk about how I used models like the ones I just discussed to
+investigate what information humans are <b>in</b>-sensitive to, what they throw away,
+in their periphery
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org9de428a">
+<h2 id="org9de428a">Outline</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-outline-3.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and finally I&rsquo;m going to discuss a software package that I&rsquo;ve built with a group
+of students and postdocs in Eero Simoncelli&rsquo;s lab to enable the kind of work
+done in my second project
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf50e748">
+<h2 id="orgf50e748"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/fixation-2-cell-scale.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+so, like I mentioned, we know receptive field size scales with eccentricity, and
+it does so in approximately linear way. how do other properties of visual
+processing change across the visual field?
+</p>
+
+<p>
+in this project, I looked specifically at one of them, spatial frequency.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org11ae9dc">
+<h2 id="org11ae9dc">Spatial frequency</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/spatial-frequency.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+spatial frequency is roughly equivalent to the speed of change in an image and
+is important for characterizing V1 neuronal responses. it&rsquo;s often studied using
+2d sine wave gratings like these, which drive responses in V1 very well 
+</p>
+
+<p>
+here, the gratings go from low frequency (slow changes) on the left to higher
+and higher as you move to the right
+</p>
+
+<p>
+I should note, spatial frequency is more than just some abstract property of
+gratings &#x2013; any image can be decomposed into sine gratings like these using a
+Fourier transform. that is, we can create any image that could possibly exist
+from a weighted sum of gratings like these. thus, if we know how neurons respond
+to gratings like these, we can, in principal, predict how they&rsquo;ll respond to any
+image (though in practice, that prediction will be missing some important
+aspects)
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd577720">
+<h2 id="orgd577720">Macaque V1 neurons are tuned for spatial frequency</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-devalois-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+so, we know V1 neurons are tuned for spatial frequency: here we have spatial
+frequency on the x-axis, contrast sensitivity on the y. the dots show data from
+six different macaque V1 neurons, and the lines are tuning curves, fit by eye
+</p>
+
+<p>
+we can see that each curve has a similar shape, characteristic of bandpass
+selectivity: the neurons have a peak spatial frequency, with the highest
+senstivity, and then fall off on either side of it
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orge758273">
+<h2 id="orge758273">Macaque V1 neurons are tuned for spatial frequency</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-devalois-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+we can take these recordings from a bunch of neurons in the same location and
+look at their peaks. these are X cells, similar to simple cells, found between 0
+and 1.5 degrees eccentricity, so pretty close to the fovea.
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org0ee6323">
+<h2 id="org0ee6323">This tuning changes with eccentricity</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-devalois.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and we can do this for multiple locations and see how the peak changes. now on
+the left we have Y cells, like complex cells, and the bottom shows those foveal
+cells while the top row shows parafoveal cells, between 3 and 5 degrees
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgcd51cfe">
+<h2 id="orgcd51cfe">This tuning changes with eccentricity</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-devalois-peaks.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and we can see that the mean of these distributions has shifted: it&rsquo;s higher for
+cells near the fovea and, as you move away from the fovea, the peak spatial
+frequency drops
+</p>
+
+<p>
+these results are from 1982, so we&rsquo;ve known for a while that, generally, peak
+spatial frequency drops with eccentricity. 
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgfe2b10f">
+<h2 id="orgfe2b10f"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-horton.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+but this data is fairly coarse, sampling only two portions of V1.
+</p>
+
+<p>
+this here is a diagram of human V1, which lies in the center of the back of your
+brain
+</p>
+
+<p>
+we would like to know how tuning changes as we move along this sulcus from the
+fovea at the back towards the periphery at the front
+</p>
+
+<p>
+and that&rsquo;s hard to do with physiology
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org2415c92">
+<h2 id="org2415c92"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-tedium.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+H+W characterized it as <b>read quote</b>
+</p>
+
+<p>
+but some vague sense that peak spatial frequency decreases is insufficient. this
+project got started because I wanted to build a model of fMRI responses in V1,
+for which this information is necessary
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org3285707">
+<h2 id="org3285707"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-pref-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+so we want to know how this peak or preferred spatial frequency changes with
+eccentricity
+</p>
+
+<p>
+we&rsquo;re pretty sure it&rsquo;s not flat, so it doesn&rsquo;t look like this
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org4d5282b">
+<h2 id="org4d5282b"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-pref-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+but does it look like this?
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org794fe20">
+<h2 id="org794fe20"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-pref-3.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+or this?
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org678c59f">
+<h2 id="org678c59f"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-pref-4.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+another functional form entirely?
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org731b071">
+<h2 id="org731b071"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-pref-5.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+or something more extreme, like this?
+</p>
+
+<p>
+we used fMRI to answer this question, leveraging its ability to measure the
+whole field simultaneously. other fMRI groups have done this, but they generally
+view it as an aside to their main question, their numbers don&rsquo;t agree with each
+other, and they&rsquo;re less interested in finding the form of this relationship
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd5ff03e">
+<h2 id="orgd5ff03e"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-pref-6.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+as it turns out, there&rsquo;s good reason to suspect that the relationship looks
+something like this, a hyperbola or 1/x
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgbe61f81">
+<h2 id="orgbe61f81"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/fixation-2-cell-scale.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+to see why, let&rsquo;s return to this figure
+</p>
+
+<p>
+if, inside each of those circles, we plot the preferred spatial frequency as a
+sine wave grating&#x2026;
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orge043943">
+<h2 id="orge043943"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/fixation-2-cell-scale-gratings.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+that hyperbola I highlighted looks like this
+</p>
+
+<p>
+that is, each cell&rsquo;s preferred spatial frequency scales with the size of its
+receptive field, such that the preferred sine grating always has, in this
+example, two full cycles in its receptive field.
+</p>
+
+<p>
+this gives us that the preferred spatial frequency drops as 1 / eccentricity
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf9557ad">
+<h2 id="orgf9557ad"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-pref-scaling.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+which is this hyperbola that we saw before
+</p>
+
+<p>
+hyperbolas are a bit annoying to deal with, however. for example&#x2026;
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org92893f1">
+<h2 id="org92893f1"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-pref-scaling-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+it&rsquo;s hard to tell whether this gray curve is also a hyperbola, just with
+different parameters, or something else entirely
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org4284b03">
+<h2 id="org4284b03"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-pref-scaling-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+but if we take the reciprocal, it becomes clear that the reciprocal is
+quadratic, x-squared, and so the original was not a hyperbola.
+</p>
+
+<p>
+so we&rsquo;ll use this reciprocal, the preferred period, instead. since the hyperbola
+is 1/x, its reciprocal is just a linear function, which is much easier to reason
+about &#x2013; we can more easily notice divergences from it.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orga302c21">
+<h2 id="orga302c21"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/spatial-frequency.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+preferred period is often measured with sine wave gratings like these, which
+have the same spatial frequency everywhere in the image
+</p>
+
+<p>
+but if we think that the actual preferred period looks like something linear,
+then these are not good stimuli to use
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org973e4dd">
+<h2 id="org973e4dd"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-period-scaling-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+if we plot the stimuli as dashed lines, these are horizontal lines on the
+preferred period vs eccentricity plot, since their spatial frequency is the same
+everywhere in the image
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org9c399ee">
+<h2 id="org9c399ee"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-period-scaling-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+if we then add our predicted preferred period on this plot, with the shaded
+region showing the tuning curve width, we get this situation
+</p>
+
+<p>
+these standard full-field gratings won&rsquo;t drive responses effectively everywhere:
+you&rsquo;ll end up showing low frequencies to that fovea and high frequencies to the
+periphery, neither of which will effectively drive responses
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgcdefb88">
+<h2 id="orgcdefb88"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-period-scaling.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+instead, we develop a novel set of stimuli, scaled gratings, shown as these
+dashed lines through the origin, whose period grows with eccentricity
+(equivalently, spatial frequency drops with eccentricity) so that each stimulus
+drives responses fairly well everywhere in V1 simultaneously, which we can see
+because the lines fall within the shaded region at all eccentricities &#x2013; none of
+them are in this white region here or here
+</p>
+
+<p>
+this allows for more efficient measuring of spatial frequency tuning
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd576a2d">
+<h2 id="orgd576a2d">Stimulus period grows linearly with eccentricity</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-stimulus-example.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+this is one of those stimuli look like. you can see these bars grow wider as you
+move away from the center of the image, showing the period growing
+</p>
+
+<p>
+the stimuli extend from about 1 to 12 degrees
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgde45c27">
+<h2 id="orgde45c27">Stimuli span a wide range of eccentricities</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-stimuli-overview-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+here are some of more of our stimuli. in all the stimuli, the period increases
+as you go from the center of the image to the edge. as you go from the leftmost
+to rightmost stimuli, the base frequency increases, so that we sample higher and
+higher frequencies
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org28589d6">
+<h2 id="org28589d6">Stimuli span a wide range of eccentricities</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-stimuli-overview-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+that is, if we return to this slide we had seen earlier, each of these stimuli
+is a different one of these diagonal lines through the plot.
+</p>
+
+<p>
+altogether, the complete set of stimuli span a 20-fold range in eccentricity at
+each location
+</p>
+
+<p>
+(from .6 to 13.5 cpd in the most foveal, from .078 to 1.78 cpd in the most
+peripheral)
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org194bf25">
+<h2 id="org194bf25">&#x2026; and orientations</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-stimuli-overview.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and we also have multiple classes. all of these stimuli have that property that
+I was just mentioning, that their period grows linearly with eccentricity. so
+the leftmost stimulus in each set has the same spatial frequency everywhere in
+the image, but very different orientations: for the pinwheels we were just
+looking at, they&rsquo;re always oscaillating perpindicularly to the center of the
+image (up and down at the horizontal meridian, left and right at the vertical),
+while these annuli oscilllate away from the center, and the spirals are in
+between
+</p>
+
+<p>
+so we show these stimuli to human observers and measure the responses across V1
+using fMRI, and we use that to determine how spatial frequency preferences
+change across the visual field
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orga56163f">
+<h2 id="orga56163f">fMRI responses are tuned for spatial frequency</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-tuning-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+so let&rsquo;s look at some data, this here is for a single subject. the points show
+the average responses from voxels in a band of eccentricities, here 9 to 10
+degrees, while the curve shows a log-normal tuning curve that we fit to it.
+</p>
+
+<p>
+we can see that our data is well fit by our lognormal tuning curve
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orge457c45">
+<h2 id="orge457c45">Peak spatial frequency gets higher as eccentricity drops</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-tuning-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and, if we do that for different bands of eccentricity, we see that the peak
+shifts to higher frequencies as we get closer to the fovea, like we predicted
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc4def93">
+<h2 id="orgc4def93">This holds across stimulus classes, though peak spatial frequency may differ</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-tuning-ful.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and we can also look at it for our different stimulus classes. we see they both
+have the same properties I just mentioned: well-fit by our tuning curve and with
+a shift to higher frequencies as you get to the fovea.
+</p>
+
+<p>
+and, it&rsquo;s hard to see here, but there might be a slight difference in the peaks
+</p>
+
+<p>
+but what we&rsquo;re interested in is how spatial frequency tuning changes as around
+the visual field, and this piecemeal way of looking at it is not the best way to
+answer that question
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org252547c">
+<h2 id="org252547c"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-v1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+in the standard way of doing it, we take V1, which is this region along the
+calcarine sulcus here
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org6c730ec">
+<h2 id="org6c730ec"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-v1-tuning-1d.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+we fit a tuning curve to each of the voxels in v1
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org9d0ce7f">
+<h2 id="org9d0ce7f"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-v1-tuning-1d-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+we then take the preferred period of these curves and plot them, so we get their
+preferred period on the y and the eccentricity on the x
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-org493c944">
+<h2 id="org493c944"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-v1-tuning-1d-3.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+we do that for every voxel in V1
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org554bafe">
+<h2 id="org554bafe"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-v1-tuning-1d-4.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and then we fit a line to it. this is referred to as voxel-wise modeling:
+fitting an independent model per voxel and then examining how those parameters
+change across the population
+</p>
+
+<p>
+this is fine, and has the advantage of placing no constraints on the
+relationship of parameters across voxels, but we&rsquo;re not interested in the
+individual voxels tuning, we&rsquo;re interested in the overall relationship between
+visual field position and tuning.
+</p>
+
+<p>
+fitting each voxel independently like this gives you a huge number of
+parameters: 3 per stimulus class per voxel, and there are 100s of voxels in V1,
+which makes you more sensitive to noise (voxels differ a lot in their noise
+levels) and can lead to difficulty in interpreting the results
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org74c5d0d">
+<h2 id="org74c5d0d"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-v1-tuning-2d.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+instead, we&rsquo;re going to build a single model that fits this relationship that
+we&rsquo;re actually interested in across all voxels simultaneously
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org2f07922">
+<h2 id="org2f07922">Model parameters</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-model-params-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+
+<aside class="notes">
+<p>
+when we do that, we have to pick what we include in that model. we did some
+preliminary analysis to give us a sense for this, and this is what we ended up
+with:
+</p>
+
+<ul>
+<li>affine relationship. that is, a line with a slope and an intercept. this, we
+expected would be the biggest effect</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf280893">
+<h2 id="orgf280893">Model parameters</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-model-params-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<ul>
+<li>we then wanted to allow the preferred period to be modulated around this main
+effect by orientation. as I mentioned earlier, orientation is important for V1
+neuronal tuning, but at the level of fMRI voxels, which contain many neurons
+sensitive to each orientation, there&rsquo;s been a debate in the literature about
+how measurable this is. we decided to allow orientation to shift the preferred
+period around the effect of eccentricity up or down</li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-orgcdda4f4">
+<h3 id="orgcdda4f4">Model parameters</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-model-params-3.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<ul>
+<li>radial vs. tangential, that is, away from the fovea vs. perpendicular to the
+fovea. there&rsquo;s also evidence of this, which we think is because the visual
+system is laid out in a polar fashion</li>
+
+</ul>
+
+</aside>
+
+
+</section>
+<section id="slide-org83f26f2">
+<h3 id="org83f26f2">Model parameters</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-model-params-4.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<ul>
+<li>vertical vs horizontal. there&rsquo;s lots of evidence in the perceptual literature
+about differences between sensitivity to vertical and horizontal information,
+so we wanted to allow for our model to capture the possibility that the
+preferred period was higher for vertical than horizontal orientations, or vice
+versa.</li>
+
+<li>note that we don&rsquo;t actually show any horizontal or vertical stimuli. but, for
+each voxel, some of the stimuli we show will be vertical and some will be
+horizontal. with this stimulus, for example, a voxel along the horizontal
+meridian will see a vertical orientation, while a voxel along the vertical
+will see a horizontal orientation. for this voxel along the horizontal
+meridian, tangential always means vertical, but by fitting all our voxels
+across our whole stimulus set, we can fit these two effects separately</li>
+
+</ul>
+
+</aside>
+
+
+</section>
+<section id="slide-org60076ea">
+<h3 id="org60076ea">Model parameters</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-model-params-5.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<ul>
+<li>cardinals vs. obliques. there&rsquo;s also evidence for differences between
+cardinals (horizontal+vertical) vs obliques (diagonals), owing to the
+importance of cardinal orientations in our world &#x2013; we see far more objects
+that go up/down or left/right vs on the diagonal, because of gravity</li>
+
+</ul>
+
+</aside>
+
+
+</section>
+<section id="slide-org7206a90">
+<h3 id="org7206a90">Model parameters</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-model-params-6.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<ul>
+<li>radial/tangential vs spirals. this is the equivalent of cardinals vs obliques
+for radial/tangential: spirals are those that point at intermediate directions
+from the fovea</li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-orgaf55a66">
+<h3 id="orgaf55a66">Model parameters</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-model-params-6-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<ul>
+<li>we call these two the &ldquo;relative effect&rdquo;, because these orientations are
+relative to the fovea, while these two are the absolute effect, because these
+orientations are relative to the world</li>
+
+</ul>
+
+</aside>
+
+
+</section>
+<section id="slide-org7c54f7f">
+<h3 id="org7c54f7f">Model parameters</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-model-params-7.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<ul>
+<li>and we also allow for all of these same orientation effects to modulate
+amplitude within voxels. we&rsquo;re not fitting amplitude across voxels, there are
+too many reasons why one voxel might respond more strongly than another. but
+this allows us to capture if each voxel responds more strongly to vertical
+than horizontal orientations</li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-org39b67a3">
+<h3 id="org39b67a3">Model parameters</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-model-params.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<ul>
+<li>Finally, we fit a single parameter for the tuning curves bandwidth. we say its
+constant in octaves, so it will always be, for example, 2 periods. fitting the
+width of a curve is always more difficult than fitting its peak, and we
+focused on the peak, so we wanted something pretty simple for the bandwidth</li>
+
+</ul>
+
+<p>
+and that&rsquo;s it! that might seem like a lot, but I&rsquo;m fitting at most 11 parameters
+to the 100s of voxels in each subject&rsquo;s V1. If I wanted to fit each voxel
+individually in a way that allowed for these possibilities, I&rsquo;d have 100s of
+parameters to interpret.
+</p>
+
+<p>
+this gives us the flexibility to find subtle variations in tuning, without
+unlimited flexilibity
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org8ed0d5d">
+<h2 id="org8ed0d5d">Model parameters</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-model-params-short-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+we also allow those same orientation effects to modulate response amplitude
+within voxels
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org41a0db7">
+<h2 id="org41a0db7">Model parameters</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-model-params-short.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<ul>
+<li>Finally, we fit a single parameter for the tuning curves bandwidth. we say its
+constant in octaves, so it will always be, for example, 2 periods. we&rsquo;re
+focused on how peak tuning changes, so we wanted something pretty simple for
+the bandwidth</li>
+
+</ul>
+
+<p>
+parameterizing our model like this gives us the flexibility to find subtle
+variations in tuning, without unlimited flexilibity
+</p>
+
+<p>
+and that&rsquo;s it! that might seem like a lot, but I&rsquo;m fitting at most 11 parameters
+to the 100s of voxels in each subject&rsquo;s V1. If I wanted to fit each voxel
+individually in a way that allowed for these possibilities, I&rsquo;d have 100s of
+parameters to interpret.
+</p>
+
+</aside>
+
+
+</section>
+<section id="slide-orga01b4b1">
+<h3 id="orga01b4b1">Model parameters</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-model-params-short-highlight.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+for simplicity, in this talk, I&rsquo;m mainly going to focus on these first two
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgdde6c7b">
+<h2 id="orgdde6c7b">Largest effect is eccentricity dependence, others are modest</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-cv.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+we used cross-validation to see which of these parameters were necessary to fit
+our data
+</p>
+
+<p>
+there&rsquo;s a lot going on here, but I&rsquo;ll walk you through it.
+</p>
+
+<p>
+to orient you: each point on the right is a model fit with a different
+combination of parameters, going from the fewest parameters on the top to the
+most at the bottom. the x-axis here is the loss, so lower is better. we fit each
+subject separately and then combined their losses to get the points here. the
+matrix on the left here tells you which parameters were fit in each model (the
+others were set to 0): the colored blocks say which parameters were enabled
+</p>
+
+<p>
+the first three models are testing different possibilities for the effect of
+eccentricity on preferred period, then beyond that we start looking at the
+effects of orientation on preferred period and relative amplitude.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc2938a9">
+<h2 id="orgc2938a9">Largest effect is eccentricity dependence, others are modest</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-cv-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+for this talk, we&rsquo;re going to focus on the first three
+</p>
+
+<p>
+all of these models fit sigma, the width of the tuning curves. these three
+differ in how they say eccentricity is related to preferred period
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgccc78ac">
+<h2 id="orgccc78ac">Largest effect is eccentricity dependence, others are modest</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-cv-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+in model one, we only fit the intercept, so this model is saying that the
+preferred period is the same everywhere in the image. as I mentioned earlier, we
+know there&rsquo;s some increase in preferred period with eccentricity, and so it&rsquo;s no
+surprise that this model performs the worst
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org51731f9">
+<h2 id="org51731f9">Largest effect is eccentricity dependence, others are modest</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-cv-3.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+in model two, we set the intercept to zero and only fit the slope. this model
+says that preferred period scales in a perfectly linear way with eccentricity,
+like our stimuli&rsquo;s periods do. this one does better than the perfectly constant
+model&#x2026;
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org058cf40">
+<h2 id="org058cf40">Largest effect is eccentricity dependence, others are modest</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-cv-full.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+but we get an even bigger improvement when we fit both the slope and the
+intercept, allowing for preferred period to be an affine function of
+eccentricity
+</p>
+
+<p>
+this improvement is the biggest effect by far, all the other improvements are
+fairly modest 
+</p>
+
+<p>
+beyond these first three, every set of parameters improves performance except
+for the two of the amplitude praameters, as shown in the pale dots.
+</p>
+
+<p>
+now, the effect of each set of parameters is relatively small, but model 9 is
+definitely an improvement on model 3, and this is consistent across subjects.
+</p>
+
+<p>
+so we&rsquo;re that the preferred period and relative amplitude are modulated by
+orientation, but the largest effect is this affine effect of eccentricity
+</p>
+
+<p>
+I included this figure and the parameters in my paper, as well as the code for
+my model and csv of these values on my github, so researchers could decide for
+themselves whether their research questions require taking all these subtleties
+into account
+</p>
+
+<p>
+and so what does that mean?
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org82c8550">
+<h2 id="org82c8550">Preferred period is an affine function of eccentricity</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-2d-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+you can read the paper or ask me questions later if you want all the gorey
+details, but I&rsquo;ll go through one important result
+</p>
+
+<p>
+I&rsquo;m plotting here the preferred period as a function of eccentricity for these
+two classes of stimuli, averaged over all directions in the visual field. the
+shaded region here is the 68% confidence interval bootstrapped across subjects
+</p>
+
+<p>
+we see that, like I said, preferred period is an affine function: it&rsquo;s a line
+with a non-zero intercept. that&rsquo;s worth pointing out because there&rsquo;s generally a
+question of what happens near the fovea, for this and related properties, like
+the size of receptive fields. the preferred period can&rsquo;t actually go to zero,
+which would imply that the peak spatial frequency was infinite (and so you&rsquo;d
+have infinite resolution), but it could go to zero and then level off somewhere.
+</p>
+
+<p>
+we find, pretty strong evidence that that does not happen: the intercept is
+instead somethign nonzero. 
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf688b76">
+<h2 id="orgf688b76">Size of offset equivalent to 3 degrees eccentricity</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-2d-offset-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and it&rsquo;s fairly large: this offset at the fovea is equivalent to
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc60ef53">
+<h2 id="orgc60ef53">Size of offset equivalent to 3 degrees eccentricity</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-2d-offset-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+the difference in preferred period between 0 and 3 degrees.
+</p>
+
+<p>
+<b>pause</b>
+</p>
+
+<p>
+next, we note that preferred period is higher, and thus peak spatial frequency
+is lower, for annuli as opposed to pinwheels.
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgf45bc9c">
+<h2 id="orgf45bc9c">Effect of orientation largest at horizontal meridian, disappears at vertical</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-2d.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+however, this effect depends on polar angle. here we&rsquo;re plotting each direction
+separately, for a slice through a single eccentricity, and the distance from the
+center of the plot gives the preferred period in degrees (equivalent to y-axis
+in plot on left)
+</p>
+
+<p>
+what we see then is that this difference between annuli and pinwheels depends on
+polar angle, such that orientation has no effect on preferred period at the
+vertical meridian and has the largest effect on the horizontal meridian
+</p>
+
+<p>
+this comes from the fact that we found that annuli had a higher preferred period
+globally, like I showed in that plot on the left, but also that vertical
+orientations had a higher preferred period globally,
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org20bf0f3">
+<h2 id="org20bf0f3">Effect of orientation largest at horizontal meridian, disappears at vertical</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-2d-horiz.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+these two effects add on the horizontal meridian, where annuli stimuli are
+vertical stimuli
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org2aff223">
+<h2 id="org2aff223">Effect of orientation largest at horizontal meridian, disappears at vertical</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-sf-2d-vert.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and cancel on the vertical meridian, where annuli stimuli are horizontal
+</p>
+
+<p>
+what I&rsquo;m showing you here is a single example of the effect of orientation that
+we found, there are others that we go explore in more detail in the paper
+</p>
+
+<p>
+(this suggests that the quality of spatial representation depends on polar
+angle, which is consistent with a large body of psychophysical results, which
+generally show better performance along the horizontal meridian than the
+vertical)
+</p>
+
+<p>
+(possible reason: if we&rsquo;re walking through a static scene, objects are going to
+move radially as we approach them. objects moving tangentially however, would
+either mean that they&rsquo;re static and we&rsquo;re moving up and down, or they&rsquo;re moving
+independently of us, which might be more important to note. more work is needed
+on this)
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-orgc47a61d">
+<h2 id="orgc47a61d">Intermediate conclusions</h2>
+<ul>
+<li>Developed novel set of scaled grating stimuli</li>
+<li data-fragment-index="1" class="fragment appear">Measured voxel spatial frequency tuning across human V1</li>
+<li data-fragment-index="2" class="fragment appear">Fit responses of all voxels simultaneously with a single 9 parameter model</li>
+<li data-fragment-index="3" class="fragment appear">Showed an affine relationship between preferred period and eccentricity</li>
+<li data-fragment-index="4" class="fragment appear">Showed effects of orientation on preferred period and relative amplitude</li>
+<li data-fragment-index="5" class="fragment appear">Shared data, parameters, and code:
+<a href="https://github.com/billbrod/spatial-frequency-preferences">https://github.com/billbrod/spatial-frequency-preferences</a></li>
+<li data-fragment-index="6" class="fragment appear">Serves as a step towards a generalized model of whole map</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+So this work does&#x2026; <b>read points</b>
+</p>
+
+<p>
+that point about the general map is worth expanding on a bit. I mentioned
+briefly in the beginning that this project came about because I wanted to know
+what this relationship looks like in order to build a model of all of v1 in fMRI
+</p>
+
+<p>
+V1 is one of the best characterized areas of the primate central nervous system,
+and we have standard models that have been around for a while. we should be able
+to do something like my initial goal &#x2013; build a model that predicts responses to
+an arbitrary stimulus across all of V1 simultaneously. that model will
+undoubtably fail in spectacular ways, but even getting something somewhat
+sensible together to test would be very useful. this work provides one element
+that is necessary for such a model of the whole map, by summarizing spatial
+frequency tuning, an improtant response property of V1 neurons, at the level of
+detail we think we need for such a model.
+</p>
+
+<p>
+I didn&rsquo;t build that model, however. so that&rsquo;s a good project idea for any of the
+grad students in the audience
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org41de5e6">
+<h2 id="org41de5e6"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-discard.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+I just told you about how I investigated how the information that V1 <b>responds</b>
+to changes across the visual field.
+</p>
+
+<p>
+for this next portion, which I started during my internship at Facebook Reality
+Labs with C&amp;P alum Gizem Rufo, I continued to investigate how the early visual
+system processes visual information, but in this project I&rsquo;m focusing instead on
+what information the visual system discards
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orge5cb18c">
+<h2 id="orge5cb18c">Perceptual metamers</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/FRL-midway-trichromacy.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+To do that, we&rsquo;re using metamer, which are physically distinct stimuli that are
+perceptually identical. they&rsquo;re an old concept in vision science, dating back to
+the color-matching experiments of Helmholtz in the first half of the 19th
+century, where they were integral to the development of the trichromatic theory
+of human color vision, which provided evidence for 3 cone classes more than a
+hundred years before any physiological evidence.
+</p>
+
+<p>
+these color metamers are patches that produced different wavelengths of light
+but resulted in the same perceptual color
+</p>
+
+<p>
+for example, when you look at my ?? shirt in the corner of your Zoom window,
+that may look the same as if you saw this shirt in person, but the actual light
+that enters your eye is very physically different, because your computer only
+has 3 color primaries: the amount of energy at each wavelength is far from the
+same. they look so similar because your visual system has thrown out the
+information you could use to distinguish them. Note that in this case, that
+happens in the very beginning of the visual system, with the cones throwing away
+information about the wavelength of light, but this discarding of information
+happens throughout your visual system.
+</p>
+
+<p>
+in particular, I&rsquo;m going to look at how spatial information is discarded
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgb66cb60">
+<h2 id="orgb66cb60"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/fixation-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+to return to this image, perception seems to &ldquo;get bigger&rdquo; as you move away from
+the fovea: if you&rsquo;re fixating on the dot there, the word &ldquo;eccentricity&rdquo; at the
+end of the arrow might look a bit blurry. this has been studied quantiatively,
+and we know that a variety of measures seem to &ldquo;get bigger&rdquo; with eccentricity:
+acuity drops and crowding distance increases, for example
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org8be0ff2">
+<h2 id="org8be0ff2"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/fixation-2-cell-scale.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+this seems to align with the fact that I mentioned at the beginning of my talk,
+that visual neuronal receptive fields grow in size with eccentricity
+</p>
+
+<p>
+we&rsquo;re going to investigate the perceptual consequences of that foveation using
+metamers.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org792a386">
+<h2 id="org792a386">Project overview</h2>
+<ul>
+<li>Built foveated models of the early visual system</li>
+<li data-fragment-index="1" class="fragment appear">Created hundreds of model metamers</li>
+<li data-fragment-index="2" class="fragment appear">Showed them to humans in psychophysics experiment</li>
+<li data-fragment-index="3" class="fragment appear">Found largest model parameter whose model metamers are also human metamers</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+we built foveated models of the early visual system, so that they discard more
+information the farther you get from fovea, created a whole bunch of model
+metamers: images that the models think are identical to natural images, and then
+showed them to humans to see if they agree, which we used to find the largest
+model parameter for which model metamers are also human metamers &#x2013; that is, the
+models which threw out the most information while still creating model metamers
+that are human metamers
+</p>
+
+<p>
+that was a lot, so I&rsquo;m going to unpack it
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org681c96f">
+<h2 id="org681c96f">Local average luminance model</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-lum-model.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+the simplest foveated model we can build will just average the local luminance
+across the image. that is, we&rsquo;re just finding how bright each region of the
+image is
+</p>
+
+<p>
+we built a set of log Gaussian windows whose width grows linearly with
+eccentricity and we take the average pixel value in each of those windows. this
+here is a schematic, showing the contour at half max amplitude &#x2013; in actuality,
+the windows overlap quite a lot in order to uniformly cover the image
+</p>
+
+<p>
+with these size windows, with this image, the average is pretty similar in the
+top part of the image, slightly darker at the bottom fo the palm tree.
+</p>
+
+<p>
+those average pixel values are all the model knows about the image. according to
+this model, any image that has the same average luminance in those windows,
+they&rsquo;re all the same. doesn&rsquo;t matter if they have the same average because they
+have one bright pixel and a bunch of dark ones, all the same value, or it&rsquo;s a
+sine wave oscillating around the mean: as long as the average pixel values
+match, they&rsquo;re identical
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org080a520">
+<h2 id="org080a520">These models have a single parameter: scaling</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-pooling-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+that&rsquo;s our first model, and it&rsquo;s a simple one. it has a single parameter we&rsquo;re
+varying, which is how big these windows are: like I said, these window widths
+grow linearly, so the slope of the line relating their size to their
+eccentricity is that parameter, which we call scaling.
+</p>
+
+<p>
+this is similar to the scaling idea of the last chapter, in that it&rsquo;s a linear
+increase with eccentricity. previously, it was of the preferred period, here
+it&rsquo;s the size of these pooling windows, which model neuronal receptive fields
+</p>
+
+<p>
+for these two sets of windows, for example, the one on the left has a smaller
+scaling, thus smaller windows and more windows, and the one on the right has a
+larger one, thus larger windows and fewer windows
+</p>
+
+<p>
+that means the one on the right throws away more info than the one on the left.
+you could think of its representation being &ldquo;blurrier&rdquo; or &ldquo;lossier&rdquo; &#x2013; it will
+consider a larger number of images to be identical than the one on the left
+</p>
+
+<p>
+that&rsquo;s fairly abstract, so let&rsquo;s see what that looks like
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org0090145">
+<h2 id="org0090145"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-ref.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+this image right here, which Eero took with his camera, is what we call the
+target image. in a second, I&rsquo;m going to show you another image, which we
+synthesized, that the luminance model thinks is perceptually identical to this
+image.
+</p>
+
+<p>
+in our experiment, the images are displayed at about 54 by 44 degrees, so quite
+large. this cross here is at the fovea, where you should be fixating
+</p>
+
+<p>
+and, like in the experiment, I&rsquo;m going to put a blank screen in between to mask
+motion cues
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org5c3d22e">
+<h2 id="org5c3d22e"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/3rd-Year-Talk-blank.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orga3690e6">
+<h2 id="orga3690e6"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-metamer-rgc-large.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+this here is a model metamer generated with our luminance model with the highest
+scaling value we show in our experiment. participants can very clearly, even
+when fixating, tell the difference between this and the target image.
+</p>
+
+<p>
+if you keep your eyes centered on the cross in the center, but pay attention to
+this region out here, you should be able to tell the difference as I go back and
+forth &#x2013; you should be able to see this staticky pattern or sense that the
+leaves have changed, though it might not work depending on how good your eyes
+are, how far away you&rsquo;re sitting, etc
+</p>
+
+<p>
+jump back and forth
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgdb372f7">
+<h2 id="orgdb372f7"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-metamer-rgc-large-contour.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+this is that same image, but with the contour of the window at half-max
+amplitude shown, to give you a sense for how large the regions in which we&rsquo;re
+averaging the pixel values is
+</p>
+
+<p>
+to reiterate, what we have here is a model metamer for reasonably large windows.
+but it&rsquo;s <b>not</b> a human metamer: while the model with this size windows thinks
+this image is identical to the target, participants in our experiment can easily
+tell the difference between the two
+</p>
+
+<p>
+the goal of this project is to find the largest window size, the largest scaling
+value where the model metamers <b>are</b> human metamers.
+</p>
+
+<p>
+it&rsquo;s also worth looking at this in a bit of detail. you might look at this and
+say &#x2013; this image is weird. it&rsquo;s somehow both staticky and blurry, but based on
+that description you just gave me, I was expecting it to just be blurry
+</p>
+
+<p>
+and you&rsquo;re not wrong &#x2013; as our models windows get big towards the edge of the
+image, the constraitn to just match the local luminance is pretty loose and, in
+particular, it is insensitive to high frequencies, which show up as this kind of
+salt-and-pepper noise you see here.
+</p>
+
+<p>
+because it&rsquo;s insensitive to them, it doesn&rsquo;t see them at all! that means that we
+can do anything we like in those high frequencies and the model won&rsquo;t be able to
+tell the difference. in this example, there&rsquo;s a lot of high frequencies, which
+are random or scattered.
+</p>
+
+<p>
+we could equally have thrown all the high frequencies out, just resulting in a
+blurry image. those would both be model metamers to the target image
+</p>
+
+<p>
+this is the usefulness of the metamer paradigm, that it creates images that are
+a bit surprising, helping us to explore the space of all possible images in a
+way that helps us find informative ones
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org2bbce99">
+<h2 id="org2bbce99"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-ref.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+okay, now I&rsquo;ll show you a metamer generated with the smallest windows we showed
+in the experiment. these windows are sufficiently small that its metamers are
+human metamers
+</p>
+
+<p>
+here&rsquo;s the target image again for you to compare against
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org8035fc4">
+<h2 id="org8035fc4"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/3rd-Year-Talk-blank.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org15f93eb">
+<h2 id="org15f93eb"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-metamer-rgc-small.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+this here is the metamer with the smallest scaling value that we used in the
+experiment and so, when you&rsquo;re fixating, should be indistinguishable from the
+target image. 
+</p>
+
+<p>
+I&rsquo;m going to go back and forth a bit so you can see it
+</p>
+
+<p>
+you may notice an overall brightness difference between this and the reference
+image &#x2013; that occurs because the displays are not perfectly calibrated. There is
+no such difference in our experimental setup.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org27fda90">
+<h2 id="org27fda90"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-metamer-rgc-small-contour.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+this is the window contour again, and you can tell its smaller, diameter about
+6x smaller than the previous one
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgbd0e316">
+<h2 id="orgbd0e316"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-metamer-rgc-small-periphery.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+now, if we blow up the periphery here&#x2026;
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgb77f41a">
+<h2 id="orgb77f41a"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-metamer-rgc-small-periphery-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+you can see similar high frequency noise that we were just discussing.
+</p>
+
+<p>
+it shows up here for the same reason it did in the last image &#x2013; the windows
+have grown large enough that the model is insensitive to frequencies that high.
+you don&rsquo;t see those high frequencies if you&rsquo;re fixating because you are also
+insensitive to those frequencies. that is, your throwing away the same
+information and at the same spatial scale as the model 
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org03aa4c9">
+<h2 id="org03aa4c9">Local spectral energy model</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-energy-model.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+we built a second model, an energy model. like the previous model, we&rsquo;re pooling
+an image statistic in windows that grow larger with eccentricity. whereas that
+model was pooling pixel values, this builds off the V1 complex cell model that I
+mentioned at the beginning of my defense, pooling the spectral energy at 4
+orientations and 6 spatial frequency bands.
+</p>
+
+<p>
+this means that instead of pooling the local luminance, we&rsquo;re pooling how much
+&ldquo;stuff&rdquo; there is at each orientation and spatial frequency, and we think this is
+similar to what V1 is doing. this model is built directly on top of the image,
+not on the outputs of the last model, and it includes the luminance as well
+</p>
+
+<p>
+the first model was blurring pixel values, whereas this one is blurring complex
+cell outputs (which are themselves blurred simple cell outputs), for those who
+are used to thinking like that. and we think that there will be some
+relationship between identity of the statistics and how big the pooling regions
+are
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org98d34b0">
+<h2 id="org98d34b0"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-ref.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+so to get a sense for what this means, I&rsquo;m going to show you some metamers for
+this model
+</p>
+
+<p>
+here&rsquo;s that target image again
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf88124f">
+<h2 id="orgf88124f"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/3rd-Year-Talk-blank.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org1e0a2b7">
+<h2 id="org1e0a2b7"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-metamer-v1-large.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+here we have an energy model metamer for windows about the size of V2&rsquo;s
+receptive fields, the next step in the visual hierarchy, and our participants
+were able to easily distinguish this from the target image.
+</p>
+
+<p>
+that makes this is a model metamer, but <b>not</b> a human metamer
+</p>
+
+<p>
+I&rsquo;m going to flip back a couple of times so you can see the difference, if
+you&rsquo;re paying attention out here, you should be able to see this snake-y
+pattern, though it might not work depending on how good your eyes are, how far
+away you&rsquo;re sitting, etc
+</p>
+
+<p>
+flip back a couple of times
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org54333f1">
+<h2 id="org54333f1"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-metamer-v1-large-contour.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+again, here are the contours so you get a sense for how large this region is
+</p>
+
+<p>
+however, the patterns here are very different. you get this weird, almost
+grating-y pattern that comes from matching the energy
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org9cbc1ad">
+<h2 id="org9cbc1ad"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-ref.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+alright, now I&rsquo;ll show you a model metamer that is also a human metamer. again,
+the target image
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org43cc428">
+<h2 id="org43cc428"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/3rd-Year-Talk-blank.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orge923706">
+<h2 id="orge923706"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-metamer-v1-small.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+this here is a metamer created with one of the smallest pooling windows we&rsquo;re
+checking for energy model, and again, it&rsquo;s very confusable with the target image
+</p>
+
+<p>
+jump back and forth a bit
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org1b608e3">
+<h2 id="org1b608e3"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-metamer-v1-small-contour.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+again, contours
+</p>
+
+<p>
+these windows here are about 10x smaller then the other energy metamer, and 6x
+larger than the good looking luminance metamer
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org3519f06">
+<h2 id="org3519f06"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-metamer-v1-small-periphery.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+if we again zoom in on the periphery&#x2026;
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orga8d7a79">
+<h2 id="orga8d7a79"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-metamer-v1-small-periphery-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<p>
+we can see that the iamge is still different in the periphery than the natural
+image, but it&rsquo;s hard to tell when fixating. these edges look kind of fuzzy
+</p>
+
+<p>
+this model is pooling oriented energy across spatial scales, and so is able to
+capture how pixel values in the image change at different distances and
+orientations. however, our model throws out phase information, and so has
+trouble representing the hard lines in the image, which you can clearly see out
+here
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-org9ac2f16">
+<h2 id="org9ac2f16">More complex statistics can be pooled over a larger area</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-metamer-compare-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+I want to emphasize that we expect that each model, at the appropriate
+scale, can generate human metamers. that&rsquo;s because if two images look the same
+to the retina, they should look the same to the person, because the retina has
+already thrown away all the information that could be used to differentiate
+them. Similarly, if two images look the same to V1, they should look the same to
+the person.
+</p>
+
+<p>
+but, because each model is computing different statistics, they need different
+window sizes to do this: the luminance metamer was generated with windows about
+6x smaller.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org2224d2c">
+<h2 id="org2224d2c">Distortions depend on which statistic is being pooled</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-metamer-compare-2-periphery.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<p>
+and you can see that, even though both are decent human metamers, they have
+different patterns: when you look in the periphery of the luminance metamer here
+you can see this high frequency, which is not present anywhere in the energy
+model metamer. The energy model metamer has these patterns that result from
+issues aligning phase across scales, which are not present at all in luminance
+metamer.
+</p>
+
+<p>
+these images have different patterns in the periphery than each other and the
+target image, the natural imgae that they&rsquo;re based on, but when you&rsquo;re fixating,
+they all appear identical, because you&rsquo;re not sensitive to those differences
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgc5b488a">
+<h2 id="orgc5b488a">Interaction between statistic and window size is what matters</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-metamer-compare.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+If, conversely, we look at metamers from the two models at the same scaling
+values, the same size pooling windows, the energy one is much more likely to be
+confused with the target image
+</p>
+
+<p>
+because the energy model is sensitive to more statistics and more complex
+statistics, it can get away with larger pooling windows and still generate a
+good human metamer.
+</p>
+
+<p>
+this emphasizes that it&rsquo;s about finding the right match between summary
+statistics and window size &#x2013; not that a given statistic or window size will
+always work
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org7d8a1d8">
+<h2 id="org7d8a1d8">Experiment structure</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-psychophysics-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+So, in order to define the actual scaling value at which model metamers become
+human metamers, we need to run a psychophysics experiment
+</p>
+
+<ul>
+<li>the goal of the experiment is to figure out the largest windows, the largest
+scaling value for which the model metamers are human metamers for each model</li>
+<li>the participants are fixating the whole time, saw a single image, with a gray
+bar down the middle. that image will stay up for 200 msecs, followed by a
+blank screen for 500 msecs, followed by another image for 200 msecs.</li>
+<li>in that second image, either the left or right side will have changed to
+another image and the subjects task is to say which. they have as much time as
+they need and then there&rsquo;s a 500 msec inter-trial interval</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org756475a">
+<h2 id="org756475a">Experiment structure</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-psychophysics.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<ul>
+<li>the two images we&rsquo;re comparing were the target image and a model metamer,
+either could be presented first and either the left or right could change.</li>
+<li>for this talk, that&rsquo;s all I&rsquo;m going to discuss, but in the full experiment, we
+did more comparisons. if you&rsquo;re interested, reach out to me and I can send you
+the draft of this paper</li>
+<li>This allows us to determine how well the participant is able to differentiate
+these two images and to measure the proportion correct at each scaling value.</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org2ecfc03">
+<h2 id="org2ecfc03">Predictions</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-Predictions-1.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<ul>
+<li>for each model, We did this with multiple scaling values, several subjects,
+and 20 target images, and then we will fit a psychophysical curve to the
+proportion correct as a function of scaling, to determine the largest scaling
+at which performance is at chance</li>
+<li>this is the <b>critical scaling</b>, the point at which model metamers
+are human metamers</li>
+<li>For the luminance model, which averages pixel intensities, the critical
+scaling should be fairly small.</li>
+<li>For energy, which averages spectral energy, we expect the critical
+scaling to be much larger.</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org67b1896">
+<h2 id="org67b1896">Predictions</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-Predictions-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<ul>
+<li>now, what we had thought, based on previous work, is that the critical scaling
+value should roughly match up with the scaling measured from physiology, that
+is, the scaling of neuronal receptive fields in the corresponding brain area.
+so, maybe the retina for the luminance model and V1 for the energy</li>
+<li>the bars are showing approximately what the physiological scaling values are,
+for V1 and for midget and parasol cells, the two most common ganglion cell
+classes in the retina</li>
+<li>The idea is that this calculating of summary statistics within
+receptive fields is roughly what neurons in the visual system are
+doing. so if you look at a model metamer generated with a larger
+scaling value than the corresponding human brain area, then you should
+be able to notice the difference, because the model is throwing away
+information that you&rsquo;re still sensitive to. if the windows are
+smaller, however, then you should not notice, because your brain is
+throwing away more information than the model.</li>
+<li>the reality is a bit more complicated</li>
+
+</ul>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org3d176ad">
+<h2 id="org3d176ad">Data</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-performance.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+so here&rsquo;s the data we got when participants compared metamers to original
+images, the natural images that were the target of synthesis. note that the
+x-axis is log-scaled.
+</p>
+
+<p>
+still showing the bars from before
+</p>
+
+<p>
+so:
+</p>
+<ul>
+<li>the data is lawful and monotonic, fit reasonably well by curves, goes pretty
+much from chance at 50% to ceiling at 100%</li>
+<li>critical scaling differ from each other by about 4x.</li>
+<li>our luminance results (.016) are between midget and parasol (.01 and .03)
+cells&rsquo; physiological scaling, energy (.06) is half the bottom edge of V1
+distribution (.25)</li>
+
+</ul>
+
+<p>
+so we are seeing that, as the statistics get more complex, the spatial scale of
+pooling grows as well. this aligns with our sense of what happens in the visual
+system, but the numbers for the energy model differ substantially from V1. this
+bar comes from macaque data and humans have higher acuity than macaques, so it&rsquo;s
+possible that the numbers are smaller for humans (RGC bars come from human
+data). it could also mean that our model is missing something key about V1
+computation
+</p>
+
+<p>
+we ran some additional variations on this to try and get at this question a bit,
+which I don&rsquo;t hvae time to discuss here. let me know if you&rsquo;re interested and we
+can discuss it offline
+</p>
+
+<p>
+physiology
+</p>
+<ul>
+<li>previous work surveying the literature found critical scaling in V1 was .2 to
+.3</li>
+<li>looking at some Dacey papers from the early 90s, midget critical scaling is
+about .01, parasol is ~.03</li>
+<li>RGC is first area where you get linear relationship between size and
+eccentricity</li>
+
+</ul>
+
+<p>
+if someone asks about size of shaded region: that&rsquo;s the distribution of the
+posterior means across subjects and images. if we look at those separately&#x2026;
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org485445c">
+<h3 id="org485445c">Parameters</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-params.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+there&rsquo;s a bit more spread but not too much
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org19482cf">
+<h2 id="org19482cf">Intermediate conclusions</h2>
+<ul>
+<li>Built foveated models of two stages of early visual processing</li>
+<li data-fragment-index="1" class="fragment appear">Synthesized large set of model metamers:
+<a href="https://users.flatironinstitute.org/~wbroderick/metamers/">https://users.flatironinstitute.org/~wbroderick/metamers/</a></li>
+<li data-fragment-index="2" class="fragment appear">Ran psychophysics experiment to find each model&rsquo;s critical scaling</li>
+<li data-fragment-index="3" class="fragment appear">Showed spatial scale of pooling grows with statistic complexity</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+So this work does&#x2026; <b>read points</b>
+</p>
+
+<p>
+let&rsquo;s look at this website a bit. this was put together by several engineers at
+the Flatiron Institute, Liz Lovero, Dylan Simons (also a C+P alum), and Aaron
+Watters. it has a brief description fo the project, and then shows the target
+image and metamers side by side, with a zoom in panel. you can select any of the
+images to view, and filter or sort by the different categories. in this way, you
+can see all the metamers I generated for the project, not just the ones I
+highlight in the paper or presentation itself. and, though I haven&rsquo;t done it
+yet, we&rsquo;re going to add a link to bulk download them all
+</p>
+
+<p>
+I&rsquo;ve spent a fair amount of time during my PhD thinking about and working on
+issues related to how to best share code and data related to my projects, which
+all fall under the category of&#x2026;
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc23f228">
+<h2 id="orgc23f228"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-opensci.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+open science
+</p>
+
+<p>
+as pretty much anyone who&rsquo;s had a conversation with me about science in the past
+seven (?) years is probably aware, I&rsquo;m an open science partisan and I have a
+particular interest in software. for this last bit, I&rsquo;m going to talk about a
+software package I worked on with others in Eero&rsquo;s lab
+</p>
+
+<p>
+but first I&rsquo;m going to argue that software, and open-source software in
+particular, is integral to modern scientific research, yet is under-valued
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc3cde19">
+<h2 id="orgc3cde19"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-blackhole.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+To take one particularly illustrative example: I&rsquo;m sure many of you recognize
+this picture. It&rsquo;s an image of supermassive black hole M87, captured by the
+Event Horizon Telescope Collaboration in April 2019
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org1aa50e5">
+<h2 id="org1aa50e5"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-blackhole-headlines.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+this hit the headlines of every major news outlet, with the image eventually
+reaching more than 4.5 billion people around the world
+</p>
+
+<p>
+the work that went into this was done with a variety of packages from the
+open-source python scientific ecosystem, such as numpy and matplotlib, which
+was credited by some of the scientists involved as making the work possible,
+preventing them from having to reinvent everything from scratch
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org3bafd69">
+<h2 id="org3bafd69"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-blackhole-headlines-impact.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+yet five days after this announcement, the US National Science Foundation denied
+a grant to support that ecosystem, saying the software didn&rsquo;t have &ldquo;sufficient
+impact&rdquo;
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org7106628">
+<h2 id="org7106628">Software is under-funded</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-funding.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and this is pretty much par for the course
+</p>
+
+<p>
+NumFOCUS, the non profit which supports the maintenance and development of 44
+sponsored open source scientific packages, largely in python, had $5 million
+dollars in revenue in 2020
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org12d6bb8">
+<h2 id="org12d6bb8">Software is under-funded</h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-funding-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+for comparison, that year NYU alone got $41 million dollars from the NSF and $77
+million from the NIH, and NYU&rsquo;s school of medicine got $329 million
+</p>
+
+<p>
+so $5 million is nothing
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org67fa9dd">
+<h2 id="org67fa9dd">&#x2026; but heavily-used</h2>
+<ul>
+<li>92% of British academics use research software</li>
+<li>69% say their research would not be practical without research software</li>
+<li data-fragment-index="1" class="fragment appear">Vast majority of top 100 all-time cited papers describe experimental methods
+or software</li>
+<li data-fragment-index="2" class="fragment appear">and that&rsquo;s probably an undercount</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+this lack of funding doesn&rsquo;t reflect a lack of use: 
+</p>
+
+<p>
+a 2014 survey of British academics found that 92% use research software and 69%
+say their research would not be practical without it. this is almost certainly
+higher in the experimental sciences: I don&rsquo;t think I&rsquo;ve ever read a paper or
+seen a talk where the analysis could feasibly be done without some software
+</p>
+
+<p>
+according to a 2014 analysis in Nature, the vast majority of the top 100
+all-time cited papers, requiring more than 12k citations, describe experimental
+methods or software. and that&rsquo;s almost certainly an undercount, as scientists
+cite software sporadically: a 2015 study found that only 31 to 43% of software
+mentions in published biology articles were formal citations the software
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org22675be">
+<h2 id="org22675be"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-xkcd.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+so what does that mean? that scientific software runs on volunteers
+</p>
+
+<p>
+I want to note that this problem isn&rsquo;t unique to academia: as this xkcd web comic
+points out, our modern digital infrastructure in general relies on volunteers,
+and if you pay attention to open source maintainers, you regularly hear them
+griping about corporations that use their packages without giving enough back.
+so it&rsquo;s not like corporations have found a way to solve this problem
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc915b71">
+<h2 id="orgc915b71"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-software-care.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+and so what? you might ask yourself, why should we care?
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orga27a455">
+<h2 id="orga27a455"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-software-care-2.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+because software is necessary for cumulative science
+</p>
+
+<p>
+as any grad student who has tried to implement a model or a novel method just
+from the description in a publication knows&#x2026;
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orga952fbb">
+<h2 id="orga952fbb"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-software-care-3.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+publications are insufficient for reproducibility. and here I&rsquo;m talking not just
+about issues related to the reproducibility crisis, but our ability to build on
+other scientists&rsquo; work, to take what they&rsquo;ve done and use it to use it in our
+own research
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org06b39a6">
+<h2 id="org06b39a6"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-software-donoho.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+Buckheit and Donoho put it this way: <b>read quote</b>. they said this almost 30
+years ago, and, generally speaking, we still don&rsquo;t live up to this ideal: few
+journals require this and few reviewers check
+</p>
+
+<p>
+I think many people accept the idea, in theory, that we should be sharing our
+code, along with our data, in a way that others would find useful
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org14cd38e">
+<h2 id="org14cd38e"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-software-care-4.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+but, by and large, we don&rsquo;t. and that is, I think, because it&rsquo;s hard! few of us
+are trained in software engineering, many students have no training in
+programming at all, and yet we spend a huge portion of PhDs writing and running
+code
+</p>
+
+<p>
+and so we end up with code that works for our purposes, but is not suitable for
+others: maybe it can&rsquo;t run on anyone else&rsquo;s machine, maybe I&rsquo;m not sure what its
+dependencies are, almost certainly it&rsquo;s not well documented or with a readme
+that tells others how to use it
+</p>
+
+<p>
+to be clear &#x2013; I&rsquo;m not trying to say that anyone who hasn&rsquo;t taken the time to
+figure out how to do all this is a bad scientist and should feel bad. the reason
+they&rsquo;re not doing it is, largely, because they don&rsquo;t get trained on how to do
+it, they receive no feedback on it, and they&rsquo;ll likely receive no reward for
+doing so. with researchers largely evaluated on publications and the faculty job
+market as tight as it is, it&rsquo;s perfectly understandable that this falls to the
+wayside. what I&rsquo;m trying to point out here is the incentives with which we have
+structured our scientific community are not working
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org58f4b9f">
+<h2 id="org58f4b9f"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-software-care-5.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+but that&rsquo;s a problem, because it means a lot of knowledge is not just shared
+across labs, but even within labs. the staff of a resarch lab is turning over
+all the time, with grad students and postdocs constantly moving through. this
+results in a huge amount of knowledge loss, as PIs rapidly get too busy to be
+involved in the day-to-day research carried out by their trainees, so most grad
+students will spend at least some portion of their time bashing their head
+against a wall trying to do something that another member of their lab <b>has
+already done</b>. if they&rsquo;re lucky, they&rsquo;ll be able to find some code and get in
+touch with the former member, who can help them get it working and guide them
+through it. but people move on, and that&rsquo;s far from a guarantee
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgf8f2e7f">
+<h2 id="orgf8f2e7f"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-plenoptic-gh.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+<aside class="notes">
+<p>
+all of this finally, in an exceedingly long-winded manner, bring me to
+plenoptic, the package a group of us worked on
+</p>
+
+<p>
+plenoptic is our attempt to deal, in particular, with this knowledge loss issue.
+we built it to serve as a source of institutional knowledge for the lab,
+standardizing and generalizing methods and models that have developed in the lab
+over the years that we believe are useful to us and others in the vision science
+and machine learning communities
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orge6e88e4">
+<h2 id="orge6e88e4"><b>plenoptic</b> contents</h2>
+<ul>
+<li><b>Metamer</b>: my second chapter, Freeman and Simoncelli 2011, Portilla and
+Simoncelli 2000</li>
+<li>Eigendistortion: Berardino et al. 2017</li>
+<li>Geodesics: Hénaff and Simoncelli 2015, Hénaff et al. 2019</li>
+<li>MAD Competition: Wang and Simoncelli 2008</li>
+<li>Models: Portilla-Simoncelli texture statistics, <b>Steerable Pyramid</b>, FrontEnd
+models from Berardino et al. 2017</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+these include several synthesis methods that have been developed over the past
+several decades, including metamers, which I discussed in the second part of my
+talk, as well as models, one of which provides the frontned of my energy model
+in that section
+</p>
+
+<p>
+I don&rsquo;t have time to describe these other methods, which span the theses of
+multiple students, in detail. but they all have a similar flavor to metamers:
+they synthesize new images to help better understand computational models. all
+of them were developed in the lab, but were used for basically a single project,
+so, like I mentioned before, the code was not meant for broader use
+</p>
+
+<p>
+and, to be clear, what we&rsquo;re doing here is not just reproducing these papers,
+but providing implementations that enable researchers to use these methods on
+<b>their own</b> models, enabling them to undrestand these models better
+</p>
+
+<p>
+one of the factors that limited these methods&rsquo; application to other users was
+that all of these methods require differentiating the models involved,
+understanding how the output of the model changes as you alter the input. for a
+long time, this was incredibly difficult, because it meant you had to take the
+derivative of these models by hand, resulting in a lot of calculus, which you
+needed to repeat everytime you made a change to the model. this was SLOW and
+basically meant that the final implementation was so model-specific that it was
+nigh impossible to use on anything else
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org2ea291b">
+<h2 id="org2ea291b"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-pytorch.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+<aside class="notes">
+<p>
+we got around this with pytorch, an open-source python library popular among
+deep learning researchers, which has automatic differentiation built in. so you
+don&rsquo;t have to do the calculus, pytorch will do it for you
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org874856e">
+<h2 id="org874856e"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-general-implementation.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+we were therefore able to put together general model-agnostic implementations of
+our methods that say: give me a model and, as long as it meets some minimal
+requirements, you can use it with these methods
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org4d8f0d1">
+<h2 id="org4d8f0d1"></h2>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="../images/defense-example-metamers.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+that allows the same code to support, for example, creating metamers with the
+models in my paper, VGG16 or other deep neural network implementations included
+in pytorch&rsquo;s model zoo, and the classic Portilla-Simoncelli texture statistics,
+reimplemented from the original matlab release more than 20 years ago
+</p>
+
+<p>
+here, I&rsquo;m showing you metamers based on two different images, on the rows, for
+those four models I mentioned, on the column. the first two are the foveated
+models I presented in the last section, with a fairly large scaling value, and
+we can see similar patterns to what we saw before &#x2013; increasing high frequency
+noise as we move away from the fovea for fov lum, increasing energy distortions
+as we move away for fov energy.
+</p>
+
+<p>
+if you&rsquo;re familiar with the portilla-simoncelli texture statistics, these will
+look familiar &#x2013; they do a good job capturing the texturiness of this reptile
+pattern, so that this image looks pretty indistinguishable from the target, but
+fail completely to capture highly structured, like a portrait.
+</p>
+
+<p>
+this last is from VGG16, a &ldquo;classic&rdquo; deep neural network developed for object
+recognition, matching the representation at the third max pooling layer, about
+halfway through the model. two thigns jump out: it&rsquo;s insensitive to high
+frequency noise, like our fov lum model, though it&rsquo;s convolutional and so this
+noise shows up everywhere in the image. second, it&rsquo;s multicolored &#x2013; it&rsquo;s the
+only one of these models that operates on RGB images, but it does so in a way
+that shows it has very different color sensitivities than humans and, in
+particular, doesn&rsquo;t recognize anything special about grayscale.
+</p>
+
+<p>
+all of these metamers were generated using the same Metamer code object, I
+simply changed the inputs.
+</p>
+
+<p>
+this allows researchers, both within and without of the lab, to focus on the
+scientific questions that interest them, instead of having to reinvent the wheel
+if they want to make use of these methods.
+</p>
+
+<p>
+development moves in fits and starts, as it&rsquo;s nobody&rsquo;s main project, and so it&rsquo;s
+not quite ready for broad usage yet, but we&rsquo;re hoping to get to a version 1.0
+release soon
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org51cc3ac">
+<h2 id="org51cc3ac">Summary</h2>
+<ul>
+<li>Fit single model to all voxels in human V1 to show how spatial frequency
+preferences change across the visual field</li>
+<li data-fragment-index="1" class="fragment appear">Showed how spatial information is discarded by the early visual system</li>
+<li data-fragment-index="2" class="fragment appear">Discussed importance of open-source software</li>
+<li data-fragment-index="3" class="fragment appear">Described <b>plenoptic</b>, python package for models and synthesis methods</li>
+
+</ul>
+
+
+<aside class="notes">
+<p>
+summarize whole thing:
+</p>
+
+<p>
+in the first section, I demonstrated the usefulness of fitting all voxels at
+once for investigating how V1 spatial frequency preferences change across the
+visual field
+</p>
+
+<p>
+in the second, I showed you what information is discarded by the early visual
+system, with models that average image statistics in pooling windows that grow
+as you move away from fixation
+</p>
+
+<p>
+and in this final section, I described how open source software is critical but
+under-valued to academic science
+</p>
+
+<p>
+and described plenoptic, a software library that a group of us developed to
+serve as a home for synthesis methods and models developed in the lab over the
+years, to serve as a form of institutional knowledge
+</p>
+
+<p>
+and that&rsquo;s it
+</p>
+
+<p>
+(defense of open source:
+</p>
+
+<p>
+what I&rsquo;ve given in this talk was more of a general defense of software, rather
+than open-source software in particular, but I do think we should focus on
+open-source. first, similar caveat to earlier: I&rsquo;m not saying if you don&rsquo;t use
+open source you&rsquo;re terrible or even that your work can&rsquo;t be considered open.
+openness exists on many axes and you can still share your code, make sure it&rsquo;s
+usable by others, etc while using MATLAB or other proprietary languages. and
+openness is not some pure binary, where if you fall short in one aspect you
+might as well not have tried, it&rsquo;s a goal we&rsquo;re striving for, so any step in
+that direction is worth taking.
+</p>
+
+<p>
+that said, open source languages are better than proprietary. for this audience,
+that decision is generally python vs matlab, which is what I&rsquo;m most familiar
+with, but similar arguments apply to other comparison. there are many reasons,
+access and licensing, and then ideological ones.
+</p>
+
+<ul>
+<li>matlab costs money and so not everyone can use your code. the goal of open
+science is to make it as usable by others as possible. it&rsquo;s true that most of
+the people in this room have access to matlab without having to pay for it but
+that&rsquo;s because we&rsquo;re in a wealthy university in a wealthy country. science is
+global, we should be encouraging that, not erecting boundaries. it is true
+that you can do things like run matlab code in octave or compile it so it can
+run without access to a license, but neither of those steps is trivial. I
+tried to do it for my spatial frequency project, which used a matlab toolbox
+to estimate the responses of the voxels, and couldn&rsquo;t get it to work, so I
+gave up. if you think the fact that octave exists is sufficient, I encourage
+you to actually use octave to make sure your code works &#x2013; it&rsquo;s not simple</li>
+
+<li>and to be clear, the cost isn&rsquo;t nothing. we have absolutely no idea what
+matlab costs, because the universities and the companies are the consumers,
+not us. it&rsquo;s similar to journals in that regard &#x2013; there&rsquo;s a complete
+disconnect between us as users and the cost. I was poking around online about
+this at one point, and I came across a directive from NASA &#x2013; their advanced
+computing division only has 16 licenses available! and so they want everyone
+to compile scripts before submitting them as batch jobs to reduce license
+usage. mathworks sells licenses to universities at a discount, and then
+upcharges every other institution that might need them</li>
+
+<li>this is related to licensing. it&rsquo;s not just that matlab costs money but that
+it places heavy restrictions on what you can do with it. if you&rsquo;re building
+packages that you want to distribute to other people, you need tests. if you
+use an open source language, there are a large number of free services,
+including Github, which will allow you to run your tests on their computers
+for free everytime you push a change to the code or open a pull request. this
+is super useful! you cannot do this with matlab, because their license doesn&rsquo;t
+allow it. most researchers won&rsquo;t need to do this, but neuro and psych research
+is built on a large collection of resaercher-created software: psychtoolbox,
+vista tools, freesurfer, nipype, fmriprep, etc and so this will affect
+researchers who use this softaware, which is everyone. similarly, mathworks
+has their own cloud that they want people to use, so it doesn&rsquo;t work on google
+cloud, AWS, etc, whereas any open source language will</li>
+
+<li>with that licensing comes control. mathworks decides what to do with matlab,
+and the interests of a for-profit company are never going to be the interests
+of us, as a community of academic researchers, so they&rsquo;re going to make
+different choices about what to develop and prioritize. for one example,
+keeping track of dependencies is absolutely crucial for developing software in
+this federated manner, where I write something that uses pytorch, which uses
+numpy, etc. like I said, this happens in matlab too &#x2013; we all use software
+written by researchers, not mathworks. but matlab doesn&rsquo;t have an official
+declarative dependency manager, so tracking dependencies is incredibly
+difficult! this leads to things like people keeping copies of all their
+dependencies, having no idea which toolboxes or version numbers their code
+requires, etc. this has led to the development of three different unofficial
+dependency managers, including one by David Brainard&rsquo;s lab, all of which were
+built by neuroscientists rather than experts. we shouldn&rsquo;t need to do that!
+dependency management is really really hard and we should be able to trust it
+to experts. but it is unlikely that mathworks will do it, because they want
+everyone to see matlab as a thing that comes from them, they do not do a good
+job facilitating code sharing</li>
+
+<li>and then finally, there&rsquo;s the ideological point. we do science for the public
+good, and that means that the work we do should be available to others. like
+the for profit publishing companies, such as Elsevier and SpringerNature, for
+profit software companies actively work against the interests of science, for
+the reasons I just explained and makes money from doing so! so I just don&rsquo;t
+think we should be supporting them</li>
+
+</ul>
+
+<p>
+)
+</p>
+
+</aside>
+</section>
+</section>
+</div>
+</div>
+<p> Created by WFB. </p>
+<script src="/dist/reveal.js"></script>
+<script src="/plugin/highlight/highlight.js"></script>
+<script src="/plugin/markdown/markdown.js"></script>
+<script src="/plugin/notes/notes.js"></script>
+<script src="/plugin/zoom/zoom.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: false,
+progress: true,
+history: false,
+center: false,
+slideNumber: 't',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+
+overview: true,
+width: 1920,
+height: 1176,
+margin: 0.10,
+minScale: 0.50,
+maxScale: 2.50,
+
+transition: 'none',
+transitionSpeed: 'default',
+keyboard:{74:()=>{Reveal.slide(prompt("Slide number")-1)}},
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealHighlight, RevealMarkdown, RevealNotes, RevealZoom ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>

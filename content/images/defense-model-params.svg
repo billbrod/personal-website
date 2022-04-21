@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1920"
+   height="1080"
+   viewBox="0 0 1920 1080"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.2 (1.0.2+r75+1)"
+   sodipodi:docname="defense-model-params.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.5"
+     inkscape:cx="742.07203"
+     inkscape:cy="504.82339"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1898"
+     inkscape:window-height="1039"
+     inkscape:window-x="3846"
+     inkscape:window-y="1105"
+     inkscape:window-maximized="1"
+     inkscape:document-rotation="0"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-bbox="true"
+     inkscape:snap-to-guides="true"
+     inkscape:snap-text-baseline="true"
+     inkscape:bbox-paths="false"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-edge-midpoints="false"
+     inkscape:snap-bbox-midpoints="false"
+     inkscape:snap-nodes="true" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-11.249983)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.5;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="120.02576"
+       y="329.00977"
+       id="text887"><tspan
+         sodipodi:role="line"
+         x="120.02576"
+         y="329.00977"
+         id="tspan924"
+         style="font-size:40px">• Affine relationship between eccentricity and preferred period (2 parameters)</tspan><tspan
+         sodipodi:role="line"
+         x="120.02576"
+         y="389.00977"
+         id="tspan1446"
+         style="font-size:40px">• Modulation of preferred period by orientation:</tspan><tspan
+         sodipodi:role="line"
+         x="120.02576"
+         y="449.00977"
+         id="tspan1448"
+         style="font-size:40px">   • Annuli vs. pinwheels (1 parameter)</tspan><tspan
+         sodipodi:role="line"
+         x="120.02576"
+         y="509.00977"
+         id="tspan1450"
+         style="font-size:40px">   • Vertical vs. horizontal (1 parameter)</tspan><tspan
+         sodipodi:role="line"
+         x="120.02576"
+         y="569.00977"
+         id="tspan1452"
+         style="font-size:40px">   • Cardinals vs. obliques (1 parameter)</tspan><tspan
+         sodipodi:role="line"
+         x="120.02576"
+         y="629.00977"
+         id="tspan1454"
+         style="font-size:40px">   • Annuli / pinwheels vs. spirals (1 parameter)</tspan><tspan
+         sodipodi:role="line"
+         x="120.02576"
+         y="689.00977"
+         id="tspan1456"
+         style="font-size:40px">• Modulation of amplitude within voxels (4 parameters)</tspan><tspan
+         sodipodi:role="line"
+         x="120.02576"
+         y="749.00977"
+         id="tspan1458"
+         style="font-size:40px">• Constant bandwidth in octaves (1 parameter)</tspan><tspan
+         sodipodi:role="line"
+         x="120.02576"
+         y="809.00977"
+         id="tspan1460"
+         style="font-size:40px" /></text>
+    <g
+       id="g1587">
+      <path
+         d="m 943.60563,556.53355 h 4.5606 v -61.5175 h -4.5606"
+         style="fill:none;stroke:#000000;stroke-width:4.32763;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path3956" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:0.4;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         x="961.34808"
+         y="536.68689"
+         id="text4619"><tspan
+           sodipodi:role="line"
+           id="tspan4617"
+           x="961.34808"
+           y="536.68689"
+           style="font-size:40px;fill:#000000;fill-opacity:1">absolute</tspan></text>
+    </g>
+    <g
+       id="g1582">
+      <path
+         d="m 1199.4841,616.6084 h 4.5606 V 436.09204 h -4.5606"
+         style="fill:none;stroke:#000000;stroke-width:4.32763;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path3956-4-6" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:0.4;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         x="1217.2266"
+         y="532.68689"
+         id="text4619-8"><tspan
+           sodipodi:role="line"
+           id="tspan4617-9"
+           x="1217.2266"
+           y="532.68689"
+           style="font-size:40px;fill:#000000;fill-opacity:1">relative</tspan></text>
+    </g>
+  </g>
+</svg>
