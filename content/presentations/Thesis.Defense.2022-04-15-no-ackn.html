@@ -7,12 +7,12 @@
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="/dist/reveal.css"/>
+<link rel="stylesheet" href="reveal.js/css/reveal.css"/>
 
-<link rel="stylesheet" href="/dist/theme/simple.css" id="theme"/>
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme"/>
 
 <link rel="stylesheet" href="custom.css"/>
-<link rel="stylesheet" href="//plugin/highlight/zenburn.css"/>
+<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css"/>
 <meta name="description" content="committee meeting for third chapter proposal">
 </head>
 <body>
@@ -4073,11 +4073,8 @@ think we should be supporting them</li>
 </div>
 </div>
 <p> Created by WFB. </p>
-<script src="/dist/reveal.js"></script>
-<script src="/plugin/highlight/highlight.js"></script>
-<script src="/plugin/markdown/markdown.js"></script>
-<script src="/plugin/notes/notes.js"></script>
-<script src="/plugin/zoom/zoom.js"></script>
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.js"></script>
 <script>
 // Full list of configuration options available here:
 // https://github.com/hakimel/reveal.js#configuration
@@ -4106,13 +4103,12 @@ transition: 'none',
 transitionSpeed: 'default',
 keyboard:{74:()=>{Reveal.slide(prompt("Slide number")-1)}},
 
-// Plugins with reveal.js 4.x
-plugins: [ RevealHighlight, RevealMarkdown, RevealNotes, RevealZoom ],
-
 // Optional libraries used to extend reveal.js
 dependencies: [
-]
-
+ { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+ { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
 });
 </script>
 </body>
