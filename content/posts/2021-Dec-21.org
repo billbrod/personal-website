@@ -2,6 +2,9 @@
 #+DATE: <2021-12-21 Tue>
 #+PROPERTY: HPC python reproducibility
 
+I CURRENTLY HAVE SOMETHING in the pelicanconf.py that tells it to ignore this.
+remove that when this is done
+
 This is a bit of a sequel to my [[./2021-May-06.org][post in May]] about using conda environments with
 snakemake on the HPC. That solution worked for me, but was hacky and limited.
 This post will describe a different solution, which uses a singularity container
