@@ -1,28 +1,88 @@
-.reveal h1 {
-    font-size:2.2em;
+/* I think this (along with setting the default inkscape font to DejaVu sans
+   should make them consistent, but if it looks like it's not, make sure to also
+   change default sans-serif font in the browser) */
+.reveal {
+    font-family: "DejaVu sans";
 }
-.reveal h2 {
-    font-size:1.2em;
+.reveal .slides {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	margin-top: 2%;
+    center: false;
+    text-align: left;
 }
-.reveal h3 {
-    font-size:1.2em;
+.reveal .slides section,
+.reveal .slides section > section {
+  padding: 0;
+  line-height: 1.5;
 }
 
+.reveal img, .reveal video, .reveal iframe {
+  max-height: 100%;
+  height: 100%;
+}
+.reveal h1 {
+    margin-bottom: 5%;
+    font-size:3.5em;
+    text-align: center;
+}
+#sec-title-slide {
+    top: 30%;
+}
+/* if font-size of h2 is changed, should go into config.el and update the height
+   of slides so it's 1080 plus whatever this is (in pixels, use developers tools
+   in browser to check) */
+.reveal h2 {
+    font-size:2.0em;
+    text-align: center;
+}
+
+.reveal h3 {
+    font-size:2.0em;
+    text-align: center;
+}
+
+.reveal section.img_container {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+}
 .reveal section img {
     display:block;
+    margin:0;
     margin-left:auto;
     margin-right:auto;
     background:none;
     border:none;
     box-shadow:none;
+    max-height:100%;
+    max-width:100%;
 }
 
 html { 
   background-color: #fff !important; 
 }
 
+.reveal ul {
+    /* center: true; */
+    margin-top: 10%;
+}
+
+/* different style for nested lists */
+.reveal li ul {
+    /* center: true; */
+    margin-top:0%;
+}
+
 .reveal li {
     font-size:1em;
+    /* center: true; */
+}
+
+.reveal p {
+    font-size: 1.2em;
 }
 
 .reveal table td {
@@ -31,4 +91,8 @@ html {
 
 .reveal table th {
     font-size:.6em;
+}
+
+div.row {
+    clear:both;
 }
