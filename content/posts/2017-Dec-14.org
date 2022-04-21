@@ -2,6 +2,9 @@
 #+DATE: <2017-12-14 Thu>
 #+PROPERTY: Illusions!
 
+*NOTE*: You can see a webapp I put together to investigate this in more detail
+[[https://www.wfbroderick.com/illusory-grating][here]] (note that it takes a while to load)
+
 While creating two-dimensional sinusoidal gratings and investigating
 their local properties, I accidentally created an illusion today,
 which I find pretty strong (though the strength of it does depend on
