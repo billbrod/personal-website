@@ -16,3 +16,6 @@ This pages links to miscellaneous projects I've been a part of or put together.
 - [[https://www.wfbroderick.com/meal-calendar/][Dinner calendar]] ([[https://github.com/billbrod/meal-calendar/][github repo]]): a visualization using [[https://vega.github.io/][vega]] to see what my
   dinners have been like since Jan 2022. Whether I cooked, was the meal
   vegetarian, etc. Includes links to recipes, where available.
+- [[https://wfbroderick.com/book-visualization/][Books]] ([[https://github.com/billbrod/book-visualization/][github repo]]): a visualization using [[https://d3js.org/][d3.js]] to see what books I've read
+  since mid-2016 (though I'm pretty sure the data from first several months is
+  off).
