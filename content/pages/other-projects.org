@@ -19,3 +19,7 @@ This pages links to miscellaneous projects I've been a part of or put together.
 - [[https://wfbroderick.com/book-visualization/][Books]] ([[https://github.com/billbrod/book-visualization/][github repo]]): a visualization using [[https://d3js.org/][d3.js]] to see what books I've read
   since mid-2016 (though I'm pretty sure the data from first several months is
   off).
+- [[https://wfbroderick.com/google-ngram-analyzer/][Google ngram analyzer]] ([[https://github.com/billbrod/google-ngram-analyzer][github repo]]): an app using [[https://d3js.org/][d3.js]] to put blocks of text
+  through [[https://books.google.com/ngrams][Google Ngram Viewer]], with the goal of helping writers of works set in
+  specific historical periods understand whether the words they're using are
+  anachronistic or not.
