@@ -64,7 +64,7 @@ cluster.
 
 With all that in mind, let's walk through the files that implement this
 solution. It involves four files from my [[https://github.com/billbrod/spatial-frequency-preferences][spatial-frequency-preferences]] repo
-(=build_docker=, =singularity_env.sh=, =run_singularity.sh=, and =config.json=),
+(=build_docker=, =singularity_env.sh=, =run_singularity.py=, and =config.json=),
 plus the [[https://github.com/billbrod/snakemake-slurm/tree/singularity][singularity branch]] of my slurm snakemake profile.
 
 ** =build_docker=:
@@ -150,12 +150,12 @@ fi
 #+END_SRC
 
 This file gets copied into the container and will get sourced as soon as the
-container is started up (see the =run_singularity.sh= section below for how we
+container is started up (see the =run_singularity.py= section below for how we
 do this). It sets up environmental variables for the extra dependencies and adds
 them to path, as well as modifying the =config.json= path to point where those
 packages are located within the container. Note that these software packages
 (matlab, FSL, and Freesurfer) are not included in the container, but because of
-how we've set up the =run_singularity.sh= script, we know where they'll be
+how we've set up the =run_singularity.py= script, we know where they'll be
 mounted.
 
 ** =config.json=
@@ -191,7 +191,7 @@ the location of the data set and where we'll place the output of the analysis
 and =WORKING_DIR= is a working directory for preprocessing and is only used
 temporarily in that step. The next three are the root directory of the
 installations for matlab, Freesurfer, and FSL: to find their locations, make
-sure they're on your path (if you're on a cluster, this iss probably by using
+sure they're on your path (if you're on a cluster, this is probably by using
 =module load=) and then run e.g., =which matlab= (or =which mri_convert=, etc.)
 to find where they're installed. Note that we want the root directory of the
 install (not the =bin/= folder containing the binary executables so that if
@@ -199,10 +199,465 @@ install (not the =bin/= folder containing the binary executables so that if
 =/share/apps/matlab/2020b=).
 
 Of all the files needed for this process, this is the only one that requires
-modification by the user.
+modification by the user, and my =spatial-frequency-preferences= readme includes
+a long description of what the different fields are, which need to be set, etc.
 
-** =run_singularity.sh=
+** =run_singularity.py=
 
+This is the main script that the user will run, which I generally refer to as
+the "wrapper script". If everything is working, the user will simply pass the
+command they wish to run to this script and it will bind the various
+directories, set environmental variables, and properly construct the arguments
+for singularity or docker, whichever the user wishes to use.
+
+Because this script is so much larger than the rest, we'll step through it
+section by section, and I'll include the full script at the end.
+
+#+BEGIN_SRC python :exports code
+#!/usr/bin/env python3
+
+import argparse
+import subprocess
+import os
+import os.path as op
+import json
+import re
+from glob import glob
+#+END_SRC
+First, we specify this script must be run with python 3 and import the necessary
+python modules.
+
+
+#+BEGIN_SRC python :exports code
+
+# slurm-related paths. change these if your slurm is set up differently or you
+# use a different job submission system. see docs
+# https://sylabs.io/guides/3.7/user-guide/appendix.html#singularity-s-environment-variables
+# for full description of each of these environmental variables
+os.environ['SINGULARITY_BINDPATH'] = os.environ.get('SINGULARITY_BINDPATH', '') + ',/opt/slurm,/usr/lib64/libmunge.so.2.0.0,/usr/lib64/libmunge.so.2,/var/run/munge,/etc/passwd'
+os.environ['SINGULARITYENV_PREPEND_PATH'] = os.environ.get('SINGULARITYENV_PREPEND_PATH', '') + ':/opt/slurm/bin'
+os.environ['SINGULARITY_CONTAINLIBS'] = os.environ.get('SINGULARITY_CONTAINLIBS', '') + ',' + ','.join(glob('/opt/slurm/lib64/libpmi*'))
+#+END_SRC
+
+The next several lines handle some slurm-related boilerplate. We take some
+singularity-related environmental variables and add on paths related to the
+slurm configuration so that we'll have access to the slurm commands (e.g.,
+=sbatch=) from within the container. These will likely vary across SLURM
+clusters and so will need to be modified if using this on any cluster other than
+NYU's greene.
+
+#+BEGIN_SRC python :exports code
+def check_singularity_envvars():
+    """Make sure SINGULARITY_BINDPATH, SINGULARITY_PREPEND_PATH, and SINGULARITY_CONTAINLIBS only contain existing paths
+    """
+    for env in ['SINGULARITY_BINDPATH', 'SINGULARITYENV_PREPEND_PATH', 'SINGULARITY_CONTAINLIBS']:
+        paths = os.environ[env]
+        joiner = ',' if env != "SINGULARITYENV_PREPEND_PATH" else ':'
+        paths = [p for p in paths.split(joiner) if op.exists(p)]
+        os.environ[env] = joiner.join(paths)
+
+
+def check_bind_paths(volumes):
+    """Check that paths we want to bind exist, return only those that do."""
+    return [vol for vol in volumes if op.exists(vol.split(':')[0])]
+
+#+END_SRC
+
+The next two functions make sure we only pass through existing paths to the
+container, either via the environmental variables discussed above, or via the
+user-specified bind paths. By excluding non-existing directories from the bind
+paths, we allow the user to ignore any options they don't want to set, so that
+they can ignore mounting any directories containing software they don't need.
+
+#+BEGIN_SRC python :exports code
+
+def main(image, args=[], software='singularity', sudo=False):
+    """Run sfp singularity container!
+
+    Parameters
+    ----------
+    image : str
+        If running with singularity, the path to the .sif file containing the
+        singularity image. If running with docker, name of the docker image.
+    args : list, optional
+        command to pass to the container. If empty (default), we open up an
+        interactive session.
+    software : {'singularity', 'docker'}, optional
+        Whether to run image with singularity or docker
+    sudo : bool, optional
+        If True, we run docker with `sudo`. If software=='singularity', we
+        ignore this.
+
+    """
+#+END_SRC
+
+The =main()= function accepts the same arguments as the command-line script,
+which we'll discuss at the end.
+
+#+BEGIN_SRC python :exports code
+    check_singularity_envvars()
+    with open(op.join(op.dirname(op.realpath(__file__)), 'config.json')) as f:
+        config = json.load(f)
+    volumes = [
+        f'{op.dirname(op.realpath(__file__))}:/home/sfp_user/spatial-frequency-preferences',
+        f'{config["MATLAB_PATH"]}:/home/sfp_user/matlab',
+        f'{config["FREESURFER_HOME"]}:/home/sfp_user/freesurfer',
+        f'{config["FSLDIR"]}:/home/sfp_user/fsl',
+        f'{config["DATA_DIR"]}:{config["DATA_DIR"]}',
+        f'{config["WORKING_DIR"]}:{config["WORKING_DIR"]}'
+    ]
+    volumes = check_bind_paths(volumes)
+    # join puts --bind between each of the volumes, we also need it in the
+    # beginning
+    volumes = '--bind ' + " --bind ".join(volumes)
+#+END_SRC
+
+First, =main()= takes care of the paths and environmental variables. We check
+the singularity-related environmental variables, as discussed above, then load
+in the config.json file, also discussed earlier. We use the user-supplied values
+here to set up the arguments for the =--bind= flag (equivalent to docker's
+=--volume= flag). Note that the software-related paths (the ones containing the
+project repo, matlab, freesurfer, and FSL) are all remapped to static paths
+within =/home/sfp_user/=, while the data-related paths (=DATA_DIR= and
+=WORKING_DIR=) are left unchanged. The data paths are unchanged because there
+are too many references to them in how snakemake structures the commands for me
+to comprehensively remap, so we just preserve them.
+
+We then check that all the paths that we'll be binding exist and remove any that
+don't with the =check_bind_paths()= function, discussed above. Finally, we
+combine that list of volumes into a string to pass through to singularity, which
+will be formatted like =--bind VOL1 --bind VOL2 ...=.
+
+#+BEGIN_SRC python :exports code
+    # if the user is passing a snakemake command, need to pass
+    # --configfile /home/sfp_user/sfp_config.json, since we modify the config
+    # file when we source singularity_env.sh
+    if args and 'snakemake' == args[0]:
+        args = ['snakemake', '--configfile', '/home/sfp_user/sfp_config.json',
+                '-d', '/home/sfp_user/spatial-frequency-preferences',
+                '-s', '/home/sfp_user/spatial-frequency-preferences/Snakefile', *args[1:]]
+#+END_SRC
+
+=args= specifies what the user wants to do with the container, and there are
+four possibilities:
+
+1. =args= is empty, in which case we open up an interactive session.
+2. =args= is a list of strings, and the first string is =snakemake=.
+3. =args= is a single string, and starts with =snakemake=.
+4. =args= is either a single string or a list of strings, and doesn't contain
+   =snakemake=.
+
+The above section handles possibility \#2. In this case, we know that the
+arguments contains no flags for snakemake (in that case, =args= would have to be
+quoted and thus we'd be in possibility \#3). We therefore modify the command to
+be run from inside the container, adding the specification of the config file,
+which we modified with =singularity_env.sh=, and specifying the paths to both
+the working directory and the Snakefile (these last two mean that we can run the
+snakemake command from other paths within the container). Finally, we append the
+rest of the user-specified arguments.
+
+#+BEGIN_SRC python :exports code
+
+    # in this case they passed a string so args[0] contains snakemake and then
+    # a bunch of other stuff
+    elif args and args[0].startswith('snakemake'):
+        args = ['snakemake', '--configfile', '/home/sfp_user/sfp_config.json',
+                '-d', '/home/sfp_user/spatial-frequency-preferences',
+                '-s', '/home/sfp_user/spatial-frequency-preferences/Snakefile', args[0].replace('snakemake ', ''), *args[1:]]
+        # if the user specifies --profile slurm, replace it with the
+        # appropriate path. We know it will be in the last one of args and
+        # nested below the above elif because if they specified --profile then
+        # the whole thing had to be wrapped in quotes, which would lead to this
+        # case.
+        if '--profile slurm' in args[-1]:
+            args[-1] = args[-1].replace('--profile slurm',
+                                        '--profile /home/sfp_user/.config/snakemake/slurm')
+        # then need to make sure to mount this
+        elif '--profile' in args[-1]:
+            profile_path = re.findall('--profile (.*?) ', args[-1])[0]
+            profile_name = op.split(profile_path)[-1]
+            volumes.append(f'{profile_path}:/home/sfp_user/.config/snakemake/{profile_name}')
+            args[-1] = args[-1].replace(f'--profile {profile_path}',
+                                        f'--profile /home/sfp_user/.config/snakemake/{profile_name}')
+#+END_SRC
+
+This block corresponds to possibility \#3. The beginning is very similar to \#2
+explained above, except that we include the rest of =args[0]=, after having
+removed the word =snakemake=.
+
+The following sections either remap the snakemake profile from =slurm= to the
+slurm profile within the container, or find the specified path of the snakemake
+profile and add it to the list of volumes to mount within the container. Note
+that this will fail if the user just specifies the name of the profile, rather
+than giving the full path. This could be made more general by checking whether
+the =profile_path= variable grabbed with regex looks like a path, and, if not,
+searching the locations that snakemake searches for profiles (notably,
+=~/.config/snakemake=), but that seemed like a lot of work.
+
+#+BEGIN_SRC python :exports code
+    # open up an interactive session if the user hasn't specified an argument,
+    # otherwise pass the argument to bash. regardless, make sure we source the
+    # env.sh file
+    if not args:
+        args = ['/bin/bash', '--init-file', '/home/sfp_user/singularity_env.sh']
+#+END_SRC
+
+This block corresponds to situation \#1: no arguments passed. In this case, we
+simply open up an interactive bash session, sourcing =singularity_env.sh= before
+we start.
+
+#+BEGIN_SRC python :exports code
+    else:
+        args = ['/bin/bash', '-c',
+                # this needs to be done with single quotes on the inside so
+                # that's what bash sees, otherwise we run into
+                # https://stackoverflow.com/questions/45577411/export-variable-within-bin-bash-c;
+                # double-quoted commands get evaluated in the *current* shell,
+                # not by /bin/bash -c
+                f"'source /home/sfp_user/singularity_env.sh; {' '.join(args)}'"]
+#+END_SRC
+
+This block handles situations 2 through 4: we pass the arguments through to the
+bash interpreter, making sure to source =singularity_env.sh= first. In an ideal
+world, this sourcing could be done with the same =--init-file= arg as used in
+the previous block, but that wasn't working for me. Note the importance of
+single quotes.
+
+#+BEGIN_SRC python :exports code
+    # set these environmental variables, which we use for the jobs submitted to
+    # the cluster so they know where to find the container and this script
+    env_str = f"--env SFP_PATH={op.dirname(op.realpath(__file__))} --env SINGULARITY_CONTAINER_PATH={image}"
+#+END_SRC
+
+These two environmental variables are used by our snakemake slurm profile,
+described in the next section, so that all our submitted jobs know where the
+container and the wrapper script are found, since they'll be used by them as
+well.
+
+#+BEGIN_SRC python :exports code
+    # the -e flag makes sure we don't pass through any environment variables
+    # from the calling shell, while --writable-tmpfs enables us to write to the
+    # container's filesystem (necessary because singularity_env.sh makes a
+    # temporary config.json file)
+    if software == 'singularity':
+        exec_str = f'singularity exec -e {env_str} --writable-tmpfs {volumes} {image} {" ".join(args)}'
+#+END_SRC
+
+Now, we combine all the strings we've been configuring into a single string that
+we can execute. The only new components are the =-e= flag, which ensures we
+don't send through any extra environmental variables from the calling shell, and
+the =--writable-tmpfs= flag, which allows us to write to the container's
+filesystem (not just the mounted ones), which we need because we modify the
+snakemake configuration file.
+
+#+BEGIN_SRC python :exports code
+    elif software == 'docker':
+        volumes = volumes.replace('--bind', '--volume')
+        exec_str = f'docker run {volumes} -it {image} {" ".join(args)}'
+        if sudo:
+            exec_str = 'sudo ' + exec_str
+#+END_SRC
+
+If we're using docker instead of singularity, the command is slightly different:
+we replace =--bind= with =--volume= and change some of the other flags. This
+command doesn't use the =-e= flag and the extra environmental variable
+manipulations that singularity requires, because =docker= cannot be used on the
+cluster, and so this will not need to interact with the job scheduler (e.g.,
+SLURM).
+
+#+BEGIN_SRC python :exports code
+    print(exec_str)
+    # we use shell=True because we want to carefully control the quotes used
+    subprocess.call(exec_str, shell=True)
+#+END_SRC
+
+Finally, we print out the command we're running (largely for debugging purposes,
+I'm not sure if this would be that useful to the user), and call it using
+=subprocess=.
+
+#+BEGIN_SRC python :exports code
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description=("Run billbrod/sfp container. This is a wrapper, which binds the appropriate"
+                     " paths and sources singularity_env.sh, setting up some environmental variables.")
+    )
+    parser.add_argument('image',
+                        help=('If running with singularity, the path to the '
+                              '.sif file containing the singularity image. '
+                              'If running with docker, name of the docker image.'))
+    parser.add_argument('--software', default='singularity', choices=['singularity', 'docker'],
+                        help="Whether to run this with singularity or docker")
+    parser.add_argument('--sudo', '-s', action='store_true',
+                        help="Whether to run docker with sudo or not. Ignored if software==singularity")
+    parser.add_argument("args", nargs='*',
+                        help="Command to pass to the container. If empty, we open up an interactive session.")
+    args = vars(parser.parse_args())
+    main(**args)
+#+END_SRC
+
+The very bottom of the script contains the =argparse= configuration, which makes
+the help string from the command line more informative.
+
+The users calls the script like so: =./run_singularity.py
+path/to/singularity_image.sif CMD= if using singularity, and
+=./run_singularity.py user/image_name --software docker -s CMD= if using docker
+(that =-s= flag runs docker as sudo, and so may not be necessary, depending on
+their docker configuration). Note that this =CMD= is the equivalent of =args=
+discussed above. =CMD= can be left empty (in which case an interactive session
+will be opened) or a string that will be run inside the container, such as the
+snakemake commands required to recreate the analysis, e.g., ='snakemake
+main_figure_paper'= (for my =spatial-frequency-preferences= project). Note that
+single quotes are necessary if any flags are included in =CMD=, in order to
+prevent =run_singularity.py= from trying to interpret them.
+
+Finally, the complete script:
+
+#+BEGIN_SRC python :exports code
+#!/usr/bin/env python3
+
+import argparse
+import subprocess
+import os
+import os.path as op
+import json
+import re
+from glob import glob
+
+# slurm-related paths. change these if your slurm is set up differently or you
+# use a different job submission system. see docs
+# https://sylabs.io/guides/3.7/user-guide/appendix.html#singularity-s-environment-variables
+# for full description of each of these environmental variables
+os.environ['SINGULARITY_BINDPATH'] = os.environ.get('SINGULARITY_BINDPATH', '') + ',/opt/slurm,/usr/lib64/libmunge.so.2.0.0,/usr/lib64/libmunge.so.2,/var/run/munge,/etc/passwd'
+os.environ['SINGULARITYENV_PREPEND_PATH'] = os.environ.get('SINGULARITYENV_PREPEND_PATH', '') + ':/opt/slurm/bin'
+os.environ['SINGULARITY_CONTAINLIBS'] = os.environ.get('SINGULARITY_CONTAINLIBS', '') + ',' + ','.join(glob('/opt/slurm/lib64/libpmi*'))
+
+
+def check_singularity_envvars():
+    """Make sure SINGULARITY_BINDPATH, SINGULARITY_PREPEND_PATH, and SINGULARITY_CONTAINLIBS only contain existing paths
+    """
+    for env in ['SINGULARITY_BINDPATH', 'SINGULARITYENV_PREPEND_PATH', 'SINGULARITY_CONTAINLIBS']:
+        paths = os.environ[env]
+        joiner = ',' if env != "SINGULARITYENV_PREPEND_PATH" else ':'
+        paths = [p for p in paths.split(joiner) if op.exists(p)]
+        os.environ[env] = joiner.join(paths)
+
+
+def check_bind_paths(volumes):
+    """Check that paths we want to bind exist, return only those that do."""
+    return [vol for vol in volumes if op.exists(vol.split(':')[0])]
+
+
+def main(image, args=[], software='singularity', sudo=False):
+    """Run sfp singularity container!
+
+    Parameters
+    ----------
+    image : str
+        If running with singularity, the path to the .sif file containing the
+        singularity image. If running with docker, name of the docker image.
+    args : list, optional
+        command to pass to the container. If empty (default), we open up an
+        interactive session.
+    software : {'singularity', 'docker'}, optional
+        Whether to run image with singularity or docker
+    sudo : bool, optional
+        If True, we run docker with `sudo`. If software=='singularity', we
+        ignore this.
+
+    """
+    check_singularity_envvars()
+    with open(op.join(op.dirname(op.realpath(__file__)), 'config.json')) as f:
+        config = json.load(f)
+    volumes = [
+        f'{op.dirname(op.realpath(__file__))}:/home/sfp_user/spatial-frequency-preferences',
+        f'{config["MATLAB_PATH"]}:/home/sfp_user/matlab',
+        f'{config["FREESURFER_HOME"]}:/home/sfp_user/freesurfer',
+        f'{config["FSLDIR"]}:/home/sfp_user/fsl',
+        f'{config["DATA_DIR"]}:{config["DATA_DIR"]}',
+        f'{config["WORKING_DIR"]}:{config["WORKING_DIR"]}'
+    ]
+    volumes = check_bind_paths(volumes)
+    # join puts --bind between each of the volumes, we also need it in the
+    # beginning
+    volumes = '--bind ' + " --bind ".join(volumes)
+    # if the user is passing a snakemake command, need to pass
+    # --configfile /home/sfp_user/sfp_config.json, since we modify the config
+    # file when we source singularity_env.sh
+    if args and 'snakemake' == args[0]:
+        args = ['snakemake', '--configfile', '/home/sfp_user/sfp_config.json',
+                '-d', '/home/sfp_user/spatial-frequency-preferences',
+                '-s', '/home/sfp_user/spatial-frequency-preferences/Snakefile', *args[1:]]
+    # in this case they passed a string so args[0] contains snakemake and then
+    # a bunch of other stuff
+    elif args and args[0].startswith('snakemake'):
+        args = ['snakemake', '--configfile', '/home/sfp_user/sfp_config.json',
+                '-d', '/home/sfp_user/spatial-frequency-preferences',
+                '-s', '/home/sfp_user/spatial-frequency-preferences/Snakefile', args[0].replace('snakemake ', ''), *args[1:]]
+        # if the user specifies --profile slurm, replace it with the
+        # appropriate path. We know it will be in the last one of args and
+        # nested below the above elif because if they specified --profile then
+        # the whole thing had to be wrapped in quotes, which would lead to this
+        # case.
+        if '--profile slurm' in args[-1]:
+            args[-1] = args[-1].replace('--profile slurm',
+                                        '--profile /home/sfp_user/.config/snakemake/slurm')
+        # then need to make sure to mount this
+        elif '--profile' in args[-1]:
+            profile_path = re.findall('--profile (.*?) ', args[-1])[0]
+            profile_name = op.split(profile_path)[-1]
+            volumes.append(f'{profile_path}:/home/sfp_user/.config/snakemake/{profile_name}')
+            args[-1] = args[-1].replace(f'--profile {profile_path}',
+                                        f'--profile /home/sfp_user/.config/snakemake/{profile_name}')
+    # open up an interactive session if the user hasn't specified an argument,
+    # otherwise pass the argument to bash. regardless, make sure we source the
+    # env.sh file
+    if not args:
+        args = ['/bin/bash', '--init-file', '/home/sfp_user/singularity_env.sh']
+    else:
+        args = ['/bin/bash', '-c',
+                # this needs to be done with single quotes on the inside so
+                # that's what bash sees, otherwise we run into
+                # https://stackoverflow.com/questions/45577411/export-variable-within-bin-bash-c;
+                # double-quoted commands get evaluated in the *current* shell,
+                # not by /bin/bash -c
+                f"'source /home/sfp_user/singularity_env.sh; {' '.join(args)}'"]
+    # set these environmental variables, which we use for the jobs submitted to
+    # the cluster so they know where to find the container and this script
+    env_str = f"--env SFP_PATH={op.dirname(op.realpath(__file__))} --env SINGULARITY_CONTAINER_PATH={image}"
+    # the -e flag makes sure we don't pass through any environment variables
+    # from the calling shell, while --writable-tmpfs enables us to write to the
+    # container's filesystem (necessary because singularity_env.sh makes a
+    # temporary config.json file)
+    if software == 'singularity':
+        exec_str = f'singularity exec -e {env_str} --writable-tmpfs {volumes} {image} {" ".join(args)}'
+    elif software == 'docker':
+        volumes = volumes.replace('--bind', '--volume')
+        exec_str = f'docker run {volumes} -it {image} {" ".join(args)}'
+        if sudo:
+            exec_str = 'sudo ' + exec_str
+    print(exec_str)
+    # we use shell=True because we want to carefully control the quotes used
+    subprocess.call(exec_str, shell=True)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description=("Run billbrod/sfp container. This is a wrapper, which binds the appropriate"
+                     " paths and sources singularity_env.sh, setting up some environmental variables.")
+    )
+    parser.add_argument('image',
+                        help=('If running with singularity, the path to the '
+                              '.sif file containing the singularity image. '
+                              'If running with docker, name of the docker image.'))
+    parser.add_argument('--software', default='singularity', choices=['singularity', 'docker'],
+                        help="Whether to run this with singularity or docker")
+    parser.add_argument('--sudo', '-s', action='store_true',
+                        help="Whether to run docker with sudo or not. Ignored if software==singularity")
+    parser.add_argument("args", nargs='*',
+                        help="Command to pass to the container. If empty, we open up an interactive session.")
+    args = vars(parser.parse_args())
+    main(**args)
+#+END_SRC
 ** slurm snakemake profile
 
 ** Archiving
