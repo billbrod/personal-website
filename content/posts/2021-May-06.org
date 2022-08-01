@@ -2,8 +2,8 @@
 #+DATE: <2021-05-05 Wed>
 #+PROPERTY: HPC
 
-# *NOTE*: I have since come up with a solution that I like better / think is less
-# hacky, described in [[./2021-Dec-21.org][this post]].
+*NOTE*: I have since come up with a solution that I like better / think is less
+hacky, described in [[./2022-Aug-01.org][this post]].
 
 NYU's new high performance computing (HPC) cluster, Greene, was put into
 production earlier this year and, on the new system, they want all users to use

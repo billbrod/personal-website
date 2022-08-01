@@ -1,15 +1,12 @@
 #+TITLE: snakemake, singularity, and HPC
-#+DATE: <2021-12-21 Tue>
+#+DATE: <2022-08-01 Tue>
 #+PROPERTY: HPC python reproducibility
 
-I CURRENTLY HAVE SOMETHING in the pelicanconf.py that tells it to ignore this.
-remove that when this is done
-
-This is a bit of a sequel to my [[./2021-May-06.org][post in May]] about using conda environments with
-snakemake on the HPC. That solution worked for me, but was hacky and limited.
-This post will describe a different solution, which uses a singularity container
-containing a conda environment that can be used by snakemake for local use or
-use with SLURM, and has the ability to mount extra dependencies.
+This is a bit of a sequel to my [[./2021-May-06.org][post last May]] about using conda environments
+with snakemake on the HPC. That solution worked for me, but was hacky and
+limited. This post will describe a different solution, which uses a singularity
+container containing a conda environment that can be used by snakemake for local
+use or use with SLURM, and has the ability to mount extra dependencies.
 
 I put this together for my [[https://github.com/billbrod/spatial-frequency-preferences][spatial frequency preferences]] project, and you can
 read that repo's README for more details on how to use it. The following post
@@ -654,10 +651,91 @@ if __name__ == '__main__':
     parser.add_argument('--sudo', '-s', action='store_true',
                         help="Whether to run docker with sudo or not. Ignored if software==singularity")
     parser.add_argument("args", nargs='*',
-                        help="Command to pass to the container. If empty, we open up an interactive session.")
+                        help=("Command to pass to the container. If empty, we open up an interactive session."
+                              " If it contains flags, surround with SINGLE QUOTES (not double)."))
     args = vars(parser.parse_args())
     main(**args)
 #+END_SRC
+
 ** slurm snakemake profile
 
+    If we want to submit jobs to the job scheduler, we need to tell snakemake
+    how to do so and to use the container when it does so. We do this via a
+    custom [[https://snakemake.readthedocs.io/en/stable/executing/cli.html?highlight=profiles#profiles][profile]], which can be found as the singularity branch of my
+    [[https://github.com/billbrod/snakemake-slurm/tree/singularity][snakemake-slurm]] github repository. This is based on the canonical [[https://github.com/Snakemake-Profiles/slurm/][slurm]]
+    snakemake profile. I originally created my version 5 years ago, and it's
+    possible there are changes to the original in that time that would be
+    helpful, so you can use mine or the original for this (the only changes I've
+    made besides those described below are a small change to add support for the
+    [[https://github.com/billbrod/snakemake-slurm/commit/4f9e82930eb8dd7b34699b3689bf79db9017e9cb][--gres]] option, required for requesting GPUs, and a small change to
+    [[https://github.com/billbrod/snakemake-slurm/commit/73b4c14506ed9403ee6a91a47d660bc5fa261c91][partition]]).
+
+    The only file that is specific to the implementation discussed in this post
+    is =slurm-jobscript.sh=:
+
+    #+BEGIN_SRC bash :exports code
+    #!/bin/bash
+    #SBATCH --export=SINGULARITY_CONTAINER_PATH,SFP_PATH
+    # properties = {properties}
+
+    # q is a special formatting symbol used by snakemake to tell it to escape quotes
+    # correctly
+    $SFP_PATH/run_singularity.py $SINGULARITY_CONTAINER_PATH {exec_job:q}
+    #+END_SRC
+
+    Note that this script makes use of the =SINGULARITY_CONTAINER_PATH= and
+    =SFP_PATH= environmental variables, which we made sure to set in the wrapper
+    script =run_singularity.py= above. They specify the location of the
+    singularity container containing the environment and the directory
+    containing the code for the project (and thus, =run_singularity.py=).
+
+    Each job that snakemake submits to the cluster will use this script as the
+    template for its job, and so we are ensuring that each of those jobs will
+    use =run_singularity.py= to run within the container. We also use the =:q=
+    formatting symbol (which is a special snakemake one, not available in
+    standard python) to escape quotes correctly, which is important since, as
+    discussed in the previous section, we need to control the single quotes
+    carefully to make sure the flags are interpreted by the right software.
+
 ** Archiving
+
+   Finally, we would like to be able to back up the containers for long-term
+   archiving. I wrote this code as a way of making my analysis and
+   figure-creation reproducible for a scientific paper. This means that I would
+   like the code to remain runnable for as long as possible and it is unlikely
+   that many people will use it. Docker hub [[https://www.docker.com/blog/docker-hub-image-retention-policy-delayed-and-subscription-updates/][had planned]] to delete images from
+   free Docker accounts after six months of activity, though it's unclear what
+   the status of that plan is. Regardless, we should not be relying on Docker
+   hub for long-term archiving and so we need another solution.
+
+   Fortunately, singularity creates a =.sif= file containing the container when
+   pulling it, and docker can export the container into a =.tar= file using
+   =docker save= (e.g., =docker save billbrod/sfp:v1.0.0 >
+   sfp_v1.0.0_docker.tar=). These files can then be archived like any other
+   file. They are rather large (2.5GB for the =.sif= file, 5.1GB for the =.tar=
+   file), and so something like the [[https://osf.io/][Open Science Framework]], where I normally
+   place my academic research-related files, is not an option.
+
+   Ultimately, I used NYU's [[https://archive.nyu.edu/][Faculty Digital Archive]]. Something like [[https://aws.amazon.com/s3/][Amazon Web
+   Service's]] S3 buckets (or other cloud storage) would be another option, though
+   not free. When looking for where to archive, any service you use should give
+   objects a doi and allow for versioning. Ideally, it should be run by a
+   non-profit and open source, but that might not be possible. If you're at a
+   university, I recommend reaching out to your university library or HPC team
+   to see if they have any suggestions. Fundamentally, archiving and sharing the
+   container is not that different from archiving and sharing a large data set.
+
+   Archiving the container somewhere publicly-accessible allows users to
+   download the container and use it, even if the docker hub image is deleted.
+   With singularity, the container is used directly, whereas with docker,
+   =docker load= is required (e.g., =docker load < sfp_v1.0.0_docker.tar=).
+
+** Conclusion
+
+   This post outlines how to create and use a container which contains all
+   dependencies possible, allows for mounting any additional dependencies (such
+   as those that require a license for use), and can be used identically locally
+   and on the cluster, as well as being able to use snakemake to submit jobs on
+   a cluster. While the scripts I wrote are all slurm-specific (and, even more
+   so, specific to NYU's greene cluster), hopefully they can provide a jumping
+   off point for others.
