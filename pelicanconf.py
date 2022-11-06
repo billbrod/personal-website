@@ -72,3 +72,4 @@ ORG_READER_EMACS_SETTINGS = os.path.abspath('lisp/config.el')
 ORG_READER_BACKEND = "'pelican-html"
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
+USE_LESS = True
