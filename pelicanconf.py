@@ -42,6 +42,7 @@ COPYRIGHT_YEAR = "2017"
 # default font-awesome set of stuff used by Flex. fork the theme and modify it.
 SOCIAL = (('github', 'https://github.com/billbrod/'),
           ('twitter', 'https://twitter.com/wfbroderick'),
+          ('mastodon', 'https://vis.social/@billbrod'),
           ('orcid', 'http://orcid.org/0000-0002-8999-9003'),
           ('osf', 'https://osf.io/profile/byvc7'),
           ('google-scholar', 'http://scholar.google.com/citations?user=uyaj7fIAAAAJ&amp;hl=en'),
