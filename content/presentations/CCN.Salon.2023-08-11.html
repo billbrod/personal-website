@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>CCN Salon</title>
+<meta name="author" content="Billy Broderick"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="/dist/reveal.css"/>
+
+<link rel="stylesheet" href="/dist/theme/simple.css" id="theme"/>
+
+<link rel="stylesheet" href="custom.css"/>
+<link rel="stylesheet" href="//plugin/highlight/zenburn.css"/>
+<meta name="description" content="plenoptic status April 2023">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h1>CCN Salon</h1><h2>Billy Broderick</h2><h2>August 11, 2023</h2>
+</section>
+
+<section>
+<section id="slide-org309d446">
+<h2 id="org309d446">Who am I?</h2>
+<ul>
+<li data-fragment-index="1" class="fragment appear">PhD: NYU Center for Neural Science, May 2022
+<ul>
+<li>Advisors: Eero Simoncelli and Jonathan Winawer</li>
+
+</ul></li>
+<li data-fragment-index="2" class="fragment appear">Research focus: how vision changes across the visual field, using fMRI,
+psychophysics, and computational models</li>
+<li data-fragment-index="3" class="fragment appear">Fell down the open source / open science rabbit hole</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Many of you know who I am, my name is Billy, and I got my PhD from NYU&rsquo;s Center
+for Neural Science, advised by Eero and Jon Winawer, who&rsquo;s in the psychology
+department at NYU
+</p>
+
+<p>
+I studied how vision changes across the visual field, using fMRI, psychophysics,
+and computational models. So if you&rsquo;re staring at me, you have no problem making
+out my face, but if you look at the screen, my face loses a lot of detail &#x2013;
+what detail is lost and where, that&rsquo;s what I studied
+</p>
+
+<p>
+and I really fell down the open source and open science rabbit hole over the
+course of my PhD. I was working as an RA doing fMRI research and applying for
+grad school in 2014/2015, which involved me trying to learn python and was also
+around the time when the reproducibility crisis in psychology really took off.
+so learning how to do reproducible research, how to share data, fundamentally
+how to do science in a cumulative way, so that we can actually build on each
+other&rsquo;s work, has been very important to me.
+</p>
+
+<p>
+and that means I became a bit of an open source partisan &#x2013; my research stack is
+completely open source programs (hence why this is a reveal.js presentation, not
+powerpoint / keynote &#x2013; happy to help spread the good word if anyone wants wants
+to uninstall their OS and go all Linux), I shared all the code and all the data
+I did during my PhD, and, most relevant to this talk, I started working on
+several python projects with other members of Eero&rsquo;s lab, one of which became
+the project I&rsquo;m talking about today
+</p>
+
+</aside>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-org54fc184">
+<h2 id="org54fc184"></h2>
+
+<div id="orgfed58f2" class="figure">
+<p><img src="../images/plen-1.0.1-intro-1.svg" alt="plen-1.0.1-intro-1.svg" class="org-svg" width="100%" height="100%" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+so I&rsquo;m going to talk about plenoptic, which is a python library that performs
+&ldquo;model-based synthesis of perceptual stimuli&rdquo; to help better understand those
+computational models. I&rsquo;m going to briefly describe what that means. key word is
+&ldquo;synthesis&rdquo;&#x2026;
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgcd98d6e">
+<h2 id="orgcd98d6e"></h2>
+
+<div id="org4510bd7" class="figure">
+<p><img src="../images/plen-1.0.1-intro-2.svg" alt="plen-1.0.1-intro-2.svg" class="org-svg" width="100%" height="100%" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+&#x2026; which we&rsquo;ve represented with this little abstract logo. This represents the
+relationship between computational models, their inputs, outputs, and
+parameters.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org7fc7cd5">
+<h2 id="org7fc7cd5"></h2>
+
+<div id="orgcef8702" class="figure">
+<p><img src="../images/plen-synth-1.svg" alt="plen-synth-1.svg" class="org-svg" width="100%" height="100%" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+To make that slightly less abstract, here is a diagram of a model in visual
+neuroscience. it accepts some stimuli s, often for us images, as inputs, and
+based on some parameters theta, returns some responses r. these responses can be
+anything of interst to the experimenter, such as predicted spike rates or image
+class, if this were doing image net
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org9fd5851">
+<h2 id="org9fd5851">Simulate responses</h2>
+
+<div id="org0d6d944" class="figure">
+<p><img src="../images/plen-synth-2.svg" alt="plen-synth-2.svg" class="org-svg" width="100%" height="100%" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+now the way that models are most commonly used, is that we feed them an input
+and some parameter values and we simulate the responses.
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgf21fa1b">
+<h2 id="orgf21fa1b">Fit parameters</h2>
+
+<div id="orgc8e47b5" class="figure">
+<p><img src="../images/plen-synth-3.svg" alt="plen-synth-3.svg" class="org-svg" width="100%" height="100%" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+we often pretty regularly fix the responses for a set of stimuli and use
+backpropagation to fit the parameters
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org5a16a62">
+<h2 id="org5a16a62">Synthesize stimuli</h2>
+
+<div id="org4be0fa5" class="figure">
+<p><img src="../images/plen-synth-4.svg" alt="plen-synth-4.svg" class="org-svg" width="100%" height="100%" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+but there&rsquo;s nothing special about the stimuli. we can similarly hold both the
+responses and parameters constant and use back propagation to generate novel
+stimuli. 
+</p>
+
+<p>
+this is what we call synthesis &#x2013; updating the pixel values of an image based on
+a model with set parameter values and some intended output.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org6553342">
+<h2 id="org6553342">Metamers</h2>
+<ul>
+<li>Physically distinct stimuli that are perceptually identically</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+one such method is metamer synthesis. in the study of perception, metamers are
+physically distinct stimuli that are perceptually identical.
+</p>
+
+<p>
+the classic example of metamers come from color perception.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgcdd1904">
+<h2 id="orgcdd1904">Metamers</h2>
+
+<div id="org8098636" class="figure">
+<p><img src="../images/plen-metamer-podium.svg" alt="plen-metamer-podium.svg" class="org-svg" width="100%" height="100%" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+when you look at this picture of the podium, compared to the podium in real
+life, they look like they&rsquo;re the same color. however, the physical light that is
+entering your eye is <b>very</b> different, because this projector only has three
+color channels (RGB), and so it cannot hope to exactly match the energy at every
+wavelength in the visual light spectrum
+</p>
+
+<p>
+however, it doesn&rsquo;t need to
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgef60897">
+<h2 id="orgef60897">Metamers</h2>
+
+<div id="org62ff70d" class="figure">
+<p><img src="../images/plen-metamer-cones.svg" alt="plen-metamer-cones.svg" class="org-svg" width="100%" height="100%" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+because of how the human eye transforms physical light into perceptual color.
+humans only have three cone classes, called short, medium, and long based on
+which wavelengths they&rsquo;re most sensitive to.
+</p>
+
+<p>
+That means you only need those three color channels to match human color
+perception &#x2013; and for colorblind people who have only two cone classes, you&rsquo;d
+need only two color channels.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc7ea959">
+<h2 id="orgc7ea959">Metamers</h2>
+<ul>
+<li>Physically distinct stimuli that are perceptually identically</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+so that&rsquo;s metamers &#x2013; physically different stimuli, but perceptually identical
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgbf053f2">
+<h2 id="orgbf053f2">Metamers</h2>
+<ul>
+<li>Physically distinct stimuli that are perceptually identically (to a
+computational model)</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+for plenoptic, what we&rsquo;re focusing on is not an organism, but a computational
+model. so metamers have different pixel values but identical outputs
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org7723711">
+<h2 id="org7723711">Contents</h2>
+
+<div id="orgae21574" class="figure">
+<p><img src="../images/plen-contents-2.svg" alt="plen-contents-2.svg" class="org-svg" width="100%" height="100%" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+plenoptic contains four synthesis methods, which have all been developed in
+Eero&rsquo;s lab over the years. I won&rsquo;t go though the rest of them in detail, but I&rsquo;m
+happy to provide more detail or discuss them later if you&rsquo;re interested
+</p>
+
+<p>
+each of these methods and models was developed by members of the lab over the
+years, but generally for a specific research question and with an implementation
+that others could not use, at least not easily. the goal of plenoptic was to
+implement these methods in a general, model-agnostic way, taking advantage of
+pytorch&rsquo;s automatic differentiation, so that we and other members of the
+scientific community could use them for novel models and questions
+</p>
+
+<p>
+the package also contains several models and model components that we find
+useful and think others might. these are all implemented in pytorch, can be used
+easily with our synthesis methods, and are tested and maintained
+</p>
+
+<p>
+that&rsquo;s the over view of the contents, now let&rsquo;s talk about the bigger picture
+questions
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org45eaacf">
+<h2 id="org45eaacf">Why do this?</h2>
+<ul>
+<li data-fragment-index="1" class="fragment appear">Improve understanding of computational models</li>
+<li data-fragment-index="2" class="fragment appear">Image space is vast!</li>
+<li data-fragment-index="3" class="fragment appear">Better understand single model or compare between competing models</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+For those of you who haven&rsquo;t heard of this approach, you might wonder, why do
+this?
+</p>
+
+<p>
+the goal is to improve our understanding of how our computational models make
+sense of their input. as adversarial examples and other similar techniques have
+shown, that&rsquo;s not trivial! just because a model does well on image net doesn&rsquo;t
+mean it won&rsquo;t behave unexpectedly on new / out-of-distribution data
+</p>
+
+<p>
+image space is vast, so any possible dataset is a tiny sample of it, and the
+methods in plenoptic provide a different and targeted way of exploring this
+space.
+</p>
+
+<p>
+they can be used for:
+</p>
+<ul>
+<li>improving understanding of a given model &#x2013; for example, fit a model to a
+visual neuron, then generate some stimuli with plenoptic and use it in a new
+experiment</li>
+<li>another way of comparing models: many models can do equivalently (or near
+equivalently) well on a given benchmark, and plenoptic&rsquo;s methods provide a
+complementary approach for comparing them.</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org283514d">
+<h2 id="org283514d">Status and Roadmap</h2>
+<div class="column" style="float:left; width:80%">
+<ul>
+<li>All methods, models are implemented
+<ul>
+<li>Currently improving geodesics</li>
+
+</ul></li>
+<li>Working on improving tutorials and documentation, cleaning up code base</li>
+<li>Looking for feedback and users!
+<ul>
+<li><a href="https://plenoptic.readthedocs.io/">https://plenoptic.readthedocs.io/</a></li>
+
+</ul></li>
+
+</ul>
+</div>
+
+<div class="column" style="float:right; width:20%">
+
+<div id="org8c87ed5" class="figure">
+<p><img src="../images/plen-docs-qr.svg" alt="plen-docs-qr.svg" class="org-svg" width="100%" height="100%" />
+</p>
+</div>
+
+</div>
+
+<aside class="notes">
+<p>
+so currently, all methods and models that I just described are implemented,
+documented, and tested, though I&rsquo;m working on some improvements to one of them,
+geodesics
+</p>
+
+<p>
+I&rsquo;m also generally looking to improve the tutorials and docs, especially to make
+sure it&rsquo;s understandable to folks who haven&rsquo;t been in Eero&rsquo;s lab for &gt;5 years,
+and cleaning up the code base
+</p>
+
+<p>
+I&rsquo;m actively looking for feedback and users &#x2013; if you scan that qr code or go to
+that url, you&rsquo;ll find my docs
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org78f5230">
+<h2 id="org78f5230">Developers</h2>
+
+<div id="org96aaa4f" class="figure">
+<p><img src="../images/plen-people-details.svg" alt="plen-people-details.svg" class="org-svg" width="100%" height="100%" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+I want to point out that wasn&rsquo;t just me &#x2013; I&rsquo;m the maintainer and core developer
+now, but this was the work of 7 folks in Eero&rsquo;s lab since 2019.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgad69764">
+<h2 id="orgad69764">Developers</h2>
+
+<div id="org6773bd5" class="figure">
+<p><img src="../images/plen-people-details-and-you.svg" alt="plen-people-details-and-you.svg" class="org-svg" width="100%" height="100%" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+I&rsquo;m not just interested in more users, but in new contributors as well.
+</p>
+
+<p>
+We just got our first substantial PR from someone outside the lab! Daniel
+Herrera from Johannes Burges&rsquo;s lab
+</p>
+
+<p>
+come find me if you&rsquo;re interested
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org5d0f04c">
+<h2 id="org5d0f04c">Website</h2>
+<div class="column" style="float:left; width:60%">
+<ul>
+<li><a href="https://plenoptic.readthedocs.io/">https://plenoptic.readthedocs.io/</a></li>
+
+</ul>
+</div>
+
+<div class="column" style="float:left; width:30%">
+
+<div id="org467f486" class="figure">
+<p><img src="../images/plen-docs-qr.svg" alt="plen-docs-qr.svg" class="org-svg" width="100%" height="100%" />
+</p>
+</div>
+</div>
+
+<aside class="notes">
+<p>
+Leave this up here for a sec while I take questions(??)
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgfacf50e">
+<h2 id="orgfacf50e">How write software?</h2>
+<ul>
+<li data-fragment-index="1" class="fragment appear">How do I make my package pip installable? (i.e., <code>pip install my_awesome_package</code>)</li>
+<li data-fragment-index="2" class="fragment appear">What&rsquo;s the difference between <code>requirements.txt</code>, <code>environment.yml</code>,
+<code>setup.py</code>, and <code>pyproject.toml</code> and which should I use?</li>
+<li data-fragment-index="3" class="fragment appear">How do I get up on the Python package index (<a href="https://pypi.org">https://pypi.org</a>)?</li>
+<li data-fragment-index="4" class="fragment appear">How do I make this work on other operating systems?</li>
+<li data-fragment-index="5" class="fragment appear">How do I automatically compile the C code my Python function uses?</li>
+<li data-fragment-index="6" class="fragment appear">How do I tell people how to use my code?</li>
+<li data-fragment-index="7" class="fragment appear">How do I get that information up on a website?</li>
+<li data-fragment-index="8" class="fragment appear">How do I make sure my code actually <b>works</b>?</li>
+<li data-fragment-index="9" class="fragment appear">How do I write code with other people?</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Now to change directions a bit and talk about another project that the data
+scientists have been working on.
+</p>
+
+<p>
+as you&rsquo;ve heard, all of us data scientists are neuroscientists by training, who
+realized we like writing scientific software. but none of us are formally
+trained in software engineering and so, while we&rsquo;ve all worked on python
+libraries before (that is, general purpose code we expect to be used by other
+people on a variety of machines), we had to figure everything out as we go.
+</p>
+
+<p>
+and there&rsquo;s a big gap between &ldquo;I can write python code that works for me&rdquo; and &ldquo;I
+can write a python library that other people can install and use without any
+problems&rdquo;. that gap is full of questions like:
+</p>
+
+<p>
+how do i make my package pip installable? which leads to questions like: read
+through C code
+</p>
+
+<p>
+which leads to other related questions like: &#x2026;
+</p>
+
+<p>
+and most importantly: how do I write code with other people?
+</p>
+
+<p>
+we all figured out different ways to do this, but we&rsquo;re all self-taught, and so
+we took the opportunity to come together, talk through how we&rsquo;ve handled this in
+the past, and more importantly: put together a github repo and website that
+encodes this information.
+</p>
+
+<p>
+it&rsquo;s very much a work in progress, but I&rsquo;m going to shift over and show you what
+we have:
+</p>
+<ul>
+<li>docs website. show structure, then packaging, documentation, linters+tests</li>
+<li>not done: show docstrings</li>
+<li>switch to gh repo, look at mkdocs.yml, readthedocs.yml files</li>
+
+</ul>
+
+<p>
+this is largely for us: so we make our decisions once, have thought through what
+to do and explained how/why to do it. it&rsquo;s probably more indepth than most
+researchers want for their code, but in case anyone&rsquo;s interested in these
+topics, it might be helpful to check out.
+</p>
+
+<p>
+we&rsquo;re planning on including a section that puts these in order, so researchers
+who want to share their code for others to you can see what are the steps in
+escalating &ldquo;seriousness&rdquo;: from the easy+necessary (adding a license and install
+instructions) to the harder / less necessary (building documentation on
+readthedocs, deploying to pip)
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org35f4240">
+<h2 id="org35f4240">Events</h2>
+<ul style="margin-top:5%">
+<li>Fall 2023:  
+<ul>
+<li>pynapple McGill workshop</li>
+<li>MIT Open Neurophysiology Symposium (DANDI, Miniscope, NWB, DataJoint, etc.)</li>
+<li>US Research Software Engineer Association Conference (1st annual!)</li>
+<li>Caiman workshop at Society for Neuroscience conference (for users)</li>
+
+</ul></li>
+<li>Spring 2024:
+<ul>
+<li>CaImAn code spring at Flatiron (for contributors)</li>
+<li>Open source systems neuroscience workshop? at Computational and Systems
+Neuroscience conference (Cosyne)</li>
+<li>plenoptic workshop? at Vision Science Society conference (VSS)</li>
+<li>pynapple + CaImAn workshop? at Federation of European Neuroscience
+Societies (FENS)</li>
+
+</ul></li>
+<li>Summer 2024:
+<ul>
+<li>Interns!</li>
+
+</ul></li>
+
+</ul>
+
+<aside class="notes">
+<p>
+and then finally, we&rsquo;re planning on being involved in a variety of events, both
+ones we&rsquo;re hosting and taking part in
+</p>
+
+<p>
+talk through
+</p>
+
+<p>
+happy to hear suggestions for how we should reach and work with users and
+collaborators.
+</p>
+
+</aside>
+</section>
+</section>
+</div>
+</div>
+<p> Created by WFB. </p>
+<script src="/dist/reveal.js"></script>
+<script src="/plugin/highlight/highlight.js"></script>
+<script src="/plugin/markdown/markdown.js"></script>
+<script src="/plugin/notes/notes.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: false,
+progress: true,
+history: false,
+center: false,
+slideNumber: 't',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+width: 1920,
+height: 1176,
+margin: 0.10,
+minScale: 0.50,
+maxScale: 2.50,
+
+transition: 'none',
+transitionSpeed: 'default',
+keyboard:{74:()=>{Reveal.slide(prompt("Slide number")-1)}},
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealHighlight, RevealMarkdown, RevealNotes ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>
