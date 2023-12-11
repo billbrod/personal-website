@@ -8,7 +8,7 @@ SITENAME = u"William Broderick's Blog"
 SITETITLE = AUTHOR
 SITEURL = 'http://localhost:8000'
 THEME = 'Flex'
-SITELOGO = '/images/WilliamBroderick-portrait-cropped.jpg'
+SITELOGO = '/images/CCN_headshot.jpg'
 
 PYGMENTS_STYLE = "friendly"
 
