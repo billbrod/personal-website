@@ -1,11 +1,10 @@
 image: python:3.11
 
 variables:
-  GIT_SUBMODULE_FORCE_HTTPS: "true"
+  GIT_SUBMODULE_STRATEGY: recursive
 
 pages:
   script:
-    - export
     - pip install -r requirements.txt
     - pelican content/ -o public/ -s publishconf.py -D
   artifacts:
