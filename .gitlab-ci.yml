@@ -1,0 +1,9 @@
+image: python:3.11
+
+pages:
+  script:
+    - pip install -r requirements.txt
+    - pelican content/ -o public/ -s publishconf.py -D
+  artifacts:
+    paths:
+      - public
