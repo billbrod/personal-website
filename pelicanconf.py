@@ -66,7 +66,7 @@ PLUGIN_PATHS = ['pelican-plugins', 'liquid_tags', 'extra_plugins']
 PLUGINS = ['org_reader', 'pelican-bibtex', 'simple_footnotes']
 PUBLICATIONS_SRC = 'content/docs/pubs.bib'
 
-ORG_READER_EMACS_LOCATION = '/usr/bin/emacs'
+ORG_READER_EMACS_LOCATION = 'emacs'
 # solution from https://emacs.stackexchange.com/a/32818
 ORG_READER_EMACS_SETTINGS = os.path.abspath('lisp/config.el')
 ORG_READER_BACKEND = "'pelican-html"
