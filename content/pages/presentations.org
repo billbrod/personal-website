@@ -11,7 +11,7 @@ as a pop-up). These seem to work best in Chrome or Chromium.
 - [[file:{static}/presentations/Thesis.Defense.2022-04-15-no-ackn.html][Thesis defense public talk]]. A video recording of this talk can be found [[https://archive.org/details/broderick_defense][on the
   Internet Archive]] (they'll host your stuff for free, forever). The presentation
   contains several very large images, so it may take a bit longer to load.
-  - [[file:{static}/docs/Broderick2022-effec-foveat-slides.pdf][pdf version]] of the slides.
+  - [[https://archive.org/details/broderick-2022-effec-foveat-slides][pdf version]] of the slides.
 - [[file:{static}/presentations/1st-Year-Talk.2017-10-19.html][First Year Talk]] (note that there's an animated gif about half way
   through this presentation showing my experiment; it's slowed down
   but it involves rapidly flashing black and white gratings, so I'm

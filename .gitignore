@@ -1,2 +1,5 @@
 public/
 *.pyc
+
+# contains files too large for git, they're uploaded to internet archive instead
+large_files
