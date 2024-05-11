@@ -49,9 +49,7 @@ SOCIAL = (('github', 'https://github.com/billbrod/'),
           ('linkedin', 'https://www.linkedin.com/in/william-broderick-58165a65/'))
 
 MAIN_MENU = True
-MENUITEMS = (('Archives', '/archives.html'),
-             ('Categories', '/categories.html'),
-             ('Tags', '/tags.html'))
+MENUITEMS = (('Archives', '/archives.html'))
 
 # I modified the Flex template so links don't open in a separate tab so this feels more a part of
 # the site.
