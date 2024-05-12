@@ -1,0 +1,7 @@
+Host github.com-meals
+        Hostname github.com
+        IdentityFile=$HOME/.ssh/meals_deploy_key
+
+Host github.com-books
+        Hostname github.com
+        IdentityFile=$HOME/.ssh/books_deploy_key

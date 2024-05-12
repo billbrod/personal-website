@@ -7,3 +7,15 @@
 [submodule "extra_plugins/pelican-bibtex"]
 	path = extra_plugins/pelican-bibtex
 	url = https://github.com/vene/pelican-bibtex.git
+[submodule "content/apps/google-ngram-analyzer"]
+	path = content/apps/google-ngram-analyzer
+	url = https://github.com/billbrod/google-ngram-analyzer.git
+[submodule "content/apps/book-visualization"]
+	path = content/apps/book-visualization
+	url = https://github.com/billbrod/book-visualization.git
+[submodule "content/apps/meal-calendar"]
+	path = content/apps/meal-calendar
+	url = https://github.com/billbrod/meal-calendar.git
+[submodule "content/apps/yiddish-wordlist"]
+	path = content/apps/yiddish-wordlist
+	url = ./content/apps/yiddish-wordlist/

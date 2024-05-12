@@ -2,6 +2,8 @@ name: Deploy to github pages
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "0 0 * * 0" # weekly
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -26,6 +28,24 @@ jobs:
 
     - name: Setup Pages
       uses: actions/configure-pages@v5
+
+    - name: Get data
+      env:
+        SSH_KEY_FOR_BOOKS ${{ secrets.SSH_BOOKS_KEY }}
+        SSH_KEY_FOR_MEALS ${{ secrets.SSH_MEALS_KEY }}
+      # need to do this for multiple keys: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys#using-multiple-repositories-on-one-server
+      run: |
+        mkdir $HOME/.ssh
+        cp .github/sshconfig $HOME/.ssh/config
+        echo "$SSH_KEY_FOR_BOOKS" > $HOME/.ssh/books_deploy_key
+        chmod 600 $HOME/.ssh/books_deploy_key
+        echo "$SSH_KEY_FOR_MEALS" > $HOME/.ssh/meals_deploy_key
+        chmod 600 $HOME/.ssh/meals_deploy_key
+        mkdir data
+        git clone git@github.com-meals:billbrod/meals data/meals
+        cp data/meals/dinner.csv content/apps/meal-calendar/data/dinner.csv
+        git clone git@github.com-meals:billbrod/book-tracking data/books
+        cp data/books/books.csv content/apps/book-visualization/books.csv
 
     - name: Set up Python
       uses: actions/setup-python@v5

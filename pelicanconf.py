@@ -16,9 +16,9 @@ ROBOTS = 'index, follow'
 
 PATH = 'content'
 OUTPUT_PATH = 'public'
-STATIC_PATHS = ['images', 'presentations', 'docs']
+STATIC_PATHS = ['images', 'presentations', 'docs', 'apps']
 PAGE_EXCLUDES = []
-ARTICLE_EXCLUDES = ['presentations']
+ARTICLE_EXCLUDES = ['presentations', 'apps']
 
 IGNORE_FILES = ['.#*']
 
@@ -49,7 +49,7 @@ SOCIAL = (('github', 'https://github.com/billbrod/'),
           ('linkedin', 'https://www.linkedin.com/in/william-broderick-58165a65/'))
 
 MAIN_MENU = True
-MENUITEMS = (('Archives', '/archives.html'))
+MENUITEMS = (('Archives', '/archives.html'),)
 
 # I modified the Flex template so links don't open in a separate tab so this feels more a part of
 # the site.

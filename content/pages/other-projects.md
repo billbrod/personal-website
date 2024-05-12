@@ -24,20 +24,21 @@ together.
     ([paper](https://doi.org/10.1167/jov.22.4.3), [github
     repo](https://github.com/billbrod/spatial-frequency-preferences)
     with instructions on how to get data and use code).
-  - [Dinner calendar](https://www.wfbroderick.com/meal-calendar/)
+  - [Dinner calendar]({static}/apps/meal-calendar/index.html)
     ([github repo](https://github.com/billbrod/meal-calendar/)): a
     visualization using [vega](https://vega.github.io/) to see what my
     dinners have been like since Jan 2022. Whether I cooked, was the
     meal vegetarian, etc. Includes links to recipes, where available.
-  - [Books](https://wfbroderick.com/book-visualization/) ([github
+  - [Books]({static}/apps/book-visualization/index.html) ([github
     repo](https://github.com/billbrod/book-visualization/)): a
     visualization using [d3.js](https://d3js.org/) to see what books
     I've read since mid-2016 (though I'm pretty sure the data from first
     several months is off).
   - [Google ngram
-    analyzer](https://wfbroderick.com/google-ngram-analyzer/) ([github
+    analyzer]({static}/apps/google-ngram-analyzer/index.html) ([github
     repo](https://github.com/billbrod/google-ngram-analyzer)): an app
     using [d3.js](https://d3js.org/) to put blocks of text through
     [Google Ngram Viewer](https://books.google.com/ngrams), with the
     goal of helping writers of works set in specific historical periods
     understand whether the words they're using are anachronistic or not.
+  - [Yiddish wordlist]({static}/apps/yiddish-wordlist/index.html) ([github repo](https://github.com/billbrod/yiddish_wordlist_website)): a simple table showing vocab from some Yiddish short stories.
