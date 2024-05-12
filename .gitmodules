@@ -18,4 +18,4 @@
 	url = https://github.com/billbrod/meal-calendar.git
 [submodule "content/apps/yiddish-wordlist"]
 	path = content/apps/yiddish-wordlist
-	url = ./content/apps/yiddish-wordlist/
+	url = https://github.com/billbrod/yiddish_wordlist_website.git
