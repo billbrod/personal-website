@@ -44,7 +44,7 @@ jobs:
         mkdir data
         git clone git@github.com-meals:billbrod/meals data/meals
         cp data/meals/dinner.csv content/apps/meal-calendar/data/dinner.csv
-        git clone git@github.com-meals:billbrod/book-tracking data/books
+        git clone git@github.com-books:billbrod/book-tracking data/books
         cp data/books/books.csv content/apps/book-visualization/books.csv
 
     - name: Set up Python
