@@ -31,8 +31,8 @@ jobs:
 
     - name: Get data
       env:
-        SSH_KEY_FOR_BOOKS ${{ secrets.SSH_BOOKS_KEY }}
-        SSH_KEY_FOR_MEALS ${{ secrets.SSH_MEALS_KEY }}
+        SSH_KEY_FOR_BOOKS: ${{ secrets.SSH_BOOKS_KEY }}
+        SSH_KEY_FOR_MEALS: ${{ secrets.SSH_MEALS_KEY }}
       # need to do this for multiple keys: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys#using-multiple-repositories-on-one-server
       run: |
         mkdir $HOME/.ssh
