@@ -3,13 +3,13 @@ Date: 2017-08-23
 Summary: About me
 
 I am an associate data scientist at the [Flatiron
-Institute](https://www.simonsfoundation.org/flatiron/) Center for
-Computational Neuroscience (CCN), working to make computational
+Institute](https://www.simonsfoundation.org/flatiron/) [Center for
+Computational Neuroscience (CCN)](https://www.simonsfoundation.org/flatiron/center-for-computational-neuroscience/), working to make computational
 neuroscience more open, cumulative, and reproducible. I work on open
 source software packages, help the researchers at CCN share their code
 and data so that others can use it, and write tutorials and
 documentation to this end. You can read more at the
-[NeuroRSE](https://neurorse.flatironinstitute.org/) group page.
+[NeuroRSE](https://neurorse.flatironinstitute.org/) group page, and check out [Software]({filename}software.md) for some details on the software projects I work on.
 
 Previously, I was a PhD student at New York University's Center for
 Neural Science, where I researched the processing of visual information
