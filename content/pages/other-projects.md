@@ -12,18 +12,6 @@ together.
     and [ScAAN](https://scaan.net/), this interactive map visualizes the
     effects of climate change and storm surge in New York City's
     industrial waterfront.
-  - [Illusory Grating](https://www.wfbroderick.com/illusory-grating)
-    ([gitlab repo](https://gitlab.com/billbrod/illusory-grating/)): a
-    webapp I put together to visualize a strange illusion I found. Note
-    this takes a long time to load.
-  - [Spatial frequency
-    model](https://wfbroderick.com/spatial-frequency-model/) ([github
-    repo](https://github.com/billbrod/spatial-frequency-model)): a
-    webapp I put together to explore predictions made by different
-    parameter values for my spatial frequency preferences paper
-    ([paper](https://doi.org/10.1167/jov.22.4.3), [github
-    repo](https://github.com/billbrod/spatial-frequency-preferences)
-    with instructions on how to get data and use code).
   - [Dinner calendar]({static}/apps/meal-calendar/index.html)
     ([github repo](https://github.com/billbrod/meal-calendar/)): a
     visualization using [vega](https://vega.github.io/) to see what my
@@ -42,3 +30,19 @@ together.
     goal of helping writers of works set in specific historical periods
     understand whether the words they're using are anachronistic or not.
   - [Yiddish wordlist]({static}/apps/yiddish-wordlist/index.html) ([github repo](https://github.com/billbrod/yiddish_wordlist_website)): a simple table showing vocab from some Yiddish short stories.
+
+Before May 2024, I also was hosting the following. I'm no longer hosting them,
+but you can try and run them yourself following the instructions on their git
+repos. Open an issue if you have any problems!
+
+  - Illusory Grating ([gitlab
+    repo](https://gitlab.com/billbrod/illusory-grating/)): a webapp I put
+    together to visualize a strange illusion I found. Note this takes a long
+    time to load.
+  - Spatial frequency model ([github
+    repo](https://github.com/billbrod/spatial-frequency-model)): a webapp I put
+    together to explore predictions made by different parameter values for my
+    spatial frequency preferences paper
+    ([paper](https://doi.org/10.1167/jov.22.4.3), [github
+    repo](https://github.com/billbrod/spatial-frequency-preferences) with
+    instructions on how to get data and use code).

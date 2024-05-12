@@ -16,7 +16,8 @@ ROBOTS = 'index, follow'
 
 PATH = 'content'
 OUTPUT_PATH = 'public'
-STATIC_PATHS = ['images', 'presentations', 'docs', 'apps']
+STATIC_PATHS = ['images', 'presentations', 'docs', 'apps',
+                'spatial-frequency-model', 'illusory-grating']
 PAGE_EXCLUDES = []
 ARTICLE_EXCLUDES = ['presentations', 'apps']
 
